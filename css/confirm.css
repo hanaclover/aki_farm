@@ -1,0 +1,43 @@
+/*bodyタグ直下に配置し、全体の枠組みを決定する*/
+#wrapper {
+    /*全体の外観*/
+    width: 80%;
+    font-family: "メイリオ";
+    margin: 0 auto;
+    /*中の要素とボーダーを離す*/
+    padding: 30px;
+    border: 1px dotted #888888;
+}
+.confirm {
+    width: 70%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+/*テーブルの各セルの外観*/
+.confirm td {
+    /*上下でpaddingを変える*/
+    padding: 16px 6px;
+    font-size: 120%;
+    text-align: center;
+    /*ボーダー色をヘッダーと一致させる*/
+    border: solid 1px #004422;
+}
+.confirm td:first-child {
+    font-size: 140%;
+    color: #eeeeee;
+    background-color: #004422;
+    border-bottom: solid 1px #ffffff;
+}
+.submit {
+    color: #000000;
+    background-color: #22bbff;
+    font-size: 140%;
+    font-weight: bold;
+    border: solid 1px #000000;
+    border-radius: 7px;
+    padding: 8px 16px;
+    margin 0 10px;
+}
+.modify {
+
+}
