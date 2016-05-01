@@ -73,8 +73,11 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" name="decide" value="確定" class="submit">
-        <input type="submit" name="back" value="修正" class="modify">
+        <p class="btns">
+            <span class="btn"><input type="submit" name="decide" value="確定" class="submit"></span>
+            <span class="btn"><input type="submit" name="back" value="修正" class="modify"></span>
+        </p>
+        <p></p>
     </form>
 </div>
 </body>
