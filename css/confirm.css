@@ -8,10 +8,14 @@
     padding: 30px;
     border: 1px dotted #888888;
 }
+h1 {
+    padding-left: 15%;
+}
 .confirm {
     width: 70%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    margin: 0 auto;
 }
 /*テーブルの各セルの外観*/
 .confirm td {
@@ -39,5 +43,12 @@
     margin 0 10px;
 }
 .modify {
-
+    color: #000000;
+    background-color: #22bbff;
+    font-size: 140%;
+    font-weight: bold;
+    border: solid 1px #000000;
+    border-radius: 7px;
+    padding: 8px 16px;
+    margin 0 10px;
 }
