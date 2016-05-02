@@ -73,16 +73,11 @@
                 </td>
             </tr>
         </table>
-<<<<<<< HEAD
         <p class="btns">
             <span class="btn"><input type="submit" name="decide" value="確定" class="sub submit"></span>
             <span class="btn"><input type="submit" name="back" value="修正" class="sub modify"></span>
         </p>
         <p></p>
-=======
-        <input type="submit" name="decide" value="確定" class="submit">
-        <input type="submit" name="back" value="修正" class="modify">
->>>>>>> origin/confirm
     </form>
 </div>
 </body>
