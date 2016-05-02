@@ -63,13 +63,8 @@ h1 {
 }
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
 .submit {
-<<<<<<< HEAD
     color: #eeeeee;
     background-color: #884422;
-=======
-    color: #000000;
-    background-color: #22bbff;
-<<<<<<< HEAD
     font-size: 140%;
     font-weight: bold;
     border: solid 1px #000000;
@@ -77,8 +72,6 @@ h1 {
     padding: 8px 16px;
     margin 0 10px;
 }
-=======
->>>>>>> 728c191f8390311b3ccf6ba92532a1ba826af0ef
 }
 .modify {
     color: #111111;
@@ -97,4 +90,3 @@ h1 {
     text-align: center;
     /*padding-right: 15%;*/
 }
->>>>>>> origin/master
