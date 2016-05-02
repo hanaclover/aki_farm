@@ -52,3 +52,16 @@
 .book th.hover {
     background-color: #00aa22;
 }
+td.edit {
+    padding: 0px;
+}
+td.edit input {
+    width: 80%;
+    border: dotted 1px #111111;
+    font-family: "メイリオ";
+    font-size: 100%;
+    text-decoration: underline;
+    color: #eeeeee;
+    background-color: #0099ee;
+    padding: 5px;
+}

@@ -34,6 +34,9 @@
             <th>
                 電話番号
             </th>
+            <th>
+                編集
+            </th>
         </tr>
         <tr>
             <td>
@@ -48,19 +51,8 @@
             <td>
                 090-1234-5678
             </td>
-        </tr>
-        <tr>
-            <td>
-                19:00
-            </td>
-            <td class="chairNum">
-                <a href="bookList.php">24</a>
-            </td>
-            <td>
-                齊藤様
-            </td>
-            <td>
-                090-1234-5678
+            <td class="edit">
+                <input type="button" value="変更/削除">
             </td>
         </tr>
         <tr>
@@ -75,6 +67,26 @@
             </td>
             <td>
                 090-1234-5678
+            </td>
+            <td class="edit">
+                <input type="button" value="変更/削除">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                19:00
+            </td>
+            <td class="chairNum">
+                <a href="bookList.php">24</a>
+            </td>
+            <td>
+                齊藤様
+            </td>
+            <td>
+                090-1234-5678
+            </td>
+            <td class="edit">
+                <input type="button" value="変更/削除">
             </td>
         </tr><tr>
             <td>
@@ -89,19 +101,8 @@
             <td>
                 090-1234-5678
             </td>
-        </tr>
-        <tr>
-            <td>
-                19:00
-            </td>
-            <td class="chairNum">
-                <a href="bookList.php">24</a>
-            </td>
-            <td>
-                齊藤様
-            </td>
-            <td>
-                090-1234-5678
+            <td class="edit">
+                <input type="button" value="変更/削除">
             </td>
         </tr>
         <tr>
@@ -117,6 +118,9 @@
             <td>
                 090-1234-5678
             </td>
+            <td class="edit">
+                <input type="button" value="変更/削除">
+            </td>
         </tr>
         <tr>
             <td>
@@ -130,6 +134,26 @@
             </td>
             <td>
                 090-1234-5678
+            </td>
+            <td class="edit">
+                <input type="button" value="変更/削除">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                19:00
+            </td>
+            <td class="chairNum">
+                <a href="bookList.php">24</a>
+            </td>
+            <td>
+                齊藤様
+            </td>
+            <td>
+                090-1234-5678
+            </td>
+            <td class="edit">
+                <input type="button" value="変更/削除">
             </td>
         </tr>
     </table>
