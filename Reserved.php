@@ -23,7 +23,7 @@
             <tr>
                 <td>日にち</td>
                 <td>
-                    <input type="date" name="Date"/>
+                    <input type="date" name="Date"  />
                 </td>
             </tr>
             <tr>

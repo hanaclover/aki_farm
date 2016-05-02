@@ -20,9 +20,8 @@ if($_POST['confirm'] == "確定") {
 
 } else if($_POST['confirm'] == "修正") {
 
-    echo "<form action=>
+   
 
-    </form>";
 }
 
 
