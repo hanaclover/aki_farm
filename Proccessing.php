@@ -3,19 +3,28 @@
  * Created by PhpStorm.
  * User: SooJu
  * Date: 2016-05-02
- * Time: ¿ÀÈÄ 12:50
+ * Time: ì˜¤í›„ 12:50
  */
-// åøå³«Ú?«¸ª«ªé?ª±ª¿«Ç?«¿ªò?×â
+// äºˆç´„ãƒš?ã‚¸ã‹ã‚‰?ã‘ãŸãƒ‡?ã‚¿ã‚’?ç†
 
 
-//DECIDEª«BACKª«ªòü¬ìã
+//DECIDEã‹BACKã‹ã‚’ç¢ºèª
 
 
-//IF(DECIDE)ªÎíŞùê¡¢
-//«Ç?«¿«Ù?«¹ªËÜÁğí ->«á?«ëªòáêªë -> complete.htmlªËì¹ÔÑ
+//IF(DECIDE)ã®å ´åˆã€
+//ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã«ä¿å­˜ ->ãƒ¡ãƒ¼ãƒ«ã‚’é€ã‚‹ -> complete.htmlã«ç§»å‹•
+
+if($_POST['confirm'] == "ç¢ºå®š") {
+    echo "<script>
+        window.location.href = 'http://localhost/aki_farm/aki_farm/complete.html'; </script>";
+
+} else if($_POST['confirm'] == "ä¿®æ­£") {
 
 
-//IF(BACK)ªÎíŞùê¡¢
-//POST«Ç?«¿ªòª½ªÎªŞªŞªâªÃªÆìıÕô«Ú?«¸(RESERVED)ªË?ªêªŞª¹¡£
+}
+
+
+//IF(BACK)ã®å ´åˆã€
+//POSTãƒ‡?ã‚¿ã‚’ãã®ã¾ã¾ã‚‚ã£ã¦å…¥åŠ›ãƒš?ã‚¸(RESERVED)ã«?ã‚Šã¾ã™ã€‚
 
 ?>
