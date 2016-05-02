@@ -57,11 +57,14 @@ td.edit {
 }
 td.edit input {
     width: 80%;
-    border: dotted 1px #111111;
+    border: solid 1px #111111;
+    -webkit-border-radius: 9px;
+    -moz-border-radius:9px;
+    border-radius: 9px;
     font-family: "メイリオ";
     font-size: 100%;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
     color: #eeeeee;
-    background-color: #0099ee;
-    padding: 5px;
+    background-color: #884422;
+    padding: 5px 0px;
 }

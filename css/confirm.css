@@ -27,13 +27,13 @@ h1 {
     font-size: 120%;
     text-align: center;
     /*ボーダー色をヘッダーと一致させる*/
-    border: solid 1px #004422;
+    border: solid 1px #006622;
 }
 /*左端の列がヘッダー代わりとなるときの書き方*/
 .confirm td:first-child {
     font-size: 140%;
     color: #eeeeee;
-    background-color: #004422;
+    background-color: #006622;
     border-bottom: solid 1px #ffffff;
 }
 /*左端に寄せ、左端を見やすい程度に空ける*/
@@ -41,6 +41,13 @@ h1 {
     text-align: left;
     padding-left: 25px;
     /*background-color: #0000bf;*/
+}
+/*マウスを重ねたとき、行の背景色を変更する*/
+.confirm td:first-child.hover {
+    background-color: #00aa22;
+}
+.confirm td:last-child.hover {
+    background-color: #00ee11;
 }
 /*最後の列だけボーダーを緑にする*/
 .confirm td#no_under_white {
@@ -56,11 +63,11 @@ h1 {
 }
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
 .submit {
-    color: #000000;
-    background-color: #22bbff;
+    color: #eeeeee;
+    background-color: #884422;
 }
 .modify {
-    color: #eeeeee;
+    color: #111111;
     background-color: #ff4411;
 }
 /*ボタンを囲うspanタグに適用する*/

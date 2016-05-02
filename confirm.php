@@ -6,7 +6,7 @@
  * Time: 16:49
  */
 ?>
-<html>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -73,11 +73,11 @@
                 </td>
             </tr>
         </table>
-        <p class="btns">
+        <div class="btns">
+<!--            actionに別のPHPファイルを指定して、nameで条件わけをする-->
             <span class="btn"><input type="submit" name="decide" value="確定" class="sub submit"></span>
             <span class="btn"><input type="submit" name="back" value="修正" class="sub modify"></span>
-        </p>
-        <p></p>
+        </div>
     </form>
 </div>
 </body>
