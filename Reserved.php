@@ -62,8 +62,8 @@
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_hira" placeholder="FamilyName" />
-                    <input type="text" name="firstName_hira" placeholder="FirstName" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName" />
                 </td>
             </tr>
             <tr>
@@ -93,7 +93,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="要約" />
+        <input type="submit" name="send" value="予約" />
     </form>
 </div>
 </body>
