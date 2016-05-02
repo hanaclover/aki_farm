@@ -18,7 +18,7 @@
         }
     </style>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="js.js"></script>
+    <script src="./js/management.js"></script>
 </head>
 <body>
 <div style="width: 730px; margin: 0 auto">
