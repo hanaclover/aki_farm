@@ -8,7 +8,7 @@
 ?>
 <html>
 <head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/booklist.js"></script>
     <link rel="stylesheet" type="text/css" href="css/booklist.css">
     <title>
