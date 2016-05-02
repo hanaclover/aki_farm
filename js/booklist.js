@@ -3,5 +3,10 @@ $(function(){
         $("th:nth-child("+($("td").index(this)%$("th").length+1)+")").addClass("hover");
     }).mouseout(function () {
         $("th:nth-child("+($("td").index(this)%$("th").length+1)+")").removeClass("hover");
-    })
+    });
+    $(".edit input").hover(function () {
+        $(this).css("cursor" , "pointer");
+    } , function () {
+        $(this).css("cursor" , "default");
+    });
 });
