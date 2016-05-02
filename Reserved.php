@@ -5,7 +5,6 @@
  * Date: 2016-04-28
  * Time: 오후 4:45
  */
-
 //予約ページ
 ?>
 <!DOCTYPE html>
@@ -13,13 +12,13 @@
 <head>
 <meta charset="utf-8" />
     <title>予約ページ</title>
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js.js"></script>
 </head>
 <body>
 <div>
     <h2>予約情報を入力してください。</h2>
-    <form action="" method="post">
+    <form action="confirm.php" method="post">
         <table border="1">
             <tr>
                 <td>日にち</td>
@@ -94,6 +93,7 @@
                 </td>
             </tr>
         </table>
+        <input type="submit" name="send" value="要約" />
     </form>
 </div>
 </body>
