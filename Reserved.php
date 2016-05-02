@@ -13,7 +13,7 @@
 <meta charset="utf-8" />
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
-    <script src="js.js"></script>
+    <script src="js/management.js"></script>
 </head>
 <body>
 <div>
