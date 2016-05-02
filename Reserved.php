@@ -13,7 +13,7 @@
 <meta charset="utf-8" />
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
-    <script src="js.js"></script>
+    <script src="js/management.js"></script>
 </head>
 <body>
 <div>
@@ -23,7 +23,7 @@
             <tr>
                 <td>日にち</td>
                 <td>
-                    <input type="date" name="Date"/>
+                    <input type="date" name="Date"  />
                 </td>
             </tr>
             <tr>
@@ -62,8 +62,8 @@
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_hira" placeholder="FamilyName" />
-                    <input type="text" name="firstName_hira" placeholder="FirstName" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName" />
                 </td>
             </tr>
             <tr>
@@ -93,7 +93,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="要約" />
+        <input type="submit" name="send" value="予約" />
     </form>
 </div>
 </body>
