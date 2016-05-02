@@ -64,11 +64,11 @@ h1 {
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
 .submit {
     color: #eeeeee;
-    background-color: #884422;
+    background-color: #774422;
 }
 .modify {
     color: #111111;
-    background-color: #ff4411;
+    background-color: #ff9999;
 }
 /*ボタンを囲うspanタグに適用する*/
 .btn {
