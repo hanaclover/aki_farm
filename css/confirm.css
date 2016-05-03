@@ -58,15 +58,6 @@ h1 {
 .submit {
     color: #000000;
     background-color: #22bbff;
-<<<<<<< HEAD
-    font-size: 140%;
-    font-weight: bold;
-    border: solid 1px #000000;
-    border-radius: 7px;
-    padding: 8px 16px;
-    margin 0 10px;
-}
-=======
 }
 .modify {
     color: #eeeeee;
@@ -85,4 +76,3 @@ h1 {
     text-align: center;
     /*padding-right: 15%;*/
 }
->>>>>>> origin/master
