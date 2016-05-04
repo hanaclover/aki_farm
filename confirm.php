@@ -14,13 +14,13 @@
 
     <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/confirm.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
     <title>ご予約内容のご確認</title>
 </head>
 <body>
 <div id="wrapper">
- <?php //include_once('./common/header.html'); ?>
- <?php //include_once('./common/nav.html'); ?>
+ <?php include_once('./common/header.html'); ?>
+ <?php include_once('./common/nav.html'); ?>
     <h1>
         以上の内容でよろしいですか？
     </h1>
@@ -82,6 +82,6 @@
         </div>
     </form>
 </div>
- <?php //include_once('./common/footer.html'); ?>
+ <?php include_once('./common/footer.html'); ?>
 </body>
 </html>

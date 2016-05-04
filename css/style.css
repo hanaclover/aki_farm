@@ -1,9 +1,15 @@
+/* ページ全体の外観（レイアウト）の決定 */
 body {
-    margin-right: auto;
-    margin-left : auto;
-    width: 960px;
 }
-
+/*bodyタグ直下に配置し、全体の枠組みを決定する*/
+#wrapper {
+    /*全体の外観*/
+    width: 960px;
+    font-family: "メイリオ";
+    margin: 0 auto;
+    /*中の要素とボーダーを離す*/
+    padding: 30px;
+}  
 /* ----------ヘッダー---------- */
 #header {
     height: 215px;
