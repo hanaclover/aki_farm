@@ -14,9 +14,12 @@
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-<div>
+<div id="wrapper">
+    <?php include_once('./common/header.html'); ?>
+    <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
     <form action="confirm.php" method="post">
         <table border="1">
@@ -95,6 +98,7 @@
         </table>
         <input type="submit" name="send" value="予約" />
     </form>
+    <?php include_once('./common/footer.html'); ?>
 </div>
 </body>
 </html>

@@ -81,7 +81,7 @@
             <span class="btn"><input type="submit" name="back" value="修正" class="sub modify"></span>
         </div>
     </form>
+<?php include_once('./common/footer.html'); ?>
 </div>
- <?php include_once('./common/footer.html'); ?>
 </body>
 </html>
