@@ -62,26 +62,19 @@ h1 {
     padding: 12px 24px;
 }
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
+/*ボタンを囲うspanタグに適用する*/
 .submit {
     color: #eeeeee;
-    background-color: #884422;
-    font-size: 140%;
-    font-weight: bold;
-    border: solid 1px #000000;
-    border-radius: 7px;
-    padding: 8px 16px;
-    margin 0 10px;
-}
+    background-color: #774422;
 }
 .modify {
     color: #111111;
-    background-color: #ff4411;
+    background-color: #ff9999;
 }
-/*ボタンを囲うspanタグに適用する*/
+/*ボタン全体を囲うpタグに適用する*/
 .btn {
     margin: 0 20px;
 }
-/*ボタン全体を囲うpタグに適用する*/
 .btns {
     /*float: right;*/
     /*!*margin-left: 10%;*!*/
