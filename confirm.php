@@ -75,11 +75,11 @@
                 </td>
             </tr>
         </table>
-        <p class="btns">
-            <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
-            <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
-        </p>
-        <p></p>
+        <div class="btns">
+<!--            actionに別のPHPファイルを指定して、nameで条件わけをする-->
+            <span class="btn"><input type="submit" name="decide" value="確定" class="sub submit"></span>
+            <span class="btn"><input type="submit" name="back" value="修正" class="sub modify"></span>
+        </div>
     </form>
 </div>
  <?php //include_once('./common/footer.html'); ?>

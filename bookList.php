@@ -6,6 +6,7 @@
  * Time: 18:31
  */
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <script src="lib/jquery-2.2.3.min.js"></script>
