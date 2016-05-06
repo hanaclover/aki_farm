@@ -23,7 +23,12 @@
     <h1>
         以上の内容でよろしいですか？
     </h1>
+<<<<<<< HEAD
     <form action="Proccessing.php" method="POST">
+=======
+<!--    Proccessing.phpで送信および修正の処理を行う-->
+    <form action="Proccessing.php" method="post">
+>>>>>>> origin/master
         <table class="confirm">
             <tr>
                 <td>

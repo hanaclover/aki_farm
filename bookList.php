@@ -46,7 +46,8 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+<!--                この書き方は一例だが、このようにリンクをGETで渡す-->
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -63,7 +64,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -80,7 +81,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -96,7 +97,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -113,7 +114,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -130,7 +131,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
@@ -147,7 +148,7 @@
                 19:00
             </td>
             <td class="chairNum">
-                <a href="bookList.php">24</a>
+                <a href="bookList.php?chairNum=24">24</a>
             </td>
             <td>
                 齊藤様
