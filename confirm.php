@@ -23,7 +23,7 @@
     <h1>
         以上の内容でよろしいですか？
     </h1>
-    <form action="Proccessing.php" method="post">
+    <form action="Proccessing.php" method="POST">
         <table class="confirm">
             <tr>
                 <td>
@@ -75,9 +75,9 @@
             </tr>
         </table>
         <div class="btns">
-<!--            actionに別のPHPファイルを指定して、nameで条件わけをする-->
-            <span class="btn"><input type="submit" name="decide" value="確定" class="sub submit"></span>
-            <span class="btn"><input type="submit" name="back" value="修正" class="sub modify"></span>
+            <!--actionに別のPHPファイルを指定して、nameで条件わけをする-->
+            <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
+            <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
         </div>
     </form>
 <?php include_once('./common/footer.html'); ?>
