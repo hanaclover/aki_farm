@@ -1,0 +1,60 @@
+/*予約テーブルの外観*/
+.book {
+    /*テーブル幅は横幅にする*/
+    width: 100%;
+    /*ボーダーを一本にする*/
+    border-collapse: collapse;
+}
+/*テーブルの背景を交互に変更する*/
+.book tr:nth-child(odd) {
+    color: #111111;
+    background-color: #ffffff;
+}
+.book tr:nth-child(even) {
+    color: #111111;
+    background-color: #f5f5f5;
+}
+/*マウスを重ねたとき、行の背景色を変更する*/
+.book tr:not(:first-child):hover {
+    color: #000000;
+    background-color: #00ee22;
+}
+/*テーブルのヘッダ部分の外観*/
+.book th {
+    padding: 8px;
+    font-size: 140%;
+    text-align: center;
+    color: #dddddd;
+    /*背景色はテーマカラーの茶色*/
+    background-color: #884422;
+    border: 1px solid #442200;
+}
+/*テーブルの各セルの外観*/
+.book td {
+    /*上下でpaddingを変える*/
+    padding: 16px 6px;
+    font-size: 120%;
+    text-align: center;
+    /*ボーダー色をヘッダーと一致させる*/
+    border: 1px solid #884422;
+}
+/*jQueryでマウスオーバー時のヘッダーの色を指定*/
+.book th.hover {
+    background-color: #00aa22;
+}
+td.edit {
+    padding: 0px;
+}
+td.edit input {
+    width: 80%;
+    border: solid 1px #111111;
+    -webkit-border-radius: 9px;
+    -moz-border-radius:9px;
+    border-radius: 9px;
+    font-family: "メイリオ";
+    font-size: 100%;
+    /*text-decoration: underline;*/
+    color: #eeeeee;
+    background-color: #884422;
+    padding: 5px 0px;
+}

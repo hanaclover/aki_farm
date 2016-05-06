@@ -5,46 +5,26 @@
  * Date: 2016-04-28
  * Time: 오후 4:45
  */
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
 //予約ページ
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8" />
-    <title>予約ページ</title>
-<<<<<<< HEAD
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="js.js"></script>
-</head>
-<body>
-<div>
-    <h2>予約情報を入力してください。</h2>
-    <form action="" method="post">
-=======
+    <title>予約変更</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 <div id="wrapper">
-    <?php include_once('./common/header.html'); ?>
-    <?php include_once('./common/nav.html'); ?>
-    <h2>予約情報を入力してください。</h2>
+    <h1>予約変更</h1>
     <form action="confirm.php" method="post">
->>>>>>> refs/remotes/origin/master
         <table border="1">
             <tr>
                 <td>日にち</td>
                 <td>
-<<<<<<< HEAD
-                    <input type="date" name="Date"/>
-=======
                     <input type="date" name="Date"  />
->>>>>>> refs/remotes/origin/master
                 </td>
             </tr>
             <tr>
@@ -83,13 +63,8 @@
             <tr>
                 <td>ふりがな</td>
                 <td>
-<<<<<<< HEAD
-                    <input type="text" name="familyName_hira" placeholder="FamilyName" />
-                    <input type="text" name="firstName_hira" placeholder="FirstName" />
-=======
                     <input type="text" name="familyName_kana" placeholder="FamilyName" />
                     <input type="text" name="firstName_kana" placeholder="FirstName" />
->>>>>>> refs/remotes/origin/master
                 </td>
             </tr>
             <tr>
@@ -119,13 +94,11 @@
                 </td>
             </tr>
         </table>
-<<<<<<< HEAD
-    </form>
-=======
-        <input type="submit" name="send" value="予約" />
+        <input type="submit" name="send" value="修正" />
+        <input type="submit" name="send" value="取消" />
+        <input type="submit" name="back" value="戻る" />
     </form>
     <?php include_once('./common/footer.html'); ?>
->>>>>>> refs/remotes/origin/master
 </div>
 </body>
 </html>
