@@ -11,7 +11,6 @@
 <head>
     <meta charset="UTF-8">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
     <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/confirm.css">
     <!--<link rel="stylesheet" type="text/css" href="css/style.css"> -->
@@ -24,6 +23,7 @@
     <h1>
         以上の内容でよろしいですか？
     </h1>
+<!--    Proccessing.phpで送信および修正の処理を行う-->
     <form action="Proccessing.php" method="post">
         <table class="confirm">
             <tr>
