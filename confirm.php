@@ -10,8 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+    <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/confirm.css">
     <!--<link rel="stylesheet" type="text/css" href="css/style.css"> -->
