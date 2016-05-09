@@ -24,7 +24,7 @@ class Reserve {
         return $this->RID;
     }
     public function setRID($RID) {
-        if(preg_match( '/[0-9]+/', $RID ) === 0)
+        if(preg_match( '/[0-9]+/', $RID ) === 0 || $RID == "")
             $this->RID = $RID;
         else echo "RIDがおかしいです。";
     }
@@ -32,7 +32,7 @@ class Reserve {
         return $this->SID;
     }
     public function setSID($SID) {
-        if(preg_match( '/[0-9]+/', $SID ) === 0)
+        if(preg_match( '/[0-9]+/', $SID ) === 0 || $SID == "")  // データベースにデータを入力する前はないです
             $this->SID = $SID;
         else echo "SIDがおかしいです。";
     }
@@ -106,7 +106,7 @@ class Reserve {
     public function getCourse_4() {             // Array型
         return $this->course_4;
     }
-    public function setCourse_4($course_4 = array()) {    // Array型
+    public function setCourse_4($course_4) {    // Array型
         if( count($course_4) == 4 ) {
             $this->course_4 = $course_4;
         } else echo "4個までです。";
