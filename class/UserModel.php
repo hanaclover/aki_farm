@@ -7,18 +7,19 @@
 */ 
 
 // ----------<start>test用----------
+/*
 require_once('../dbDefine.php');
 require_once('BaseModel.php');
 
 $db     = new BaseModel( DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_TYPE );
 $user   = new UserModel( $db );
-
+*/
 // ----------test用<end>------------
 
 class UserModel {
     public $db  = NULL;
     
-    public function __construct( $db ) 
+    public function __construct( $db ) {
         $this->db = $db;
     }
 
@@ -48,11 +49,12 @@ class UserModel {
 
 
     // ユーザ情報をDBに登録
-    // public function setUser( $FirstName, $FamilyName) {
-    public function setUser( $arrReserveData) {
+    // auto_increment未対応
+    public function setUser( $FamilyName, $FirstName, $FamilyName_Kana, $FirstName_Kana, $PhoneNum, $Mail ) {
+    //public function setUser( $arrReserveData) {
        $table = ' user ';
-       $insData = $arrReserveData; 
-      // $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName );
+      // $insData = $arrReserveData; 
+      $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName, 'FamilyName_Kana' => $FamilyName_Kana, 'FirstName_Kana' => $FirstName_Kana, 'PhoneNum' => $PhoneNum, 'Mail' => $Mail );
        $res = $this->db->insert( $table, $insData );
        return $res; 
     }
