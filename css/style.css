@@ -1,0 +1,47 @@
+/* ページ全体の外観（レイアウト）の決定 */
+body {
+}
+/*bodyタグ直下に配置し、全体の枠組みを決定する*/
+#wrapper {
+    /*全体の外観*/
+    width: 830px;
+    font-family: "メイリオ";
+    margin: 0 auto;
+    /*中の要素とボーダーを離す*/
+    padding: 30px;
+}  
+/* ----------ヘッダー---------- */
+#header {
+    height: 215px;
+    position: relative;
+}
+
+.description { 
+    position: absolute;
+    left: 20px;
+    top: 10px; 
+    font-size: 80%; 
+}
+
+#header-logo {
+    float: left;
+}
+
+#header-right {
+    float: both;
+    position: absolute;
+    right: 0px;
+    bottom: 25px;
+}
+
+/* ----------フッター---------- */
+.copyrights {
+    text-align: center;
+}
+
+/* ----------メニュー---------- */
+#menu {
+    height: 50px;
+    position: relative;
+    left: 30px;
+}
