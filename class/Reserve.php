@@ -1,19 +1,23 @@
 <?php
 
 class Reserve {
-    private $startDay        = "";       //String(Date)
-    private $startTime      = "";       //String(Time)
-    private $reservedTime   = "";       //String(Time)
+    private $startDay       = "";       //String(Date)  2016-05-06
+    private $startTime      = "";       //String(Time)  14:05
+    private $reservedTime   = "";       //String(Timestamp)  2016-05-09 14:05:21
     private $peopleNum      = 0;        //int
     private $course         = 0;        //int
     private $course_flag    = false;    //boolean
-    private $course_4       = "";       //String
+    private $course_4       = "";       //String(Array)
 
     public function getStartDay() {
 		return $this->startDay;
 	}
 	public function setStartDay($startDay) {
-        $this->starDay = $startDay;
+        if(preg_match( '/([0-9]{2})-([0-9]{2})-([0-9]{2})/', $startDay ) === 0 ) {
+            $this->startDay = $startDay;
+        } else {
+            echo "おかしいです";
+        }
     }
     public function getStartTime() {
         return $this->startTime;
