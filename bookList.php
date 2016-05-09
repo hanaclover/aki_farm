@@ -21,7 +21,7 @@
 <body>
 <div id="wrapper">
     <h1>
-        本日の予約リストAAAAAA
+        本日の予約リスト
     </h1>
     <table border="1px" class="book">
         <tr>
