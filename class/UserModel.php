@@ -6,16 +6,6 @@
  * 
 */ 
 
-// ----------<start>test用----------
-/*
-require_once('../dbDefine.php');
-require_once('BaseModel.php');
-
-$db     = new BaseModel( DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_TYPE );
-$user   = new UserModel( $db );
-*/
-// ----------test用<end>------------
-
 class UserModel {
     public $db  = NULL;
     
@@ -38,7 +28,7 @@ class UserModel {
     // データ変更用のユーザ情報を取得
     public function getUser( $uId ) {
         $table  = ' user ';
-        $col    = ' FamilyName, FirstName, FamilyName_Kana, FirstName_Kana, PhoneNum, Mail ';
+        $col    = ' * ';
         $where  = ( $uId !== '' ) ? ' UID = ? ': '';
         $arrVal = ( $uId !== '' ) ? array( $uId ) :array();
         
@@ -49,9 +39,8 @@ class UserModel {
 
 
     // ユーザ情報をDBに登録
-    // auto_increment未対応
     public function setUser( $FamilyName, $FirstName, $FamilyName_Kana, $FirstName_Kana, $PhoneNum, $Mail ) {
-    //public function setUser( $arrReserveData) {
+    //public function setUser( $arrReserveData ) {
        $table = ' user ';
       // $insData = $arrReserveData; 
       $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName, 'FamilyName_Kana' => $FamilyName_Kana, 'FirstName_Kana' => $FirstName_Kana, 'PhoneNum' => $PhoneNum, 'Mail' => $Mail );
