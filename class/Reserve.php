@@ -1,16 +1,41 @@
 <?php
 
 class Reserve {
-    private $UID            = "";
-    private $RID            = "";
-    private $SID            = "";
-    private $startDay       = "";       //String(Date)  2016-05-06
-    private $startTime      = "";       //String(Time)  14:05
-    private $reservedTime   = "";       //String(Timestamp)  2016-05-09 14:05:21
-    private $peopleNum      = 0;        //int
-    private $course         = 0;        //int
-    private $course_flag    = false;    //boolean
-    private $course_4       = "";       //String(Array)
+    private $UID            = 0;
+    private $RID            = 0;
+    private $SID            = 0;
+    private $startDay       = "0000-00-00";                 //String(Date)  2016-05-06
+    private $startTime      = "00:00:00";                   //String(Time)  14:05
+    private $reservedTime   = "0000-00-00 00:00:00";        //String(Timestamp)  2016-05-09 14:05:21
+    private $peopleNum      = 0;                            //int
+    private $course         = 0;                            //int
+    private $course_flag    = false;                        //boolean - default false
+    private $course_4       = array();                      //Array(" ", " ", " ", " ")
+
+    public function getUID() {
+        return $this->UID;
+    }
+    public function setUID($UID) {
+        if(preg_match( '/[0-9]+/', $UID ) === 0)
+            $this->UID = $UID;
+        else echo "UIDがおかしいです。";
+    }
+    public function getRID() {
+        return $this->RID;
+    }
+    public function setRID($RID) {
+        if(preg_match( '/[0-9]+/', $RID ) === 0)
+            $this->RID = $RID;
+        else echo "RIDがおかしいです。";
+    }
+    public function getSID() {
+        return $this->SID;
+    }
+    public function setSID($SID) {
+        if(preg_match( '/[0-9]+/', $SID ) === 0)
+            $this->SID = $SID;
+        else echo "SIDがおかしいです。";
+    }
 
     public function getStartDay() {
 		return $this->startDay;
@@ -68,19 +93,23 @@ class Reserve {
     public function setCourse($course) {
         if($course == 4 || $course == 7 || $course == 10) {
             $this->course = $course;
-        }
+        } else echo "4，7，10だけです。";
     }
     public function getCourse_flag() {
         return $this->course_flag;
     }
     public function setCourse_flag($course_flag) {
-        $this->course_flag = $course_flag;
+        if($course_flag === true || $course_flag === false)
+            $this->course_flag = $course_flag;
+        else echo "COURSE_FLAGのタイプが間違いました。";
     }
-    public function getCourse_4() {
+    public function getCourse_4() {             // Array型
         return $this->course_4;
     }
-    public function setCourse_4($course_4) {
-        $this->course_4 = $course_4;
+    public function setCourse_4($course_4 = array()) {    // Array型
+        if( count($course_4) == 4 ) {
+            $this->course_4 = $course_4;
+        } else echo "4個までです。";
     }
 }
 

@@ -22,7 +22,7 @@
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <form action="confirm.php" method="post">
+    <form action="confirm.php" method="POST">
         <table border="1">
             <tr>
                 <td>日にち</td>
