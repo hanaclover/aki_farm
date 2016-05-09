@@ -26,7 +26,7 @@ define("_DB_PASS", "");
 define("_DB_HOST", "localhost");
 
 // データベース名
-define("_DB_NAME", "auth");
+define("_DB_NAME", "aki_farm_db");
 
 // データベースの種類
 define("_DB_TYPE", "mysql");
