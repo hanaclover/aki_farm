@@ -76,7 +76,6 @@
             </tr>
         </table>
         <div class="btns">
-            <!--actionに別のPHPファイルを指定して、nameで条件わけをする-->
             <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
             <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
         </div>
