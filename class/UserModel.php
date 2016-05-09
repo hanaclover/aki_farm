@@ -48,10 +48,11 @@ class UserModel {
 
 
     // ユーザ情報をDBに登録
-   // 再開場所
-    public function setUser() {
-       $table = ' session ';
-       $insData =  array( 'session_key ' => $this->session_key );
+    // public function setUser( $FirstName, $FamilyName) {
+    public function setUser( $arrReserveData) {
+       $table = ' user ';
+       $insData = $arrReserveData; 
+      // $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName );
        $res = $this->db->insert( $table, $insData );
        return $res; 
     }
