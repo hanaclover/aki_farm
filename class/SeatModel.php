@@ -39,13 +39,14 @@ class SeatModel {
 //    }
 
     public function getSeat( $peopleNum ) {
-        // 使用可能なテーブルを抽出
+        // 使用可能なテーブルを抽出し、SIDを返す
         foreach($this->arrTable as $arrTableInfo) {
             if($arrTableInfo['maxPeople'] >= $peopleNum) {
                 $result[] = $arrTableInfo['SID'];
             }
         }
         // 連結部の判断
+        // SID:31 => 7-8連結,SID:32 => 8-9連結,SID:7-8-9連結
         if($peopleNum <= 18) {
             $result[] = 31; $result[] = 32; $result[] = 33;
         }elseif($peopleNum <= 28) {

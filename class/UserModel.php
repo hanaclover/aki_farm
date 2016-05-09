@@ -6,6 +6,24 @@
  * 
 */ 
 
+/* テスト用
+ include_once("BaseModel.php");
+ include_once("PDODatabase.class.php");
+ $db = new PDODatabase();
+ $user = new UserModel($db);
+ $FamilyName        = 'testFam';
+ $FirstName         = 'testFirst';
+ $FamilyName_Kana   = 'ka';
+ $FirstName_Kana    = 'na';
+ $PhoneNum          = '000-0000-0000';
+ $Mail              = 'test@test.com';
+ $user->setUser($FamilyName, $FirstName, $FamilyName_Kana, $FirstName_Kana, $PhoneNum, $Mail);
+ $test = $user->getUser(3);
+ echo "<pre>";
+ var_dump($test);
+ echo "</pre>";
+*/
+
 class UserModel {
     public $db  = NULL;
     
