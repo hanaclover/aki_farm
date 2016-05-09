@@ -36,7 +36,6 @@ class Reserve {
             $this->SID = $SID;
         else echo "SIDがおかしいです。";
     }
-
     public function getStartDay() {
 		return $this->startDay;
 	}
@@ -50,7 +49,6 @@ class Reserve {
             $this->startDay = $startDay;
         } else echo "StartDayのタイプが間違いました。";
     }
-
     public function getStartTime() {
         return $this->startTime;
     }
@@ -77,7 +75,6 @@ class Reserve {
             }
 
         } else echo "ReservedTimeが間違いました。";
-
     }
     public function getPeopleNum() {
         return $this->peopleNum;
@@ -112,5 +109,4 @@ class Reserve {
         } else echo "4個までです。";
     }
 }
-
 ?>
