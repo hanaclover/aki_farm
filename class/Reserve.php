@@ -1,7 +1,7 @@
 <?php
 
 class Reserve {
-    private $starDay        = "";       //String(Date)
+    private $startDay        = "";       //String(Date)
     private $startTime      = "";       //String(Time)
     private $reservedTime   = "";       //String(Time)
     private $peopleNum      = 0;        //int
@@ -9,11 +9,11 @@ class Reserve {
     private $course_flag    = false;    //boolean
     private $course_4       = "";       //String
 
-    public function getStarDay() {
-		return $this->starDay;
+    public function getStartDay() {
+		return $this->startDay;
 	}
-	public function setStarDay($starDay) {
-        $this->starDay = $starDay;
+	public function setStartDay($startDay) {
+        $this->starDay = $startDay;
     }
     public function getStartTime() {
         return $this->startTime;
