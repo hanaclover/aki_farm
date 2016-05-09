@@ -5,7 +5,7 @@ class Reserved {
     private $startTime      = "";       //String(Time)
     private $reservedTime   = "";       //String(Time)
     private $peopleNum      = 0;        //int
-    private $course         = 0;        //int
+    private $course         = 0;        //int okasii
     private $course_flag    = false;    //boolean
     private $course_4       = "";       //String
 
