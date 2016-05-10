@@ -10,6 +10,8 @@
 //まだテストされていないのでチェックが必要
 //正しく動いたと判断したメソッドには○を付けます
 
+//コンストラクタを創ってReseerveを渡すようにするのもアリ!
+
 require_once "./PDODatabase.class.php";
 
 class ReserveModel {
