@@ -48,7 +48,7 @@ class SeatModel {
         // 連結部の判断
         // SID:31 => 7-8連結,SID:32 => 8-9連結,SID:7-8-9連結
         if($peopleNum <= 18) {
-            $result[] = 31; $result[] = 32; $result[] = 33;
+            $result[] = 19; $result[] = 20; $result[] = 21;
         }elseif($peopleNum <= 28) {
             $result[] = 33;
         }
