@@ -76,7 +76,7 @@
             </tr>
         </table>
         <div class="btns">
-            <input type="hidden" name="reservedTime" value="<?php echo "abcd".date("Y-m-d H:i:s"); ?>" />
+            <input type="hidden" name="reservedTime" value="<?php echo date("Y-m-d H:i:s"); ?>" />
             <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
             <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
         </div>

@@ -10,6 +10,7 @@
  */
 
 require_once "./init.php";
+require_once "./BaseModel.php";
 
 class PDODatabase extends BaseModel{
 
@@ -77,6 +78,11 @@ class PDODatabase extends BaseModel{
     public function select( $table, $column ='',$where = '', $arrVal = array())
     {
         $sql = $this->getSql( 'select', $table, $where, $column);
+
+        var_dump($sql);
+        echo "<br>";
+        var_dump($arrVal);
+        echo "<br>";
 
         $stmt = $this->PDO->prepare($sql);
         $stmt->execute($arrVal);

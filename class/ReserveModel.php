@@ -5,8 +5,12 @@
  * made by meijin
  * data : 20160509
  * 予約関連のデータベースを扱うクラス
- *
  */
+
+//まだテストされていないのでチェックが必要
+//正しく動いたと判断したメソッドには○を付けます
+
+//コンストラクタを創ってReseerveを渡すようにするのもアリ!
 
 require_once "./PDODatabase.class.php";
 
@@ -27,58 +31,141 @@ class ReserveModel {
             "SID" => $res->getSID(),
             "StartDay" => $res->getStartDay(),
             "StartTime" => $res->getStartTime(),
-            "ReservedTime" => $res->getReservedTime(),
             "PeopleNum" => $res->getPeopleNum(),
             "Course" => $res->getCourse(),
-            "Course_Flag" => $res->getCourse_flag(),
-            "Course_4" => $res->getCourse_4()
+            "Course_Flag" => var_export($res->getCourse_flag(),TRUE),
+            "Course_4" => implode($res->getCourse_4())
         );
 //        もしかしてSIDってここで計算しなければいけない・・・?
 //        はいはい、わかりましたよ!
-        $sm = new SeatModel();
+        $sm = new SeatModel($pdo);
+        $snum = 0;
         $seatArray = $sm->getSeat($res->getPeopleNum());
         foreach ($seatArray as $value){
-            $flag = false;
             $snum = $value;
+            if ($snum > 18){
+                $rooms = array();
+                switch ($snum){
+                    case 21:
+                        $rooms[] = 7;
+                        $rooms[] = 8;
+                        $rooms[] = 9;
+                        break;
+                    case 20:
+                        $rooms[] = 8;
+                        $rooms[] = 9;
+                        break;
+                    case 19:
+                        $rooms[] = 7;
+                        $rooms[] = 8;
+                        break;
+                }
+                $flag = false;
+                $outFlag = false;
+                foreach ($rooms as $val){
 //            予約テーブルの中で座席の予約を検索して
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-            $arrRes = array($snum);
-            $seatSel = $pdo->select("reserve" , "" ,
-                "sNum=?" , $arrRes);
-            foreach ($seatSel as $value) {
-                if ($res->getStartDay() == $seatSel["StartDay"]){
-                    if ($res->getStartTime() + 7200 >= $seatSel["StartTime"]
-                    && $res->getStartTime() <= $seatSel["StartTime"]){
-                        $flag = true;
+                    $arrRes = array($val);
+//            ある座席の予約一覧
+                    $seatSel = $pdo->select("reserve", "",
+                        "SID=?", $arrRes);
+                    foreach ($seatSel as $value) {
+                        if ($res->getStartDay() == $value["StartDay"]) {
+                            if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - 7200
+                                && strtotime($res->getStartTime()) < strtotime($value["StartTime"]) + 7200
+                            ) {
+                                $outFlag = true;
+                                break;
+                            }
+                        }
                     }
                 }
-            }
-            if(!$flag) {
-                $pdo->insert("reserve", $insData);
-                return true;
+                if (!$outFlag) {
+                    $flag = true;
+                    break;
+                }
+            }else {
+                $flag = false;
+                $outFlag = false;
+//            予約テーブルの中で座席の予約を検索して
+//            その予約があれば、時間が2時間以内かを調べる
+//            もし2時間以内ならアウト。次の座席へ
+//            最後までセーフならインサートしてリターンしてしまう
+                $arrRes = array($snum);
+//            ある座席の予約一覧
+                $seatSel = $pdo->select("reserve", "",
+                    "SID=?", $arrRes);
+                foreach ($seatSel as $value) {
+                    if ($res->getStartDay() == $value["StartDay"]) {
+                        if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - 7200
+                            && strtotime($res->getStartTime()) < strtotime($value["StartTime"]) + 7200
+                        ) {
+                            $outFlag = true;
+                            break;
+                        }
+                    }
+                }
+                if (!$outFlag) {
+                    $flag = true;
+                    break;
+                }
             }
         }
-        return false;
+        if($flag) {
+            if ($snum != 0) {
+                $insData["SID"] = $snum;
+            }
+            switch ($snum){
+                case 21:
+                    $insData["SID"] = "9";
+                    $pdo->insert("reserve", $insData);
+                    $insData["SID"] = "8";
+                    $pdo->insert("reserve", $insData);
+                    $insData["SID"] = "7";
+                    break;
+                case 20:
+                    $insData["SID"] = "9";
+                    $pdo->insert("reserve", $insData);
+                    $insData["SID"] = "8";
+                    break;
+                case 19:
+                    $insData["SID"] = "8";
+                    $pdo->insert("reserve", $insData);
+                    $insData["SID"] = "7";
+                    break;
+                default: break;
+            }
+            $pdo->insert("reserve", $insData);
+            return true;
+        }else{
+            return false;
+        }
     }
     private function isEmpty( $seatNum ){
 //        座席番号を受け取ったら、今この時間に空いているか検索する
 //        １．まずは現在時刻を求める
 //        ２．次にSQL文を発行する。内容は「座席番号が一致かつ現在時刻±2時間以内の予約」
 //        ３．発行した結果が空かどうかをReturnする
-        $today = date("y-m-d");
-        $nowTime = time();
+        $today = date("Y-m-d");
+        $nowTime = time()+3600*7;
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
-        $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
+        $sid = $seatID[0]["SID"];
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
-            if ($startTime > ($nowTime - 7200) && $nowTime >= $startTime){
+            echo "start:";
+            var_dump(date("Y-m-d H:i:s",$startTime));
+            echo "<br>now:";
+            var_dump(date("Y-m-d H:i:s",$nowTime));
+            echo "<br>";
+            if ($startTime > ($nowTime - 7200 ) && $nowTime >= $startTime){
+                echo "www<br>";
                 return false;
             }
         }
@@ -88,11 +175,11 @@ class ReserveModel {
 //        次の予約時刻を返す
 //        この日に予約が入っていなかったら０を返す
         $today = date("y-m-d");
-        $nowTime = time();
+        $nowTime = time()+3600*7;
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
-        $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
+        $sid = $seatID[0]["SID"];
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
@@ -100,25 +187,26 @@ class ReserveModel {
         foreach ($res as $key => $value){
             $st = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime == 0 || $startTime > $st){
-                $startTime = $st;
+                if ($nowTime < $st)
+                    $startTime = $st;
             }
         }
         return $startTime;
     }
     private function endTime( $seatNum ){
         $today = date("y-m-d");
-        $nowTime = time();
+        $nowTime = time()+3600*7;
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
-        $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
+        $sid = $seatID[0]["SID"];
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime >= $nowTime && $nowTime >= ($startTime - 7200)){
-                return $startTime;
+                return $startTime+7200;
             }
         }
         return 0;
@@ -128,12 +216,12 @@ class ReserveModel {
             return "予約可能";
         }else{
             if ($this->nextReserveTime($seatNum) != 0){
-                return date("hh:mm",$this->nextReserveTime($seatNum));
+                return "next->".date("H:i:s",$this->nextReserveTime($seatNum));
             }else{
-                return date("hh:mm",$this->endTime($seatNum));
+                return "end ->".date("H:i:s",$this->endTime($seatNum));
             }
         }
-        return "";
+        return "予約なし";
     }
     public function getTodayReserves(){
         $today = date("y-m-d");
@@ -161,7 +249,7 @@ class ReserveModel {
     public function isAbleUserReserve( Reserve $res ){
 //        座席番号かNULLを返す
         $day = $res->getStartDay();
-        $nowTime = $res->getStartTime();
+        $nowTime = $res->getStarttime()+3600*7;
         $pdo = new PDODatabase();
         $arrRes = array($day);
         $res = $pdo->select("reserve" , "" ,

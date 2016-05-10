@@ -23,14 +23,15 @@ if($_POST['confirm'] == "確定") {
     //RIDを付与する作業
 
 
-
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
+
     // <----
     $reserve->setUID($_POST['UID']);
-    $reserve->setRID($_POST['RID']);
-    $reserve->setSID($_POST['SID']);
+    // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
+    // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
     // ---->
+
     $reserve->setPeopleNum($_POST['peopleNum']);
     $reserve->setReservedTime($_POST['ReservedTime']);
     $reserve->setStartDay($_POST['Date']);
@@ -54,6 +55,8 @@ if($_POST['confirm'] == "確定") {
 
     // ----------->
 
+
+
     // <----------- メールを送る
         //クライアント
 
@@ -63,7 +66,7 @@ if($_POST['confirm'] == "確定") {
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.html'; </script>";
+    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php'; </script>";
 
 } else if($_POST['confirm'] == "修正") {
    /*
