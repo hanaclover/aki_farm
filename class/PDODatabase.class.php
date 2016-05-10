@@ -79,11 +79,6 @@ class PDODatabase extends BaseModel{
     {
         $sql = $this->getSql( 'select', $table, $where, $column);
 
-        var_dump($sql);
-        echo "<br>";
-        var_dump($arrVal);
-        echo "<br>";
-
         $stmt = $this->PDO->prepare($sql);
         $stmt->execute($arrVal);
 

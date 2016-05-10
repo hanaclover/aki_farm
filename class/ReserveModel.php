@@ -159,13 +159,8 @@ class ReserveModel {
             "SID=? and StartDay=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
-            echo "start:";
-            var_dump(date("Y-m-d H:i:s",$startTime));
-            echo "<br>now:";
-            var_dump(date("Y-m-d H:i:s",$nowTime));
-            echo "<br>";
             if ($startTime > ($nowTime - 7200 ) && $nowTime >= $startTime){
-                echo "www<br>";
+                echo "<br>$seatNum : ";
                 return false;
             }
         }
@@ -188,7 +183,7 @@ class ReserveModel {
             $st = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime == 0 || $startTime > $st){
                 if ($nowTime < $st)
-                    $startTime = $st;
+                    $startTime = $st+7200;
             }
         }
         return $startTime;
@@ -205,20 +200,27 @@ class ReserveModel {
             "SID=? and StartDay=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
-            if ($startTime >= $nowTime && $nowTime >= ($startTime - 7200)){
+//            echo "start:";
+//            var_dump(date("Y-m-d H:i:s",$startTime));
+//            echo "<br>now:";
+//            var_dump(date("Y-m-d H:i:s",$nowTime));
+//            echo "<br>";
+            if ($startTime <= $nowTime && $nowTime <= ($startTime + 7200)){
                 return $startTime+7200;
             }
         }
         return 0;
     }
     public function getReserve( $seatNum ){
-        if ($this->isEmpty($seatNum)){
-            return "予約可能";
+        if (false){ //$this->isEmpty($seatNum)
+            return "空席";
         }else{
             if ($this->nextReserveTime($seatNum) != 0){
-                return "next->".date("H:i:s",$this->nextReserveTime($seatNum));
+                return "$seatNum : next->".date("H:i:s",$this->nextReserveTime($seatNum))."<br>";
+            }elseif ($this->endTime($seatNum) != 0){
+                return "$seatNum : end ->".date("H:i:s",$this->endTime($seatNum))."<br>";
             }else{
-                return "end ->".date("H:i:s",$this->endTime($seatNum));
+                return "空席";
             }
         }
         return "予約なし";
