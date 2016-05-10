@@ -11,7 +11,7 @@ class Reserve {
     private $course         = 0;                            //int
     private $course_flag    = false;                        //boolean - default false
     private $course_4       = array();                      //Array(" ", " ", " ", " ")
-    private $err            = array();
+    private $err            = array();                      //Array()
 
     public function getUID() {
         return $this->UID;

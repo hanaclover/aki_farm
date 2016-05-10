@@ -52,6 +52,7 @@ if($_POST['confirm'] == "確定") {
     }
 
     var_dump($reserve);
+
     // <----------- ModelClassでDataBaseに入れる
 
     // ----------->

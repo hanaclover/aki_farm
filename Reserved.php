@@ -56,8 +56,9 @@ if( (isset($_POST['course']) == true ? $_POST['course'] : "") == 4 ) {
     }
 
 }*/
-?>
 
+$flag = isset($_POST)
+?>
 <!DOCTYPE html>
 <html>
 <head>

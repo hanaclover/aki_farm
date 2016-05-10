@@ -5,6 +5,44 @@
  * Date: 2016/05/01
  * Time: 16:49
  */
+
+//予約が確定され、SIDとRIDが付与されてるとき
+include_once("class/Reserve.php");
+$reserve = new Reserve();
+
+// <----
+//$reserve->setUID($_POST['UID']);
+// $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
+// $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
+// ---->
+$peopleNum = (int)$_POST['peopleNum'];
+$reserve->setPeopleNum($peopleNum);
+$reserve->setReservedTime(date("Y-m-d H:i:s"));
+$reserve->setStartDay($_POST['Date']);
+
+//StartTimeをTime型化
+$startTime = $_POST['hour'].":".$_POST['minute'].":00";
+$reserve->setStartTime($startTime);
+
+//コース
+$reserve->setCourse($_POST['course']);
+
+if($reserve->getCourse() == 4) {
+    $reserve->setCourse_flag(true);
+
+    // Array処理が必要です。AMPとの調整が必要
+    $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
+    $reserve->setCourse_4($dishName);
+}
+
+//var_dump($reserve);
+
+if(count($reserve->errCheck()) !== 0) {
+    $arr = $reserve->errCheck();
+    echo  '<script>
+                history.go(-1);
+           </script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
