@@ -213,12 +213,12 @@ class ReserveModel {
     }
     public function getReserve( $seatNum ){
         if (false){ //$this->isEmpty($seatNum)
-            return "空席";
+            return "$seatNum : 空席";
         }else{
             if ($this->nextReserveTime($seatNum) != 0){
-                return "$seatNum : next->".date("H:i:s",$this->nextReserveTime($seatNum))."<br>";
+                return "$seatNum : next->".date("H:i:s",$this->nextReserveTime($seatNum));
             }elseif ($this->endTime($seatNum) != 0){
-                return "$seatNum : end ->".date("H:i:s",$this->endTime($seatNum))."<br>";
+                return "$seatNum : end ->".date("H:i:s",$this->endTime($seatNum));
             }else{
                 return "空席";
             }
