@@ -10,6 +10,7 @@
  */
 
 require_once "./init.php";
+require_once "./BaseModel.php";
 
 class PDODatabase extends BaseModel{
 

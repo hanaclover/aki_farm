@@ -43,8 +43,9 @@ class Reserve {
 
         $parseDate = explode("-", $startDay);
 
-        if(preg_match( '/([2-9]{1}[0-9]{3})/', $startDay ) === 0 &&
-            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) === false ) {
+        var_dump($parseDate[0]);
+        if(preg_match( '/^([2-9]{1}[0-9]{3})+$/', $parseDate[0] ) === 0 &&
+            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) === true ) {
 
             $this->startDay = $startDay;
         } else echo "StartDayのタイプが間違いました。";
@@ -80,7 +81,7 @@ class Reserve {
         return $this->peopleNum;
     }
     public function setPeopleNum($peopleNum) {
-        if(preg_match( '/([1-9]{1})([0-9]{1})/', $peopleNum ) === 0 ) {
+        if(preg_match( '/([1-9]{1}*)([0-9]{1})/', $peopleNum ) === 0 ) {
             $this->peopleNum = $peopleNum;
         } else echo "peopleNumが間違いました。1~30までです。";
     }

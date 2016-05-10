@@ -5,8 +5,10 @@
  * made by meijin
  * data : 20160509
  * 予約関連のデータベースを扱うクラス
- *
  */
+
+//まだテストされていないのでチェックが必要
+//正しく動いたと判断したメソッドには○を付けます
 
 require_once "./PDODatabase.class.php";
 
@@ -27,15 +29,14 @@ class ReserveModel {
             "SID" => $res->getSID(),
             "StartDay" => $res->getStartDay(),
             "StartTime" => $res->getStartTime(),
-            "ReservedTime" => $res->getReservedTime(),
             "PeopleNum" => $res->getPeopleNum(),
             "Course" => $res->getCourse(),
-            "Course_Flag" => $res->getCourse_flag(),
-            "Course_4" => $res->getCourse_4()
+            "Course_Flag" => var_export($res->getCourse_flag(),TRUE),
+            "Course_4" => implode($res->getCourse_4())
         );
 //        もしかしてSIDってここで計算しなければいけない・・・?
 //        はいはい、わかりましたよ!
-        $sm = new SeatModel();
+        $sm = new SeatModel($pdo);
         $seatArray = $sm->getSeat($res->getPeopleNum());
         foreach ($seatArray as $value){
             $flag = false;
@@ -46,11 +47,11 @@ class ReserveModel {
 //            最後までセーフならインサートしてリターンしてしまう
             $arrRes = array($snum);
             $seatSel = $pdo->select("reserve" , "" ,
-                "sNum=?" , $arrRes);
+                "SID=?" , $arrRes);
             foreach ($seatSel as $value) {
-                if ($res->getStartDay() == $seatSel["StartDay"]){
-                    if ($res->getStartTime() + 7200 >= $seatSel["StartTime"]
-                    && $res->getStartTime() <= $seatSel["StartTime"]){
+                if ($res->getStartDay() == $value["StartDay"]){
+                    if ($res->getStartTime() + 7200 >= $value["StartTime"]
+                    && $res->getStartTime() <= $value["StartTime"]){
                         $flag = true;
                     }
                 }
@@ -71,8 +72,9 @@ class ReserveModel {
         $nowTime = time();
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
-        $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
+        $sid = $seatID[0]["SID"];
+        echo($sid);
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
@@ -92,7 +94,7 @@ class ReserveModel {
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $sid = $seatID[0]["SID"];
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
@@ -111,7 +113,7 @@ class ReserveModel {
         $pdo = new PDODatabase();
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "seatNum=?" , $arrSeat);
-        $sid = $seatID[0];
+        $sid = $seatID[0]["SID"];
         $arrRes = array($sid , $today );
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=?" , $arrRes);
@@ -133,7 +135,7 @@ class ReserveModel {
                 return date("hh:mm",$this->endTime($seatNum));
             }
         }
-        return "";
+        return "予約なし";
     }
     public function getTodayReserves(){
         $today = date("y-m-d");
