@@ -11,10 +11,11 @@ include_once("class/Reserve.php");
 $reserve = new Reserve();
 
 // <----
-//$reserve->setUID($_POST['UID']);
+// $reserve->setUID($_POST['UID']);
 // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
 // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
 // ---->
+
 $peopleNum = (int)$_POST['peopleNum'];
 $reserve->setPeopleNum($peopleNum);
 $reserve->setReservedTime(date("Y-m-d H:i:s"));
@@ -37,12 +38,13 @@ if($reserve->getCourse() == 4) {
 
 //var_dump($reserve);
 
-if(count($reserve->errCheck()) !== 0) {
-    $arr = $reserve->errCheck();
-    echo  '<script>
-                history.go(-1);
-           </script>';
-}
+    if(count($reserve->errCheck()) !== 0) {
+        $arr = $reserve->errCheck();
+        echo  "<script>
+                    window.location.href = 'http://localhost:63342/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
+               </script>";
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
