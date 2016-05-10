@@ -11,54 +11,14 @@
  * 1. ログイン処理
  *
  * */
-?>
-<?php
+
 /*
  * 1. 4品の場合 AMPのページに渡す
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
- *
  * */
-/*
-include_once("class/Reserve.php");
-
-if( (isset($_POST['course']) == true ? $_POST['course'] : "") == 4 ) {
-    // $_POST['course']が4品の場合、AMPのページに渡す リンク修正!!!!
-    //echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/  '; </script>";
-
-} else {
-    //7品、10品の場合
-
-    $reserve = new Reserve();
-    echo "reserve class";
-
-    // $reserve->setUID($_POST['UID']);
-    // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
-    // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
-
-    $reserve->setPeopleNum($_POST['peopleNum']);
-    $reserve->setReservedTime($_POST['ReservedTime']);
-    $reserve->setStartDay($_POST['Date']);
-
-    //StartTimeをTime型化
-    $startTime = $_POST['hour'].":".$_POST['minute'];
-    $reserve->setStartTime($_POST['startTime']);
-
-    //コース
-    $reserve->setCourse($_POST['course']);
-    echo $_POST['course'];
-    if($reserve->getCourse() == 4) {
-        $reserve->setCourse_flag(true);
-
-        // Array処理が必要です。AMPとの調整が必要
-        $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
-        $reserve->setCourse_4($dishName);
-    }
-
-}*/
-
-$flag = isset($_POST)
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +67,8 @@ $flag = isset($_POST)
                 <td>人数</td>
                 <td>
                     <input type="number" name="peopleNum" class="unsigned" value="5" placeholder="5" />
+                    <?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?>
+
                 </td>
             </tr>
             <tr>
