@@ -43,9 +43,8 @@ class Reserve {
 
         $parseDate = explode("-", $startDay);
 
-        var_dump($parseDate[0]);
-        if(preg_match( '/^([2-9]{1}[0-9]{3})+$/', $parseDate[0] ) === 0 &&
-            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) === true ) {
+        if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
 
             $this->startDay = $startDay;
         } else echo "StartDayのタイプが間違いました。";
@@ -54,7 +53,7 @@ class Reserve {
         return $this->startTime;
     }
     public function setStartTime($startTime) {
-        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $startTime ) === 0 ) {
+        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $startTime )) {
             $this->startTime = $startTime;
         } else echo "startTimeのタイプが間違いました。";
     }
@@ -66,12 +65,10 @@ class Reserve {
         $parseTimeStamp = explode(" ", $reservedTime);      //2016-05-09と14:00:00をわけ
         $parseDate      = explode("-", $parseTimeStamp[0]); //2016-05-09を-ことにわけ
 
-        if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) === 0 &&
-            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) === false ) {
+        if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+            checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) ) {
 
-            echo "ReservedTimeの年度が間違いました。";
-
-            if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] ) === 0 ) {
+            if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] )) {
                 $this->reservedTime = $reservedTime;
             }
 
@@ -81,7 +78,7 @@ class Reserve {
         return $this->peopleNum;
     }
     public function setPeopleNum($peopleNum) {
-        if(preg_match( '/([1-9]{1}*)([0-9]{1})/', $peopleNum ) === 0 ) {
+        if( 0 > $peopleNum && 30 <= $peopleNum ) {
             $this->peopleNum = $peopleNum;
         } else echo "peopleNumが間違いました。1~30までです。";
     }
