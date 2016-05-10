@@ -13,6 +13,9 @@
 //データベースに保存 ->メールを送る -> complete.htmlに移動
 
 include_once("./class/Reserve.php");
+include_once("./class/SendMail.class.php");
+
+
 
 if($_POST['confirm'] == "確定") {
 
@@ -55,18 +58,22 @@ if($_POST['confirm'] == "確定") {
 
     // ----------->
 
-
+var_dump($reserve);
 
     // <----------- メールを送る
         //クライアント
-
+    $sendMailClient = new SendMail();
+    // メール内容の作成
+    $contents = $sendMailClient->makeContents( $reserve );
+    // メール送信
+    //$sendMailClient->sendMail( $_POST['mail'],'title', $contents );
         //店舗長
 
     // ----------->
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php'; </script>";
+    //echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php'; </script>";
 
 } else if($_POST['confirm'] == "修正") {
    /*
