@@ -50,7 +50,7 @@ class SeatModel {
         if($peopleNum <= 18) {
             $result[] = 19; $result[] = 20; $result[] = 21;
         }elseif($peopleNum <= 28) {
-            $result[] = 33;
+            $result[] = 21;
         }
         return $result;
 
