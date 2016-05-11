@@ -109,7 +109,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" />
+        <input type="submit" name="send" value="予約" class="common_btn"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

@@ -21,6 +21,7 @@ class ReserveModel {
 //        はいはい、わかりましたよ!
         $pdo = new PDODatabase();
         $sm = new SeatModel($pdo);
+        $pdo = new PDODatabase();
         $snum = 0;
         $seatArray = $sm->getSeat($res->getPeopleNum());
         foreach ($seatArray as $value){
@@ -32,7 +33,6 @@ class ReserveModel {
                         $rooms[] = 7;
                         $rooms[] = 8;
                         $rooms[] = 9;
-                        echo "21";
                         break;
                     case 20:
                         $rooms[] = 8;

@@ -43,14 +43,6 @@ h1 {
 .confirm td#no_under_white {
     border: solid 1px #004422;
 }
-/*submitボタン共通レイアウト*/
-.sub {
-    font-size: 180%;
-    font-weight: bold;
-    border: solid 1px #000000;
-    border-radius: 7px;
-    padding: 12px 24px;
-}
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
 /*ボタンを囲うspanタグに適用する*/
 .submit {

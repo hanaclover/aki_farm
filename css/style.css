@@ -45,3 +45,12 @@ body {
     position: relative;
     left: 30px;
 }
+
+/*submitボタン共通レイアウト_meijin*/
+.common_btn {
+    font-size: 150%;
+    font-weight: bold;
+    border: solid 1px #000000;
+    border-radius: 7px;
+    padding: 8px 12px;
+}

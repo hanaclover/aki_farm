@@ -15,16 +15,21 @@ echo "<pre>";
 var_dump($test);
 echo "</pre>";
 */
+
+require_once "./class/PDODatabase.class.php";
+
 class SeatModel {
     
     public $db = NULL;
     private $arrTable = array();
 
-    public function __construct( $db ) {
+    public function __construct( PDODatabase $db ) {
         $this->db = $db;
         $table =' seat ';
         $col = ' SID, maxPeople ';
+        $this->db->setOrder("MaxPeople");
         $this->arrTable = $this->db->select( $table, $col );
+        $this->db->setOrder("");
     }
 
 

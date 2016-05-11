@@ -105,9 +105,9 @@ class PDODatabase extends BaseModel{
         return intval($result['NUM']);
     }
 
-    public function setOrder( $order ='' )
+    public function setOrder( $strOrder ='' )
     {
-        if( $strOrder !== '' ) $this->order = ' OREDER BY ' . $strOrder;
+        if( $strOrder !== '' ) $this->order = ' ORDER BY ' . $strOrder;
     }
 
     public function setLimitOff( $limit ='', $offset ='' )
