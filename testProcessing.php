@@ -36,12 +36,42 @@ if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
 
+// 데이터를 체크
+if( count(arr) == 0 ) {
+    // data check ok
+
+    if( sid != 0 ) {
+        // seat check function
+
+
+        if($_SESSION['course_flag'] == true) {
+            // AMPのDISH選択ページに行く
+            //echo "<script>window.location.href = 'http://localhost/...'</script>";
+        } else {
+            echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+        }
+
+        // seikai
+        // echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+
+    } else {
+        // not seat
+        //alert(座席がありません。時間を変えて下さい。);
+
+        // history.go("Reserved.php?err=notseat");
+    }
+} else {
+    // history.go(-1)
+}
+
+
 if($_SESSION['course_flag'] == true) {
     // AMPのDISH選択ページに行く
     //echo "<script>window.location.href = 'http://localhost/...'</script>";
 } else {
     echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
 }
+
 
 
 

@@ -20,7 +20,7 @@ $(document).ready(function(){
     $(".aiteru").change(function() {
         var inputdata = $(this).val();
         alert("a"+inputdata+"b");
-        if( inputdata === "") {
+        if( typeof inputdata === null) {
             alert("入れてください");
             $(this).focus();
             return false;
