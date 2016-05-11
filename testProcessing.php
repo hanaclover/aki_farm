@@ -37,41 +37,88 @@ if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
 
+//echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+$_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SESSION['StartDay'],
+                        $_SESSION['startTime'],$_SESSION['phoneNumber'], $_SESSION['familyName'], $_SESSION['firstName'],
+                        $_SESSION['familyName_kana'], $_SESSION['firstName_kana'], $_SESSION['mail']);
+
+
+if(count($_SESSION['err']) == 0) {
+    echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+}
+else {
+    echo "<script>history.go(-1);</script>";
+}
 // 데이터를 체크
-//if( count(arr) == 0 ) {
-//    // data check ok
-//
-//    if( sid != 0 ) {
-//        // seat check function
-//
-//
-//        if($_SESSION['course_flag'] == true) {
-//            // AMPのDISH選択ページに行く
-//            //echo "<script>window.location.href = 'http://localhost/...'</script>";
-//        } else {
-//            echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
-//        }
-//
-//        // seikai
-//        // echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
-//
-//    } else {
-//        // not seat
-//        //alert(座席がありません。時間を変えて下さい。);
-//
-//        // history.go("Reserved.php?err=notseat");
-//    }
-//} else {
-//    // history.go(-1)
-//}
+/*if( count(arr) == 0 ) {
+    // data check ok
+
+    if( sid != 0 ) {
+        // seat check function
 
 
-if($_SESSION['course_flag'] == true) {
+        if($_SESSION['course_flag'] == true) {
+            // AMPのDISH選択ページに行く
+            //echo "<script>window.location.href = 'http://localhost/...'</script>";
+        } else {
+            echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+        }
+
+        // seikai
+        // echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+
+    } else {
+        // not seat
+        //alert(座席がありません。時間を変えて下さい。);
+
+        // history.go("Reserved.php?err=notseat");
+    }
+} else {
+    // history.go(-1)
+}*/
+function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum, $_familyName, $_firstName, $_familyName_kana, $_firstName_kana, $_mail) {
+
+    $inputDate = array();
+
+    if(preg_match( '/[0-9]+/', $_uid ));
+    else $inputDate['UID'] = "UIDがおかしいです。";
+
+    $parseDate = explode("-", $_startDay);
+
+    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
+    } else $inputDate['StartDay'] = "StartDayのタイプが間違いました。";
+
+    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
+    } else $inputDate['StartTime'] = "startTimeのタイプが間違いました。";
+
+    if( $_peopleNum > 0 && $_peopleNum <= 30 );
+    else $inputDate['peopleNum'] = "1~30人までです。";
+
+    if ( preg_match( '/([0-9]{3})-([0-9]{4})-([0-9]{4})/', $_phoneNum ));
+    else $inputDate['phoneNum'] = "電話番号は、半角数字で11桁以内で入力してください";
+
+    if( $_familyName == '' || $_firstName == '')  {
+        $inputDate['Name'] ="確認お願いいたします。";
+    }
+    if( $_familyName_kana == '' || $_firstName_kana == '')  {
+        $inputDate['Name_kana'] ="確認お願いいたします。";
+    }
+    if ( preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+[a-zA-Z0-9\._-]+$/', $_mail ) === 0 )
+    {
+        $inputDate['mail'] = 'メールアドレスを正しい形式で入力してください';
+    }
+    return $inputDate;
+}
+
+/*if($_SESSION['course_flag'] == true) {
     // AMPのDISH選択ページに行く
     //echo "<script>window.location.href = 'http://localhost/...'</script>";
 } else {
-    echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
-}
+<<<<<<< HEAD
+    echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+}*/
+
 
 
 
@@ -86,11 +133,9 @@ if($_SESSION['course_flag'] == true) {
     $_SESSION['StartDay'] = $_POST['Date'];
     $_SESSION['startTime'] = $_POST['hour'].":".$_POST['minute'];
     $_SESSION['course'] = $_POST['course'];
-    // $_SESSION['course_4'] = 0; // AMP사이트에서 가져옴
     if($_POST['course'] == "4") {
         $_SESSION['course_flag'] = true;
     } else $_SESSION['course_flag'] = false;
-
 }*/
 // return Array(Error)
 /*function dataCheck_overlode($course_flag, $_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
@@ -106,40 +151,6 @@ if($_SESSION['course_flag'] == true) {
             break;
     }
 }*/
-
-/*function inputDataCheck($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course) {
-
-    $inputDate = array();
-
-    if(preg_match( '/[0-9]+/', $_uid ));
-    else $inputDate['err'] = "UIDがおかしいです。";
-
-    $parseDate = explode("-", $_startDay);
-
-    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
-        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
-    } else $inputDate['err'] = "StartDayのタイプが間違いました。";
-
-    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
-    } else $inputDate['err'] = "startTimeのタイプが間違いました。";
-
-    $parseTimeStamp = explode(" ", $_reservedTime);      //2016-05-09と14:00:00をわけ
-    $parseDate      = explode("-", $parseTimeStamp[0]); //2016-05-09を-ことにわけ
-
-    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
-        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) ) {
-        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] ));
-    } else $inputDate['err'] = "ReservedTimeが間違いました。";
-
-    if( $_peopleNum > 0 && $_peopleNum <= 30 );
-    else $inputDate['err'] = "peopleNumが間違いました。1~30までです。";
-
-    if($_course == 4 || $_course == 7 || $_course == 10);
-    else $inputDate['err'] = "4，7，10だけです。";
-
-    return $inputDate;
-}*/
-
 
 /*function inputDataCheck_4 ($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
 

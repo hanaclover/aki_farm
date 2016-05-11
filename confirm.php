@@ -21,7 +21,6 @@ $peopleNum = (int)$_SESSION['peopleNum'];
 $reserve->setPeopleNum($peopleNum);
 $reserve->setReservedTime(date("Y-m-d H:i:s"));
 $reserve->setStartDay($_SESSION['StartDay']);
-
 $reserve->setStartTime($_SESSION['startTime']);
 
 //コース

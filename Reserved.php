@@ -14,8 +14,12 @@
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
+if(isset($_SESSION['err'])) {
+    if(count($_SESSION['err']) != 0) {
 
-session_start();
+    }
+}
+
 echo "Reserved : ".session_id();
 ?>
 
@@ -44,6 +48,7 @@ echo "Reserved : ".session_id();
                 <td>日にち</td>
                 <td>
                     <input type="date" name="Date" />
+                    <?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?>
                 </td>
             </tr>
             <tr>
@@ -66,26 +71,30 @@ echo "Reserved : ".session_id();
                         <option value="40">40</option>
                         <option value="50">50</option>
                     </select>分
+                    <?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned peoplenum" value="" placeholder="1以上の数字を入れてください" />
+                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
+                    <?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" class="half aiteru" placeholder="FamilyName" value="" />
-                    <input type="text" name="firstName" class="half" placeholder="FirstName" value="" />
+                    <input type="text" name="familyName" placeholder="FamilyName" value="" />
+                    <input type="text" name="firstName" placeholder="FirstName" value="" />
+                    <?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" class="half" placeholder="FamilyName"  value="" />
-                    <input type="text" name="firstName_kana" class="half" placeholder="FirstName"  value="" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
+                    <?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?>
                 </td>
             </tr>
             <tr>
@@ -96,14 +105,16 @@ echo "Reserved : ".session_id();
                         <option value="090">090</option>
                         <option value="070">070</option>
                     </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" value="" />
+                    <input type="number" name="phoneNum2" class="unsigned" value="" />-
                     <input type="number" name="phoneNum3" class="unsigned" value="" />
+                    <?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
                     <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
+                    <?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?>
                 </td>
             </tr>
             <tr>
