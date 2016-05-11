@@ -148,7 +148,7 @@ class ReserveModel {
         return true;
     }
     private function isEmpty( $seatNum ){
-//        座席番号を受け取ったら、今この時間に空いているか検索する
+//        座席番号を受け取ったら、今この時間に予約できるか検索する
 //        １．まずは現在時刻を求める
 //        ２．次にSQL文を発行する。内容は「座席番号が一致かつ現在時刻±2時間以内の予約」
 //        ３．発行した結果が空かどうかをReturnする
@@ -171,6 +171,7 @@ class ReserveModel {
         return true;
     }
     private function nextReserveTime( $seatNum ){
+        //今埋まってないけど、2時間以内に予約が入っている場合に、それが空く時刻
 //        次の予約時刻を返す
 //        この日に予約が入っていなかったら０を返す
         $today = date("y-m-d");
@@ -193,6 +194,7 @@ class ReserveModel {
         return $startTime;
     }
     private function endTime( $seatNum ){
+//        今現在すでに入っている予約が終わる時間を返す
         $today = date("y-m-d");
         $nowTime = time()+3600*7;
         $pdo = new PDODatabase();
