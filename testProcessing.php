@@ -40,7 +40,7 @@ if($_SESSION['course_flag'] == true) {
     // AMPのDISH選択ページに行く
     //echo "<script>window.location.href = 'http://localhost/...'</script>";
 } else {
-    echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+    echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
 }
 
 

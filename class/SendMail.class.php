@@ -53,12 +53,12 @@ class SendMail {
         }
         fclose($fp);
         */ 
-        //echo "<pre>";
+        echo "<pre>";
         //var_dump($reserveContents);
         //var_dump($contents);
-        //echo "</pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
         $reservecontents = <<<EOS
-
 ---------------------------------------------------
 予約番号：
 予約日時：
@@ -71,7 +71,6 @@ class SendMail {
  ※ 4品コースを御選択頂いた場合のみ表示しております。
 メールアドレス：
 ---------------------------------------------------
-
 EOS;
         switch( $mode ) {
         case 'customer':
