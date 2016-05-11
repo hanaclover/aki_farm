@@ -36,16 +36,23 @@ if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
 
-//echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+// Input Data Check
 $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SESSION['StartDay'],
                         $_SESSION['startTime'],$_SESSION['phoneNumber'], $_SESSION['familyName'], $_SESSION['firstName'],
                         $_SESSION['familyName_kana'], $_SESSION['firstName_kana'], $_SESSION['mail']);
 
 
 if(count($_SESSION['err']) == 0) {
+    // エラーがないとき、確認ページに移動する
+
+    // 座席チェック
+
+
     echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
 }
 else {
+    // 間違ったとき、以前のページに移動
+    // SESSION変数にERRメッセージを持っている
     echo "<script>history.go(-1);</script>";
 }
 // 데이터를 체크

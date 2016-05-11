@@ -1,8 +1,8 @@
 input,select {
-    font-size: 120%;
+    font-size: 80%;
 }
 input[type="text"].half {
-    width: 45%;
+    width:100%;
 }
 input[type="text"],input[type="number"].peoplenum,input[type="date"] {
     width: 80%;

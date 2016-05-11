@@ -14,12 +14,6 @@
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
-if(isset($_SESSION['err'])) {
-    if(count($_SESSION['err']) != 0) {
-
-    }
-}
-
 echo "Reserved : ".session_id();
 ?>
 
@@ -43,6 +37,7 @@ echo "Reserved : ".session_id();
     <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
+            <!--　SESSIONにErrorメッセージがあるとエラーを表示　-->
             <tr>
                 <td>日にち</td>
                 <td>
