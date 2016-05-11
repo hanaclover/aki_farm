@@ -20,11 +20,9 @@ $reserve->setUID($_SESSION['UID']);
 $peopleNum = (int)$_SESSION['peopleNum'];
 $reserve->setPeopleNum($peopleNum);
 $reserve->setReservedTime(date("Y-m-d H:i:s"));
-$reserve->setStartDay($_SESSION['Date']);
+$reserve->setStartDay($_SESSION['StartDay']);
 
-//StartTimeをTime型化
-$startTime = $_POST['hour'].":".$_SESSION['minute'].":00";
-$reserve->setStartTime($startTime);
+$reserve->setStartTime($_SESSION['startTime']);
 
 //コース
 $reserve->setCourse($_SESSION['course']);
