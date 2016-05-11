@@ -5,91 +5,147 @@
  * Date: 2016-05-10
  * Time: 오후 12:06
  */
-
-/*
- * 1. 4品の場合 AMPのページに渡す
- * 2. 4品以外の場合　→　ContentsCheck()
- * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
- * 4.
- * 5.
- * 6.
- * 7.
- *
- * */
 ?>
-
 <?php
 include_once("class/Reserve.php");
 
-if( (isset($_POST['course']) == true ? $_POST['course'] : "") == 4 ) {
-    // $_POST['course']が4品の場合、AMPのページに渡す リンク修正!!!!
-    //echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/  '; </script>";
+echo "testProcessing : ".session_id()."<br>";
+
+// uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
+// 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
+$startTime = $_POST['hour'].":".$_POST['minute'].":00";     //  15:00:00 형식으로 맞춰줌
+$phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3']; // 000-0000-0000으로 맞춰줌
+
+// post 데이터가 넘어오면 세션에 저장
+// 4, true의 경우 AMP페이지로
+// 7,10의 경우 confirm 페이지로
+
+$_SESSION['UID']                = 0;
+$_SESSION['StartDay']           = $_POST['Date'];
+$_SESSION['startTime']          = $startTime;
+$_SESSION['peopleNum']          = $_POST['peopleNum'];
+$_SESSION['familyName']         = $_POST['familyName'];
+$_SESSION['firstName']          = $_POST['firstName'];
+$_SESSION['familyName_kana']    = $_POST['familyName_kana'];
+$_SESSION['firstName_kana']     = $_POST['firstName_kana'];
+$_SESSION['phoneNumber']        = $phoneNumber;
+$_SESSION['mail']               = $_POST['mail'];
+$_SESSION['course']             = $_POST['course'];
+
+if($_POST['course'] == "4") {
+    $_SESSION['course_flag'] = true;
+} else $_SESSION['course_flag'] = false;
+
+if($_SESSION['course_flag'] == true) {
+    // AMPのDISH選択ページに行く
+    //echo "<script>window.location.href = 'http://localhost/...'</script>";
 } else {
-    //7品、10品の場合、ContentsCheck()
-    $reserve->setUID($_POST['UID']);
-    // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
-    // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
-
-    $reserve->setPeopleNum($_POST['peopleNum']);
-    $reserve->setReservedTime($_POST['ReservedTime']);
-    $reserve->setStartDay($_POST['Date']);
-
-    //StartTimeをTime型化
-    $startTime = $_POST['hour'].":".$_POST['minute'];
-    $reserve->setStartTime($_POST['startTime']);
-
-    //コース
-    $reserve->setCourse($_POST['course']);
-
-    if($reserve->getCourse() == 4) {
-        $reserve->setCourse_flag(true);
-
-        // Array処理が必要です。AMPとの調整が必要
-        $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
-        $reserve->setCourse_4($dishName);
-    }
+    echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
 }
 
-/*function checkInputData($uid, $peopleNum, $reservedTime, $date, $hour, $minute, $startTime) {
-    $reserve = new Reserve();
-
-    //$reserve->setUID($_SESSION[]);
-    $reserve->setPeopleNum();
-    $reserve->setReservedTime();
-    $reserve->setStartDay();
-    $reserve->setStartTime();
 
 
+///////////////////////////////////////////////////////////////////////////////////////////
+/*if(count(dataCheck_overlode($_SESSION['course_flag'],$_SESSION['UID'],$_SESSION['peopleNum'],$_SESSION['ReservedTime'],
+    $_SESSION['StartDay'],$_SESSION['startTime'],$_SESSION['course'],$_SESSION['course_4'])) == 0 ) {
 
-    $reserve->setCourse_flag(false);
-    $reserve->setCourse();
+    $_SESSION['UID'] = 0;
+    $_SESSION['peopleNum'] = $_POST['peopleNum'];
+    $_SESSION['ReservedTime'] = 0;
+    $_SESSION['StartDay'] = $_POST['Date'];
+    $_SESSION['startTime'] = $_POST['hour'].":".$_POST['minute'];
+    $_SESSION['course'] = $_POST['course'];
+    // $_SESSION['course_4'] = 0; // AMP사이트에서 가져옴
+    if($_POST['course'] == "4") {
+        $_SESSION['course_flag'] = true;
+    } else $_SESSION['course_flag'] = false;
 
-    //予約が確定され、SIDとRIDが付与されてるとき
+}*/
+// return Array(Error)
+/*function dataCheck_overlode($course_flag, $_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
 
-    // <----
-    $reserve->setUID($_POST['UID']);
-    // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
-    // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
-    // ---->
-
-    $reserve->setPeopleNum($_POST['peopleNum']);
-    $reserve->setReservedTime($_POST['ReservedTime']);
-    $reserve->setStartDay($_POST['Date']);
-
-    //StartTimeをTime型化
-    $startTime = $_POST['hour'].":".$_POST['minute'];
-    $reserve->setStartTime($_POST['startTime']);
-
-    //コース
-    $reserve->setCourse($_POST['course']);
-
-    if($reserve->getCourse() == 4) {
-        $reserve->setCourse_flag(true);
-
-        // Array処理が必要です。AMPとの調整が必要
-        $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
-        $reserve->setCourse_4($dishName);
+    // $course_flag == false 7, 10
+    // $course_flag == true  4
+    switch($course_flag) {
+        case "false": // 7, 10
+            return inputDataCheck($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course);
+            break;
+        case "true": // 4
+            return inputDataCheck_4($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4);
+            break;
     }
 }*/
 
+/*function inputDataCheck($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course) {
+
+    $inputDate = array();
+
+    if(preg_match( '/[0-9]+/', $_uid ));
+    else $inputDate['err'] = "UIDがおかしいです。";
+
+    $parseDate = explode("-", $_startDay);
+
+    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
+    } else $inputDate['err'] = "StartDayのタイプが間違いました。";
+
+    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
+    } else $inputDate['err'] = "startTimeのタイプが間違いました。";
+
+    $parseTimeStamp = explode(" ", $_reservedTime);      //2016-05-09と14:00:00をわけ
+    $parseDate      = explode("-", $parseTimeStamp[0]); //2016-05-09を-ことにわけ
+
+    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) ) {
+        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] ));
+    } else $inputDate['err'] = "ReservedTimeが間違いました。";
+
+    if( $_peopleNum > 0 && $_peopleNum <= 30 );
+    else $inputDate['err'] = "peopleNumが間違いました。1~30までです。";
+
+    if($_course == 4 || $_course == 7 || $_course == 10);
+    else $inputDate['err'] = "4，7，10だけです。";
+
+    return $inputDate;
+}*/
+
+
+/*function inputDataCheck_4 ($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
+
+    $inputDate = array();
+
+    if(preg_match( '/[0-9]+/', $_uid ));
+    else $inputDate['err'] = "UIDがおかしいです。";
+
+    $parseDate = explode("-", $_startDay);
+
+    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ));
+    else $inputDate['err'] = "StartDayのタイプが間違いました。";
+
+    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime ));
+    else $inputDate['err'] = "startTimeのタイプが間違いました。";
+
+
+    $parseTimeStamp = explode(" ", $_reservedTime);      //2016-05-09と14:00:00をわけ
+    $parseDate      = explode("-", $parseTimeStamp[0]); //2016-05-09を-ことにわけ
+
+    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
+        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) ) {
+
+        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] ));
+
+    } else $inputDate['err'] = "ReservedTimeが間違いました。";
+
+    if( $_peopleNum > 0 && $_peopleNum <= 30 );
+    else $inputDate['err'] = "peopleNumが間違いました。1~30までです。";
+
+    if($_course == 4 || $_course == 7 || $_course == 10);
+    else $inputDate['err'] = "4，7，10だけです。";
+
+    if( count($_course_4) == 4 );
+    else $inputDate['err'] = "4個までです。";
+
+    return $inputDate;
+}*/
 ?>

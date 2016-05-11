@@ -25,12 +25,13 @@ if($_POST['confirm'] == "確定") {
 
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
+    $reserve->setUID($_POST['UID']);
 
     // <----
-    //$reserve->setUID($_POST['UID']);
     // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
     // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
     // ---->
+
     $peopleNum = (int)$_POST['peopleNum'];
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));

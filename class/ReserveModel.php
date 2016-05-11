@@ -18,7 +18,7 @@ class ReserveModel {
     public function setReserve(Reserve $res){
 //      このメソッドはReserveクラスのインスタンスが渡されると
 //      PDOクラスを使ってデータベースに挿入する
-//        private $startDay        = "";       //String(Date)
+//        private $startDay        = "";      //String(Date)
 //        private $startTime      = "";       //String(Time)
 //        private $reservedTime   = "";       //String(Time)
 //        private $peopleNum      = 0;        //int

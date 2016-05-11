@@ -17,7 +17,7 @@ class Reserve {
         return $this->UID;
     }
     public function setUID($UID) {
-        if(preg_match( '/[0-9]+/', $UID ) === 0)
+        if(preg_match( '/[0-9]+/', $UID ))
             $this->UID = $UID;
         else $this->err[] = "UIDがおかしいです。";
     }
@@ -25,14 +25,14 @@ class Reserve {
         return $this->RID;
     }
     public function setRID($RID) {
-        if(preg_match( '/[0-9]+/', $RID ) === 0 || $RID == "")
+        if(preg_match( '/[0-9]+/', $RID ))
             $this->RID = $RID;
     }
     public function getSID() {
         return $this->SID;
     }
     public function setSID($SID) {
-        if(preg_match( '/[0-9]+/', $SID ) === 0 || $SID == "")  // データベースにデータを入力する前はないです
+        if( $SID > 0 && $SID <= 21 )  // データベースにデータを入力する前はないです
             $this->SID = $SID;
     }
     public function getStartDay() {

@@ -14,6 +14,9 @@
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
+
+session_start();
+echo "Reserved : ".session_id();
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,8 @@
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost:63342/aki_farm/aki_farm/confirm.php" method="post">
+    <!-- 원래는 데이터 체크 후  -->
+    <form action="http://localhost:63342/aki_farm/aki_farm/testProcessing.php" method="post">
         <table border="1">
             <tr>
                 <td>日にち</td>
@@ -63,7 +67,7 @@
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned" value="5" placeholder="5" />
+                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
                     <?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?>
 
                 </td>
@@ -71,15 +75,15 @@
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" placeholder="FamilyName" value="張" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="秀朱" />
+                    <input type="text" name="familyName" class="aiteru" placeholder="FamilyName" value="" />
+                    <input type="text" name="firstName" placeholder="FirstName" value="" />
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="ジャン" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="スジュ" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
                 </td>
             </tr>
             <tr>
@@ -90,14 +94,14 @@
                         <option value="090">090</option>
                         <option value="070">070</option>
                     </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" placeholder="1234"  value="1234" />
-                    <input type="number" name="phoneNum3" class="unsigned" placeholder="5555"  value="5555" />
+                    <input type="number" name="phoneNum2" class="unsigned" value="" />
+                    <input type="number" name="phoneNum3" class="unsigned" value="" />
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
-                    <input type="text" name="mail" placeholder="abc@gmail.com" value="abc@gmail.com"  />
+                    <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
                 </td>
             </tr>
             <tr>
