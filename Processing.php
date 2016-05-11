@@ -32,7 +32,7 @@ if($_POST['confirm'] == "確定") {
     $peopleNum = (int)$_SESSION['peopleNum'];
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));
-    $reserve->setStartDay($_SESSION['Date']);
+    $reserve->setStartDay($_SESSION['StartDay']);
 
     //StartTimeをTime型化
     $reserve->setStartTime($_SESSION['startTime']);
