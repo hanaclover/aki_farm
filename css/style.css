@@ -28,7 +28,7 @@ body {
 }
 
 #header-right {
-    float: both;
+    clear: both;
     position: absolute;
     right: 0px;
     bottom: 25px;

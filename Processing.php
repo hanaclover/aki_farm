@@ -51,7 +51,7 @@ if($_POST['confirm'] == "確定") {
         $reserve->setCourse_4($dishName);
     }
 
-    var_dump($reserve);
+    // var_dump($reserve);
 
     // <----------- ModelClassでDataBaseに入れる
 
@@ -68,7 +68,7 @@ if($_POST['confirm'] == "確定") {
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    //echo "<script> window.location.href = 'http://localhost:63342/aki_farm/aki_farm/complete.php'; </script>";
+    echo "<script> window.location.href = 'http://localhost:63342/aki_farm/aki_farm/complete.php'; </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

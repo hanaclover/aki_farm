@@ -8,11 +8,8 @@
 
 //予約ページ
 /*
- * 1. ログイン処理
+ *  ログイン処理
  *
- * */
-
-/*
  * 1. 4品の場合 AMPのページに渡す
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る

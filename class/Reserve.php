@@ -72,7 +72,6 @@ class Reserve {
             }
 
         } else $this->err[] = "ReservedTimeが間違いました。";
-            //   echo $errString[] = "ReservedTimeが間違いました。";
     }
     public function getPeopleNum() {
         return $this->peopleNum;
