@@ -20,27 +20,26 @@ if($_POST['confirm'] == "確定") {
 
     //RIDを付与する作業
 
-
+    $_SESSION['startTime'];
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
-    $reserve->setUID($_POST['UID']);
+    $reserve->setUID($_SESSION['UID']);
 
     // <----
     // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
     // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
     // ---->
 
-    $peopleNum = (int)$_POST['peopleNum'];
+    $peopleNum = (int)$_SESSION['peopleNum'];
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));
-    $reserve->setStartDay($_POST['Date']);
+    $reserve->setStartDay($_SESSION['Date']);
 
     //StartTimeをTime型化
-    $startTime = $_POST['hour'].":".$_POST['minute'].":00";
-    $reserve->setStartTime($startTime);
+    $reserve->setStartTime($_SESSION['startTime']);
 
     //コース
-    $reserve->setCourse($_POST['course']);
+    $reserve->setCourse($_SESSION['course']);
 
     if($reserve->getCourse() == 4) {
         $reserve->setCourse_flag(true);
