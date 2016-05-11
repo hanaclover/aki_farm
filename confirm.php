@@ -9,6 +9,7 @@
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
 $reserve = new Reserve();
+session_start();
 echo session_id()."<br>";
 // <----
 $reserve->setUID($_SESSION['UID']);
@@ -22,7 +23,7 @@ $reserve->setReservedTime(date("Y-m-d H:i:s"));
 $reserve->setStartDay($_SESSION['Date']);
 
 //StartTimeをTime型化
-$startTime = $_POST['hour'].":".$_SESSION['minute'].":00";
+$startTime = $_SESSION['hour'].":".$_SESSION['minute'].":00";
 $reserve->setStartTime($startTime);
 
 //コース
