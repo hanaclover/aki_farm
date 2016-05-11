@@ -14,8 +14,12 @@
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
+if(isset($_SESSION['err'])) {
+    if(count($_SESSION['err']) != 0) {
 
-session_start();
+    }
+}
+
 echo "Reserved : ".session_id();
 ?>
 
@@ -26,7 +30,11 @@ echo "Reserved : ".session_id();
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
+    <script src="js/confirm.js"></script>
+    <script src="js/ajax.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
+    <link rel="stylesheet" type="text/css" href="css/input.css" />
 </head>
 <body>
 <div id="wrapper">
@@ -34,11 +42,13 @@ echo "Reserved : ".session_id();
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
     <form action="http://localhost/aki_farm/testProcessing.php" method="post">
-        <table border="1">
+        <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
+        <table border="1" class="design_table">
             <tr>
                 <td>日にち</td>
                 <td>
                     <input type="date" name="Date" />
+                    <?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?>
                 </td>
             </tr>
             <tr>
@@ -61,21 +71,22 @@ echo "Reserved : ".session_id();
                         <option value="40">40</option>
                         <option value="50">50</option>
                     </select>分
+                    <?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>人数</td>
                 <td>
                     <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
-                    <?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?>
-
+                    <?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" class="aiteru" placeholder="FamilyName" value="" />
+                    <input type="text" name="familyName" placeholder="FamilyName" value="" />
                     <input type="text" name="firstName" placeholder="FirstName" value="" />
+                    <?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?>
                 </td>
             </tr>
             <tr>
@@ -83,6 +94,7 @@ echo "Reserved : ".session_id();
                 <td>
                     <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
                     <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
+                    <?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?>
                 </td>
             </tr>
             <tr>
@@ -93,18 +105,20 @@ echo "Reserved : ".session_id();
                         <option value="090">090</option>
                         <option value="070">070</option>
                     </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" value="" />
+                    <input type="number" name="phoneNum2" class="unsigned" value="" />-
                     <input type="number" name="phoneNum3" class="unsigned" value="" />
+                    <?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
                     <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
+                    <?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?>
                 </td>
             </tr>
             <tr>
-                <td>コース名</td>
+                <td id="no_under_white">コース名</td>
                 <td>
                     <input type="radio" name="course" value="4" />4
                     <input type="radio" name="course" value="7" checked="checked" />7
@@ -112,7 +126,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" class="common_btn"/>
+        <input type="submit" name="send" value="予約" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

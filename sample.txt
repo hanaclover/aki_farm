@@ -1,0 +1,16 @@
+git status
+git add .
+
+git commit -m "auto_commit"
+
+git pull
+git push
+
+git checkout master
+git merge edit_model
+git pull
+git push
+
+git checkout edit_model
+git merge master
+git status

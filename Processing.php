@@ -16,6 +16,8 @@ include_once("./class/Reserve.php");
 include_once("./class/SendMail.class.php");
 include_once "./class/ReserveModel.php";
 
+session_start();
+
 if($_POST['confirm'] == "確定") {
 
     //RIDを付与する作業
@@ -33,7 +35,7 @@ if($_POST['confirm'] == "確定") {
     $peopleNum = (int)$_SESSION['peopleNum'];
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));
-    $reserve->setStartDay($_SESSION['Date']);
+    $reserve->setStartDay($_SESSION['StartDay']);
 
     //StartTimeをTime型化
     $reserve->setStartTime($_SESSION['startTime']);
@@ -65,6 +67,7 @@ if($_POST['confirm'] == "確定") {
         $msg = "予約できました!";
         $rModel->setReserve($reserve);
     }
+    var_dump($reserve);
     echo $msg;
 
     // ----------->
