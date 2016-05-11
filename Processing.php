@@ -13,6 +13,7 @@
 //データベースに保存 ->メールを送る -> complete.htmlに移動
 
 include_once("./class/Reserve.php");
+include_once("./class/SendMail.class.php");
 include_once "./class/ReserveModel.php";
 
 if($_POST['confirm'] == "確定") {
@@ -48,9 +49,10 @@ if($_POST['confirm'] == "確定") {
         $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
         $reserve->setCourse_4($dishName);
     }
-
-    // var_dump($reserve);
-
+   // echo "<pre>";
+   // var_dump($reserve);
+   // var_dump($_POST);
+   // echo "</pre>";
     // <----------- ModelClassでDataBaseに入れる
 
     //席を決めてSIDを付与する作業
@@ -69,12 +71,20 @@ if($_POST['confirm'] == "確定") {
     // ----------->
 
 
-
     // <----------- メールを送る
         //クライアント
+    // <----テスト用データ
+    $to = 'tosi_kai_tosi@yahoo.co.jp';
+    // ----->
 
+    $sendMail = new SendMail(); 
+    $contents = $sendMail->makeContents( $reserve, 'customer' );
+    $sendMail->sendMail( $to, $contents );
         //店舗長
 
+    $sendAki = new SendMail(); 
+    $contents = $sendAki->makeContents( $reserve, 'host' );
+    $sendAki->sendMail( $to, $contents );
     // ----------->
 
 
