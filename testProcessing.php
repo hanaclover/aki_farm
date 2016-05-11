@@ -7,7 +7,6 @@
  */
 ?>
 <?php
-session_start();
 include_once("class/Reserve.php");
 
 echo "testProcessing : ".session_id()."<br>";
@@ -49,7 +48,12 @@ if(count($_SESSION['err']) == 0) {
     // 座席チェック
 
 
-    echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+    if($_SESSION['course_flag'] == true) {
+        // AMPのDISH選択ページに行く
+        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
+    } else {
+        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+    }
 }
 else {
     // 間違ったとき、以前のページに移動

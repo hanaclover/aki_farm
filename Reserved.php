@@ -11,7 +11,7 @@
  *  ログイン処理
  *
  * 1. 4品の場合 AMPのページに渡す
- * 2. 4品以外の場合　→　ContentsCheck()
+ * 2. 4品以外の場合　→　ContentsCheck(yyy
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
 echo "Reserved : ".session_id();
