@@ -33,7 +33,7 @@
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost:63342/aki_farm/aki_farm/confirm.php" method="post">
+    <form action="http://localhost/aki_farm/aki_farm/confirm.php" method="post">
         <table border="1">
             <tr>
                 <td>日にち</td>
