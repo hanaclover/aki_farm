@@ -30,7 +30,10 @@ echo "Reserved : ".session_id();
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
+    <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
+    <link rel="stylesheet" type="text/css" href="css/input.css" />
 </head>
 <body>
 <div id="wrapper">
@@ -38,7 +41,8 @@ echo "Reserved : ".session_id();
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
     <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
-        <table border="1">
+        <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
+        <table border="1" class="design_table">
             <tr>
                 <td>日にち</td>
                 <td>
@@ -113,7 +117,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
             <tr>
-                <td>コース名</td>
+                <td id="no_under_white">コース名</td>
                 <td>
                     <input type="radio" name="course" value="4" />4
                     <input type="radio" name="course" value="7" checked="checked" />7
@@ -121,7 +125,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" class="common_btn"/>
+        <input type="submit" name="send" value="予約" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

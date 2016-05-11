@@ -1,0 +1,15 @@
+input,select {
+    font-size: 120%;
+}
+input[type="text"].half {
+    width: 45%;
+}
+input[type="text"],input[type="number"].peoplenum,input[type="date"] {
+    width: 80%;
+}
+input[type="number"],select {
+    width: 30%;
+}
+input[type="radio"] {
+    width: 20%;
+}
