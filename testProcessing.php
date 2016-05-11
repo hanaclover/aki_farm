@@ -7,6 +7,7 @@
  */
 ?>
 <?php
+session_start();
 include_once("class/Reserve.php");
 
 echo "testProcessing : ".session_id()."<br>";

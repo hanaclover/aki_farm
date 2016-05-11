@@ -58,3 +58,8 @@ body {
 .err {
     color: #ff0000;
 }
+/*実験用*/
+.flt {
+    display: inline;
+    float: left;
+}
