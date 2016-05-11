@@ -9,8 +9,8 @@
  * 定数を定義するためにinit.phpが必要。
  */
 
-require_once "./init.php";
-require_once "./BaseModel.php";
+require_once "./class/init.php";
+require_once "./class/BaseModel.php";
 
 class PDODatabase extends BaseModel{
 
@@ -105,9 +105,9 @@ class PDODatabase extends BaseModel{
         return intval($result['NUM']);
     }
 
-    public function setOrder( $order ='' )
+    public function setOrder( $strOrder ='' )
     {
-        if( $strOrder !== '' ) $this->order = ' OREDER BY ' . $strOrder;
+        if( $strOrder !== '' ) $this->order = ' ORDER BY ' . $strOrder;
     }
 
     public function setLimitOff( $limit ='', $offset ='' )

@@ -33,8 +33,7 @@ echo "Reserved : ".session_id();
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <!-- 원래는 데이터 체크 후  -->
-    <form action="http://localhost:63342/aki_farm/aki_farm/testProcessing.php" method="post">
+    <form action="http://localhost/aki_farm/aki_farm/confirm.php" method="post">
         <table border="1">
             <tr>
                 <td>日にち</td>
@@ -113,7 +112,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" />
+        <input type="submit" name="send" value="予約" class="common_btn"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

@@ -123,8 +123,8 @@ if($reserve->getCourse() == 4) {
             <input type='hidden' name='peopleNum' value="<?php echo $_SESSION["peopleNum"]; ?>" />
             <input type='hidden' name='course' value="<?php echo $_SESSION['course']; ?>" />
             <input type="hidden" name="reservedTime" value="<?php echo date("Y-m-d H:i:s"); ?>" />
-        <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
-        <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
+        <span class="btn"><input type="submit" name="confirm" value="確定" class="common_btn submit"></span>
+        <span class="btn"><input type="submit" name="confirm" value="修正" class="common_btn modify"></span>
     </div>
     </form>
 <?php include_once('./common/footer.html'); ?>

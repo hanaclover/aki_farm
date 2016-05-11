@@ -13,12 +13,9 @@
 //データベースに保存 ->メールを送る -> complete.htmlに移動
 
 include_once("./class/Reserve.php");
+include_once "./class/ReserveModel.php";
 
 if($_POST['confirm'] == "確定") {
-
-
-    //席を決めてSIDを付与する作業
-
 
     //RIDを付与する作業
 
@@ -56,6 +53,19 @@ if($_POST['confirm'] == "確定") {
 
     // <----------- ModelClassでDataBaseに入れる
 
+    //席を決めてSIDを付与する作業
+
+    $msg="";
+    $rModel = new ReserveModel();
+    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
+    if (($reserve->getSID()) == 0){
+        $msg = "予約できませんでした!";
+    }else{
+        $msg = "予約できました!";
+        $rModel->setReserve($reserve);
+    }
+    echo $msg;
+
     // ----------->
 
 
@@ -69,7 +79,7 @@ if($_POST['confirm'] == "確定") {
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    echo "<script> window.location.href = 'http://localhost:63342/aki_farm/aki_farm/complete.php'; </script>";
+    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";
