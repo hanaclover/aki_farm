@@ -32,7 +32,7 @@ class Reserve {
         return $this->SID;
     }
     public function setSID($SID) {
-        if(preg_match( '/[0-9]+/', $SID ) === 0 || $SID == "")  // データベースにデータを入力する前はないです
+        if(true || preg_match( '/[0-2]?[0-9]/', $SID ) === 0 || $SID == "")  // データベースにデータを入力する前はないです
             $this->SID = $SID;
     }
     public function getStartDay() {

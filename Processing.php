@@ -54,14 +54,16 @@ if($_POST['confirm'] == "確定") {
 
     //席を決めてSIDを付与する作業
 
+    $msg="";
     $rModel = new ReserveModel();
     $reserve->setSID((string)($rModel->confirmReserve($reserve)));
     if (($reserve->getSID()) == 0){
-        echo "<br>予約できませんでした!<br>";
+        $msg = "予約できませんでした!";
     }else{
-        echo "<br>予約できました!<br>";
+        $msg = "予約できました!";
         $rModel->setReserve($reserve);
     }
+    echo $msg;
 
     // ----------->
 
@@ -76,7 +78,7 @@ if($_POST['confirm'] == "確定") {
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    echo "<script> window.location.href = 'http://localhost:63342/aki_farm/aki_farm/complete.php'; </script>";
+    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

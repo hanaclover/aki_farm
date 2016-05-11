@@ -32,6 +32,7 @@ class ReserveModel {
                         $rooms[] = 7;
                         $rooms[] = 8;
                         $rooms[] = 9;
+                        echo "21";
                         break;
                     case 20:
                         $rooms[] = 8;
@@ -64,6 +65,10 @@ class ReserveModel {
                         }
                     }
                 }
+                if (!$outFlag) {
+                    $flag = true;
+                    break;
+                }
             }else {
                 $flag = false;
                 $outFlag = false;
@@ -91,6 +96,7 @@ class ReserveModel {
                 }
             }
         }
+        echo "$snum<br>";
         return $flag ? $snum : 0;
     }
     public function setReserve(Reserve $res){
