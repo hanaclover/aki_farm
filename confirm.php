@@ -7,6 +7,7 @@
  */
 
 //予約が確定され、SIDとRIDが付与されてるとき
+session_start();
 include_once("class/Reserve.php");
 $reserve = new Reserve();
 echo session_id()."<br>";
@@ -52,7 +53,7 @@ if($reserve->getCourse() == 4) {
     <meta charset="UTF-8">
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/confirm.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/confirm.css">
+    <link rel="stylesheet" type="text/css" href="css/tableForm.css">
     <link rel="stylesheet" type="text/css" href="css/style.css"> 
     <title>ご予約内容のご確認</title>
 </head>
@@ -63,7 +64,7 @@ if($reserve->getCourse() == 4) {
     <h1>
         以上の内容でよろしいですか？
     </h1>
-    <table class="confirm">
+    <table class="design_table">
         <tr>
             <td>
                 来店日時

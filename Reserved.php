@@ -26,15 +26,19 @@ echo "Reserved : ".session_id();
     <title>予約ページ</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
+    <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
+    <link rel="stylesheet" type="text/css" href="css/input.css" />
 </head>
 <body>
 <div id="wrapper">
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost/aki_farm/aki_farm/confirm.php" method="post">
-        <table border="1">
+    <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
+        <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
+        <table border="1" class="design_table">
             <tr>
                 <td>日にち</td>
                 <td>
@@ -66,23 +70,21 @@ echo "Reserved : ".session_id();
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
-                    <?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?>
-
+                    <input type="number" name="peopleNum" class="unsigned peoplenum" value="" placeholder="1以上の数字を入れてください" />
                 </td>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" class="aiteru" placeholder="FamilyName" value="" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="" />
+                    <input type="text" name="familyName" class="half aiteru" placeholder="FamilyName" value="" />
+                    <input type="text" name="firstName" class="half" placeholder="FirstName" value="" />
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
+                    <input type="text" name="familyName_kana" class="half" placeholder="FamilyName"  value="" />
+                    <input type="text" name="firstName_kana" class="half" placeholder="FirstName"  value="" />
                 </td>
             </tr>
             <tr>
@@ -104,7 +106,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
             <tr>
-                <td>コース名</td>
+                <td id="no_under_white">コース名</td>
                 <td>
                     <input type="radio" name="course" value="4" />4
                     <input type="radio" name="course" value="7" checked="checked" />7
@@ -112,7 +114,7 @@ echo "Reserved : ".session_id();
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" class="common_btn"/>
+        <input type="submit" name="send" value="予約" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

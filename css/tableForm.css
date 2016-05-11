@@ -3,7 +3,7 @@ h1 {
     padding-left: 15%;
 }
 /*表の幅を全体の70％にする。罫線を1本にする*/
-.confirm {
+.design_table {
     width: 80%;
     border-collapse: collapse;
     border-bottom: solid 1px #004422;
@@ -11,7 +11,7 @@ h1 {
     margin: 0 auto;
 }
 /*テーブルの各セルの外観*/
-.confirm td {
+.design_table td {
     /*上下でpaddingを変える*/
     padding: 16px 6px;
     font-size: 120%;
@@ -20,27 +20,28 @@ h1 {
     border: solid 1px #006622;
 }
 /*左端の列がヘッダー代わりとなるときの書き方*/
-.confirm td:first-child {
+.design_table td:first-child {
     font-size: 140%;
     color: #eeeeee;
     background-color: #006622;
     border-bottom: solid 1px #ffffff;
+    width: 25%;
 }
 /*左端に寄せ、左端を見やすい程度に空ける*/
-.confirm td:last-child {
+.design_table td:last-child {
     text-align: left;
     padding-left: 25px;
     /*background-color: #0000bf;*/
 }
 /*マウスを重ねたとき、行の背景色を変更する*/
-.confirm td:first-child.hover {
+.design_table td:first-child.hover {
     background-color: #00aa22;
 }
-.confirm td:last-child.hover {
+.design_table td:last-child.hover {
     background-color: #00ee11;
 }
 /*最後の列だけボーダーを緑にする*/
-.confirm td#no_under_white {
+.design_table td#no_under_white {
     border: solid 1px #004422;
 }
 /*確定ボタン、修正ボタンそれぞれのレイアウト*/
