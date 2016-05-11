@@ -1,4 +1,4 @@
-+
+
 <?php
 /*
  * TestMailSend.php
@@ -14,28 +14,32 @@
  * 2.メールアドレス，タイトル，内容，ヘッダーを引数としてメールを送るクラスを作成
  * 3.メール送信
 */
-echo '<meta charset=\'UTF-8\'>';
-$mail = new SendMail();
-$mailContentsPath = 'sample_mail.txt';
-
-
-$to      = 'shanai0126@gmail.com';
-$subject = 'タイトル';
-$header = 'From: Aki農場' . "\r\n";
-$mail->sendMail($to, $subject, $mailContentsPath, $header);
+//echo '<meta charset=\'UTF-8\'>';
+//$mail = new SendMail();
+//$mailContentsPath = 'sample_mail.txt';
+//
+//
+//$to      = 'shanai0126@gmail.com';
+//$subject = 'タイトル';
+//$header = 'From: Aki農場' . "\r\n";
+//$mail->sendMail($to, $subject, $mailContentsPath, $header);
 // -------------<end>test用データ-----------
 
 class SendMail {
+    private $mailContentsPath;
+    private $header;
 
     public function __construct() {
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
+        $this->mailContentsPath = 'sample_mail.txt';
+        $this->header = 'From: Aki農場' . "\r\n";
     }
-    public function makeContents($mailContentsPath) {
-        $mailContentsPath;
+
+    public function makeContents( $reserveContents ) {
         $contents = '';
 	// ファイルの読み込み方は変更します。
-        $fp = fopen($mailContentsPath, 'r');
+        $fp = fopen($this->mailContentsPath, 'r');
         if ($fp){
             if (flock($fp, LOCK_SH)){
                 while (!feof($fp)) {
@@ -49,13 +53,16 @@ class SendMail {
             }
         }
         fclose($fp);
+
+        echo "<pre>";
+        var_dump($reserveContents);
+        echo "</pre>";
+
         return $contents;
     }
-    public function sendMail($to, $subject, $contentsPath, $header) {
-        // メールの内容を読み込み
-        $contents = $this->makeContents($contentsPath);
+    public function sendMail($to, $subject, $contents ) {
         // メールを送信（現在ローカル環境の為，送信不可．
-        if( !mb_send_mail($to, $subject, $contents, $header)) { echo 'メールの送信に失敗しました。'; }
+        if( !mb_send_mail($to, $subject, $contents, $this->header)) { echo 'メールの送信に失敗しました。'; }
 	else { echo 'succsess';}
         }
 }

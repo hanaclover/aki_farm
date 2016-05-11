@@ -13,12 +13,9 @@
 //データベースに保存 ->メールを送る -> complete.htmlに移動
 
 include_once("./class/Reserve.php");
+include_once "./class/ReserveModel.php";
 
 if($_POST['confirm'] == "確定") {
-
-
-    //席を決めてSIDを付与する作業
-
 
     //RIDを付与する作業
 
@@ -54,6 +51,17 @@ if($_POST['confirm'] == "確定") {
     // var_dump($reserve);
 
     // <----------- ModelClassでDataBaseに入れる
+
+    //席を決めてSIDを付与する作業
+
+    $rModel = new ReserveModel();
+    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
+    if (($reserve->getSID()) == 0){
+        echo "<br>予約できませんでした!<br>";
+    }else{
+        echo "<br>予約できました!<br>";
+        $rModel->setReserve($reserve);
+    }
 
     // ----------->
 

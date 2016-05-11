@@ -41,7 +41,7 @@ if($reserve->getCourse() == 4) {
     if(count($reserve->errCheck()) !== 0) {
         $arr = $reserve->errCheck();
         echo  "<script>
-                    window.location.href = 'http://localhost:63342/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
+                    window.location.href = 'http://localhost/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
                </script>";
     }
 
