@@ -12,33 +12,16 @@
 
 //コンストラクタを創ってReseerveを渡すようにするのもアリ!
 
-require_once "./PDODatabase.class.php";
+require_once "./class/PDODatabase.class.php";
+require_once "./class/SeatModel.php";
 
 class ReserveModel {
-    public function setReserve(Reserve $res){
-//      このメソッドはReserveクラスのインスタンスが渡されると
-//      PDOクラスを使ってデータベースに挿入する
-//        private $startDay        = "";       //String(Date)
-//        private $startTime      = "";       //String(Time)
-//        private $reservedTime   = "";       //String(Time)
-//        private $peopleNum      = 0;        //int
-//        private $course         = 0;        //int
-//        private $course_flag    = false;    //boolean
-//        private $course_4       = "";       //String
-        $pdo = new PDODatabase();
-        $insData = array(
-            "UID" => $res->getUID(),
-            "SID" => $res->getSID(),
-            "StartDay" => $res->getStartDay(),
-            "StartTime" => $res->getStartTime(),
-            "PeopleNum" => $res->getPeopleNum(),
-            "Course" => $res->getCourse(),
-            "Course_Flag" => var_export($res->getCourse_flag(),TRUE),
-            "Course_4" => implode($res->getCourse_4())
-        );
+    public function confirmReserve(Reserve $res){
 //        もしかしてSIDってここで計算しなければいけない・・・?
 //        はいはい、わかりましたよ!
+        $pdo = new PDODatabase();
         $sm = new SeatModel($pdo);
+        $pdo = new PDODatabase();
         $snum = 0;
         $seatArray = $sm->getSeat($res->getPeopleNum());
         foreach ($seatArray as $value){
@@ -113,35 +96,56 @@ class ReserveModel {
                 }
             }
         }
-        if($flag) {
-            if ($snum != 0) {
-                $insData["SID"] = $snum;
-            }
-            switch ($snum){
-                case 21:
-                    $insData["SID"] = "9";
-                    $pdo->insert("reserve", $insData);
-                    $insData["SID"] = "8";
-                    $pdo->insert("reserve", $insData);
-                    $insData["SID"] = "7";
-                    break;
-                case 20:
-                    $insData["SID"] = "9";
-                    $pdo->insert("reserve", $insData);
-                    $insData["SID"] = "8";
-                    break;
-                case 19:
-                    $insData["SID"] = "8";
-                    $pdo->insert("reserve", $insData);
-                    $insData["SID"] = "7";
-                    break;
-                default: break;
-            }
-            $pdo->insert("reserve", $insData);
-            return true;
-        }else{
-            return false;
+        echo "$snum<br>";
+        return $flag ? $snum : 0;
+    }
+    public function setReserve(Reserve $res){
+//      このメソッドはReserveクラスのインスタンスが渡されると
+//      PDOクラスを使ってデータベースに挿入する
+//        private $startDay        = "";       //String(Date)
+//        private $startTime      = "";       //String(Time)
+//        private $reservedTime   = "";       //String(Time)
+//        private $peopleNum      = 0;        //int
+//        private $course         = 0;        //int
+//        private $course_flag    = false;    //boolean
+//        private $course_4       = "";       //String
+        $pdo = new PDODatabase();
+        $snum = $res->getSID();
+        $insData = array(
+            "UID" => $res->getUID(),
+            "SID" => $res->getSID(),
+            "StartDay" => $res->getStartDay(),
+            "StartTime" => $res->getStartTime(),
+            "PeopleNum" => $res->getPeopleNum(),
+            "Course" => $res->getCourse(),
+            "Course_Flag" => var_export($res->getCourse_flag(),TRUE),
+            "Course_4" => implode($res->getCourse_4())
+        );
+        if ($snum != 0) {
+            $insData["SID"] = $snum;
         }
+        switch ($snum){
+            case 21:
+                $insData["SID"] = "9";
+                $pdo->insert("reserve", $insData);
+                $insData["SID"] = "8";
+                $pdo->insert("reserve", $insData);
+                $insData["SID"] = "7";
+                break;
+            case 20:
+                $insData["SID"] = "9";
+                $pdo->insert("reserve", $insData);
+                $insData["SID"] = "8";
+                break;
+            case 19:
+                $insData["SID"] = "8";
+                $pdo->insert("reserve", $insData);
+                $insData["SID"] = "7";
+                break;
+            default: break;
+        }
+        $pdo->insert("reserve", $insData);
+        return true;
     }
     private function isEmpty( $seatNum ){
 //        座席番号を受け取ったら、今この時間に空いているか検索する
@@ -159,7 +163,7 @@ class ReserveModel {
             "SID=? and StartDay=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
-            if ($startTime > ($nowTime - 7200 ) && $nowTime >= $startTime){
+            if ($startTime > ($nowTime - 7200 ) && $nowTime + 7200 >= $startTime){
                 echo "<br>$seatNum : ";
                 return false;
             }
@@ -212,7 +216,7 @@ class ReserveModel {
         return 0;
     }
     public function getReserve( $seatNum ){
-        if (false){ //$this->isEmpty($seatNum)
+        if ($this->isEmpty($seatNum)){ //$this->isEmpty($seatNum)
             return "$seatNum : 空席";
         }else{
             if ($this->nextReserveTime($seatNum) != 0){

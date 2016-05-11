@@ -8,15 +8,15 @@
 
 //予約ページ
 /*
- * 1. ログイン処理
+ *  ログイン処理
  *
- * */
-
-/*
  * 1. 4品の場合 AMPのページに渡す
  * 2. 4品以外の場合　→　ContentsCheck()
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
+
+session_start();
+echo "Reserved : ".session_id();
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +66,7 @@
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned" value="5" placeholder="5" />
+                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
                     <?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?>
 
                 </td>
@@ -74,15 +74,15 @@
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" placeholder="FamilyName" value="張" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="秀朱" />
+                    <input type="text" name="familyName" class="aiteru" placeholder="FamilyName" value="" />
+                    <input type="text" name="firstName" placeholder="FirstName" value="" />
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="ジャン" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="スジュ" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
                 </td>
             </tr>
             <tr>
@@ -93,14 +93,14 @@
                         <option value="090">090</option>
                         <option value="070">070</option>
                     </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" placeholder="1234"  value="1234" />
-                    <input type="number" name="phoneNum3" class="unsigned" placeholder="5555"  value="5555" />
+                    <input type="number" name="phoneNum2" class="unsigned" value="" />
+                    <input type="number" name="phoneNum3" class="unsigned" value="" />
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
-                    <input type="text" name="mail" placeholder="abc@gmail.com" value="abc@gmail.com"  />
+                    <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
                 </td>
             </tr>
             <tr>
@@ -112,7 +112,7 @@
                 </td>
             </tr>
         </table>
-        <input type="submit" name="send" value="予約" />
+        <input type="submit" name="send" value="予約" class="common_btn"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

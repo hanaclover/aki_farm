@@ -9,30 +9,30 @@
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
 $reserve = new Reserve();
-
+echo session_id()."<br>";
 // <----
-// $reserve->setUID($_POST['UID']);
+$reserve->setUID($_SESSION['UID']);
 // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
 // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
 // ---->
 
-$peopleNum = (int)$_POST['peopleNum'];
+$peopleNum = (int)$_SESSION['peopleNum'];
 $reserve->setPeopleNum($peopleNum);
 $reserve->setReservedTime(date("Y-m-d H:i:s"));
-$reserve->setStartDay($_POST['Date']);
+$reserve->setStartDay($_SESSION['Date']);
 
 //StartTimeをTime型化
-$startTime = $_POST['hour'].":".$_POST['minute'].":00";
+$startTime = $_POST['hour'].":".$_SESSION['minute'].":00";
 $reserve->setStartTime($startTime);
 
 //コース
-$reserve->setCourse($_POST['course']);
+$reserve->setCourse($_SESSION['course']);
 
 if($reserve->getCourse() == 4) {
     $reserve->setCourse_flag(true);
 
     // Array処理が必要です。AMPとの調整が必要
-    $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
+    $dishName = array($_SESSION['dishName'][0],$_SESSION['dishName'][1],$_SESSION['dishName'][2],$_SESSION['dishName'][3]);
     $reserve->setCourse_4($dishName);
 }
 
@@ -40,9 +40,9 @@ if($reserve->getCourse() == 4) {
 
     if(count($reserve->errCheck()) !== 0) {
         $arr = $reserve->errCheck();
-        echo  "<script>
-                    window.location.href = 'http://localhost:63342/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
-               </script>";
+        /*echo  "<script>
+                    window.location.href = 'http://localhost/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
+               </script>";*/
     }
 
 ?>
@@ -70,8 +70,7 @@ if($reserve->getCourse() == 4) {
             </td>
             <td>
                 <?php
-                    $StartTime = $_POST["Date"]." ".$_POST["hour"].":".$_POST["minute"];
-                    echo $StartTime;
+                    echo $_SESSION['startTime'];
                 ?>
             </td>
         </tr>
@@ -80,7 +79,7 @@ if($reserve->getCourse() == 4) {
                 人数
             </td>
             <td>
-                <?php echo $_POST["peopleNum"]; ?>
+                <?php echo $_SESSION["peopleNum"]; ?>
             </td>
         </tr>
         <tr>
@@ -88,7 +87,7 @@ if($reserve->getCourse() == 4) {
                 代表者氏名
             </td>
             <td>
-                <?php echo $_POST["familyName"]." ".$_POST["firstName"]."(".$_POST['familyName_kana']." ".$_POST['firstName_kana'].")"; ?>
+                <?php echo $_SESSION["familyName"]." ".$_SESSION["firstName"]."(".$_SESSION['familyName_kana']." ".$_SESSION['firstName_kana'].")"; ?>
             </td>
         </tr>
         <tr>
@@ -96,7 +95,7 @@ if($reserve->getCourse() == 4) {
                 電話番号
             </td>
             <td>
-                <?php echo $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3']; ?>
+                <?php echo $_SESSION['phoneNumber']; ?>
             </td>
         </tr>
         <tr>
@@ -104,7 +103,7 @@ if($reserve->getCourse() == 4) {
                 コース名
             </td>
             <td>
-                <?php echo $_POST['course']."品"; ?>
+                <?php echo $_SESSION['course']."品"; ?>
             </td>
         </tr>
         <tr>
@@ -112,20 +111,20 @@ if($reserve->getCourse() == 4) {
                 メールアドレス
             </td>
             <td>
-                <?php echo $_POST['mail']; ?>
+                <?php echo $_SESSION['mail']; ?>
             </td>
         </tr>
     </table>
     <div class="btns">
         <form action="Processing.php" method="POST">
-            <input type='hidden' name='Date' value="<?php echo $_POST['Date']; ?>" />
-            <input type='hidden' name='hour' value="<?php echo $_POST['hour']; ?>" />
-            <input type='hidden' name='minute' value="<?php echo $_POST['minute']; ?>" />
-            <input type='hidden' name='peopleNum' value="<?php echo $_POST["peopleNum"]; ?>" />
-            <input type='hidden' name='course' value="<?php echo $_POST['course']; ?>" />
+            <input type='hidden' name='Date' value="<?php echo $_SESSION['Date']; ?>" />
+            <input type='hidden' name='hour' value="<?php echo $_SESSION['hour']; ?>" />
+            <input type='hidden' name='minute' value="<?php echo $_SESSION['minute']; ?>" />
+            <input type='hidden' name='peopleNum' value="<?php echo $_SESSION["peopleNum"]; ?>" />
+            <input type='hidden' name='course' value="<?php echo $_SESSION['course']; ?>" />
             <input type="hidden" name="reservedTime" value="<?php echo date("Y-m-d H:i:s"); ?>" />
-        <span class="btn"><input type="submit" name="confirm" value="確定" class="sub submit"></span>
-        <span class="btn"><input type="submit" name="confirm" value="修正" class="sub modify"></span>
+        <span class="btn"><input type="submit" name="confirm" value="確定" class="common_btn submit"></span>
+        <span class="btn"><input type="submit" name="confirm" value="修正" class="common_btn modify"></span>
     </div>
     </form>
 <?php include_once('./common/footer.html'); ?>

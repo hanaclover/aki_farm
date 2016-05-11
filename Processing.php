@@ -14,24 +14,22 @@
 
 include_once("./class/Reserve.php");
 include_once("./class/SendMail.class.php");
+include_once "./class/ReserveModel.php";
 
 if($_POST['confirm'] == "確定") {
-
-
-    //席を決めてSIDを付与する作業
-
 
     //RIDを付与する作業
 
 
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
+    $reserve->setUID($_POST['UID']);
 
     // <----
-    //$reserve->setUID($_POST['UID']);
     // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
     // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
     // ---->
+
     $peopleNum = (int)$_POST['peopleNum'];
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));
@@ -57,6 +55,19 @@ if($_POST['confirm'] == "確定") {
    // echo "</pre>";
     // <----------- ModelClassでDataBaseに入れる
 
+    //席を決めてSIDを付与する作業
+
+    $msg="";
+    $rModel = new ReserveModel();
+    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
+    if (($reserve->getSID()) == 0){
+        $msg = "予約できませんでした!";
+    }else{
+        $msg = "予約できました!";
+        $rModel->setReserve($reserve);
+    }
+    echo $msg;
+
     // ----------->
 
 
@@ -78,7 +89,7 @@ if($_POST['confirm'] == "確定") {
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-//    echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php'; </script>";
+    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

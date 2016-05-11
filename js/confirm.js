@@ -4,7 +4,7 @@
 $(function () {
     //マウスを乗せるとカーソルの形が変わる
     // hover関数は2つの引数を持つ
-    $("input.sub").hover(function () {
+    $("input.common_btn").hover(function () {
        $(this).css("cursor" , "pointer");
     } , function () {
        $(this).css("cursor" , "default");
