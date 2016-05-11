@@ -13,6 +13,7 @@
 //データベースに保存 ->メールを送る -> complete.htmlに移動
 
 include_once("./class/Reserve.php");
+include_once("./class/SendMail.class.php");
 
 if($_POST['confirm'] == "確定") {
 
@@ -50,25 +51,34 @@ if($_POST['confirm'] == "確定") {
         $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
         $reserve->setCourse_4($dishName);
     }
-
-    var_dump($reserve);
-
+   // echo "<pre>";
+   // var_dump($reserve);
+   // var_dump($_POST);
+   // echo "</pre>";
     // <----------- ModelClassでDataBaseに入れる
 
     // ----------->
 
 
-
     // <----------- メールを送る
         //クライアント
+    // <----テスト用データ
+    $to = 'tosi_kai_tosi@yahoo.co.jp';
+    // ----->
 
+    $sendMail = new SendMail(); 
+    $contents = $sendMail->makeContents( $reserve, 'customer' );
+    $sendMail->sendMail( $to, $contents );
         //店舗長
 
+    $sendAki = new SendMail(); 
+    $contents = $sendAki->makeContents( $reserve, 'host' );
+    $sendAki->sendMail( $to, $contents );
     // ----------->
 
 
     // 処理が終わりましたらComplete.phpに移動します。
-    //echo "<script> window.location.href = 'http://localhost:63342/aki_farm/aki_farm/complete.php'; </script>";
+//    echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php'; </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

@@ -14,15 +14,15 @@
  * 2.メールアドレス，タイトル，内容，ヘッダーを引数としてメールを送るクラスを作成
  * 3.メール送信
 */
-echo '<meta charset=\'UTF-8\'>';
-$mail = new SendMail();
-$mailContentsPath = 'sample_mail.txt';
-
-
-$to      = 'shanai0126@gmail.com';
-$subject = 'タイトル';
-$header = 'From: Aki農場' . "\r\n";
-$mail->sendMail($to, $subject, $mailContentsPath, $header);
+//echo '<meta charset=\'UTF-8\'>';
+//$mail = new SendMail();
+//$mailContentsPath = 'sample_mail.txt';
+//
+//
+//$to      = 'shanai0126@gmail.com';
+//$subject = 'タイトル';
+//$header = 'From: Aki農場' . "\r\n";
+//$mail->sendMail($to, $subject, $mailContentsPath, $header);
 // -------------<end>test用データ-----------
 
 class SendMail {
@@ -30,7 +30,9 @@ class SendMail {
     public function __construct() {
         mb_language("Japanese");
         mb_internal_encoding("UTF-8");
+        $this->mailContentsPath
     }
+
     public function makeContents($mailContentsPath) {
         $mailContentsPath;
         $contents = '';
