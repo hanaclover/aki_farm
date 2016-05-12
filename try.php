@@ -20,7 +20,7 @@ $rm = new ReserveModel();
 //$res->setSID(5);
 //echo($rm->setReserve($res)."<br>");
 echo "<pre>";
-var_dump($rm->getTodayReserves());
+var_dump($rm->deleteReserve(21));
 echo "</pre>";
 echo($rm->getReserve(1))."<br>";
 echo($rm->getReserve(2))."<br>";
