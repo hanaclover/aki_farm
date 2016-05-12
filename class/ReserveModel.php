@@ -25,9 +25,9 @@ class ReserveModel {
     public function confirmReserve(Reserve $res){
 //        もしかしてSIDってここで計算しなければいけない・・・?
 //        はいはい、わかりましたよ!
-        $pdo = new PDODatabase();
-        $sm = new SeatModel($pdo);
-        $pdo = new PDODatabase();
+        $seatPDO = new PDODatabase();
+        $sm = new SeatModel($seatPDO);
+        $selPDO = new PDODatabase();
         $snum = 0;
         $seatArray = $sm->getSeat($res->getPeopleNum());
         foreach ($seatArray as $value){
@@ -68,7 +68,7 @@ class ReserveModel {
 //            最後までセーフならインサートしてリターンしてしまう
                     $arrRes = array($val);
 //            ある座席の予約一覧
-                    $seatSel = $pdo->select("reserve", "",
+                    $seatSel = $selPDO->select("reserve", "",
                         "SID=?", $arrRes);
                     foreach ($seatSel as $value) {
                         if ($res->getStartDay() == $value["StartDay"]) {
@@ -94,7 +94,7 @@ class ReserveModel {
 //            最後までセーフならインサートしてリターンしてしまう
                 $arrRes = array($snum);
 //            ある座席の予約一覧
-                $seatSel = $pdo->select("reserve", "",
+                $seatSel = $selPDO->select("reserve", "",
                     "SID=?", $arrRes);
                 foreach ($seatSel as $value) {
                     if ($res->getStartDay() == $value["StartDay"]) {
@@ -248,11 +248,12 @@ class ReserveModel {
         return "予約なし";
     }
     public function getTodayReserves(){
+        //今日の予約情報一覧をユーザー情報と関連付けて返す関数
         $today = date("y-m-d");
         $pdo = new PDODatabase();
-        $arrRes = array($today);
+        $arrRes = array($today,0);
         $res = $pdo->select("reserve inner join user on reserve.uid=user.uid" , "" ,
-            "StartDay=?" , $arrRes);
+            "StartDay=? and del_flag=?" , $arrRes);
         return $res;
     }
     public function changeReserve( $id , $res ){
@@ -260,8 +261,14 @@ class ReserveModel {
         $this->setReserve($res);
     }
     public function deleteReserve( $id ){
+//        ここをDel_flagを反映させるように変更する
+//        $table = ' cart ';
+//        $insData = array( 'delete_flg'=> 1 );
+//        $where =' crt_id = ? ';
+//        $arrWhereVal = array( $crt_id );
+        return $this->db->update( $table, $insData, $where, $arrWhereVal);
         $pdo = new PDODatabase();
-        $pdo->update("reserve" , array("2000-01-01") , "RID=?" , array($id));
+        $pdo->update("reserve" , "1" , "del_flag=?" , array($id));
     }
     public function getReservesByDate( $day ){
         $pdo = new PDODatabase();
