@@ -25,7 +25,7 @@ class SeatModel {
     private $arrTable = array();
     private $jointTableStartNum = 100;
     private $arrJointTableSID = array(14,15); 
-    private $plus = 1;
+    private $plus = 2;
     
     public function __construct( PDODatabase $db ) {
         $this->db = $db;
@@ -73,6 +73,8 @@ class SeatModel {
         foreach($this->arrTable as $arrTableInfo) {
             if($arrTableInfo['maxPeople'] >= $peopleNum) {
                 $result[] = $arrTableInfo['SID'];
+            } else {
+                $result = array();
             }
         }
         
@@ -174,6 +176,7 @@ class SeatModel {
         break;
         }
         return $result;
+
     }
 //         /*
 //         * フィルターの条件（無名関数）をセット
