@@ -3,7 +3,9 @@
  */
 $(function () {
     $("td select[name='minute']").change(function () {
-        alert("www");
+        alert($(input[name="peopleNum"]).val());
+        alert();
+        alert();
         $.ajax(
             {
                 type: "GET",
