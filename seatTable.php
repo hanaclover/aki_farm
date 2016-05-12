@@ -6,6 +6,9 @@
  * Time: 오후 5:30
  */
 //SeatTable
+
+// DB連結
+// 予約情報を
 ?>
 <html>
 <head>
