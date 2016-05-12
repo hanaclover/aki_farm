@@ -24,8 +24,8 @@ class SeatModel {
     public $db = NULL;
     private $arrTable = array();
     private $jointTableStartNum = 100;
-    private $arrJointTableSID = array(7,8,9); 
-    private $plus = 2;
+    private $arrJointTableSID = array(14,15); 
+    private $plus = 1;
     
     public function __construct( PDODatabase $db ) {
         $this->db = $db;
@@ -86,8 +86,6 @@ class SeatModel {
 
         // テーブルの組合せを求める
         $result = array_merge($result,$this->addVirtualSID($peopleNum));  
-        
-        
         
         /*
         $count = count($this->arrJointTableSID);
@@ -161,17 +159,15 @@ class SeatModel {
         $count = count($this->arrJointTableSID);
         $maxNum = $this->getMaxPeople($this->arrJointTableSID[0]);
         // 連結したテーブルに対して利用可能かを判断して仮想SIDを付与
-        $maxNum*2+$this->plus;
-        $peopleNum;
         switch( $count ) {
-        case "3":
+        case 3:
             if($peopleNum <= $maxNum*2+$this->plus) {
                 $result[] = $this->jointTableStartNum; $result[] = $this->jointTableStartNum+1; $result[] = $this->jointTableStartNum+2;
-            }elseif($peopleNum <= $maxNum*3+$this->plus) {
+            }elseif($peopleNum <= $maxNum*3+$this->plus*2) {
                 $result[] = $this->jointTableStartNum+2;
             }
         break;
-        case "2":
+        case 2:
             if($peopleNum <= $maxNum*2+$this->plus) {
                 $result[] = $this->jointTableStartNum; 
             }
