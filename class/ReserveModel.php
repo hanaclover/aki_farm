@@ -66,10 +66,10 @@ class ReserveModel {
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                    $arrRes = array($val);
+                    $arrRes = array($val,0);
 //            ある座席の予約一覧
                     $seatSel = $selPDO->select("reserve", "",
-                        "SID=?", $arrRes);
+                        "SID=? and del_flag=?", $arrRes);
                     foreach ($seatSel as $value) {
                         if ($res->getStartDay() == $value["StartDay"]) {
                             if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - self::DINNERLENGTH
@@ -92,10 +92,10 @@ class ReserveModel {
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                $arrRes = array($snum);
+                $arrRes = array($snum,0);
 //            ある座席の予約一覧
                 $seatSel = $selPDO->select("reserve", "",
-                    "SID=?", $arrRes);
+                    "SID=? and del_flag=?", $arrRes);
                 foreach ($seatSel as $value) {
                     if ($res->getStartDay() == $value["StartDay"]) {
                         if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - self::DINNERLENGTH
@@ -135,13 +135,15 @@ class ReserveModel {
             "PeopleNum" => $res->getPeopleNum(),
             "Course" => $res->getCourse(),
             "Course_Flag" => var_export($res->getCourse_flag(),TRUE),
-            "Course_4" => implode($res->getCourse_4())
+            "Course_4" => implode($res->getCourse_4()),
+            "join_flag" => 0
         );
         if ($snum != 0) {
             $insData["SID"] = $snum;
         }
         switch ($snum){
             case $this->minJoinTableNum+2:
+                $insData["join_flag"] = 1;
                 $insData["SID"] = (string)$this->arrJoinTableNum[2];
                 $pdo->insert("reserve", $insData);
                 $insData["SID"] = (string)$this->arrJoinTableNum[1];
@@ -149,11 +151,13 @@ class ReserveModel {
                 $insData["SID"] = (string)$this->arrJoinTableNum[0];
                 break;
             case $this->minJoinTableNum+1:
+                $insData["join_flag"] = 1;
                 $insData["SID"] = (string)$this->arrJoinTableNum[2];
                 $pdo->insert("reserve", $insData);
                 $insData["SID"] = (string)$this->arrJoinTableNum[1];
                 break;
             case $this->minJoinTableNum:
+                $insData["join_flag"] = 1;
                 $insData["SID"] = (string)$this->arrJoinTableNum[1];
                 $pdo->insert("reserve", $insData);
                 $insData["SID"] = (string)$this->arrJoinTableNum[0];
@@ -174,9 +178,9 @@ class ReserveModel {
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
         $sid = $seatID[0]["SID"];
-        $arrRes = array($sid , $today );
+        $arrRes = array($sid , $today ,0);
         $res = $pdo->select("reserve" , "" ,
-            "SID=? and StartDay=?" , $arrRes);
+            "SID=? and StartDay=? and del_flag=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime > ($nowTime - self::DINNERLENGTH ) && $nowTime + self::DINNERLENGTH >= $startTime){
@@ -196,9 +200,9 @@ class ReserveModel {
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
         $sid = $seatID[0]["SID"];
-        $arrRes = array($sid , $today );
+        $arrRes = array($sid , $today , 0);
         $res = $pdo->select("reserve" , "" ,
-            "SID=? and StartDay=?" , $arrRes);
+            "SID=? and StartDay=? and del_flag=?" , $arrRes);
         $startTime = 0;
         foreach ($res as $key => $value){
             $st = strtotime($value["StartDay"]." ".$value["StartTime"]);
@@ -217,9 +221,9 @@ class ReserveModel {
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
         $sid = $seatID[0]["SID"];
-        $arrRes = array($sid , $today );
+        $arrRes = array($sid , $today , 0);
         $res = $pdo->select("reserve" , "" ,
-            "SID=? and StartDay=?" , $arrRes);
+            "SID=? and StartDay=? and del_flag=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
 //            echo "start:";
@@ -249,10 +253,16 @@ class ReserveModel {
     }
     public function getTodayReserves(){
         //今日の予約情報一覧をユーザー情報と関連付けて返す関数
+//        MariaDB [aki_farm_db]> SELECT rid,snum,startday,starttime,peoplenum,familyname,c
+//ourse,course_4,phonenum FROM reserve inner join user on reserve.uid=user.uid inn
+//er join seat on reserve.sid=seat.sid WHERE  StartDay="2016-05-12" and del_Flag=0
+//        ;
         $today = date("y-m-d");
         $pdo = new PDODatabase();
         $arrRes = array($today,0);
-        $res = $pdo->select("reserve inner join user on reserve.uid=user.uid" , "" ,
+        $res = $pdo->select("reserve inner join user on reserve.uid=user.uid "
+         ."inner join seat on reserve.sid=seat.sid"
+            , "rid,snum,startday,starttime,peoplenum,familyname,course,course_4,phonenum" ,
             "StartDay=? and del_flag=?" , $arrRes);
         return $res;
     }
@@ -266,15 +276,29 @@ class ReserveModel {
 //        $insData = array( 'delete_flg'=> 1 );
 //        $where =' crt_id = ? ';
 //        $arrWhereVal = array( $crt_id );
-        return $this->db->update( $table, $insData, $where, $arrWhereVal);
+//        return $this->db->update( $table, $insData, $where, $arrWhereVal);
+
+//        くっつけている部屋の場合はどうする!?
+//        if join_flag=1 then we must delete other join_flag=1 column.
+
         $pdo = new PDODatabase();
-        $pdo->update("reserve" , "1" , "del_flag=?" , array($id));
+        $joinNum = 0;
+        $sel = $pdo->select("reserve" , "" , "rid=?" , array($id));
+        $time = "";
+        foreach ($sel as $value){
+            if ($value["join_flag"]=="1"){
+                $joinNum = 1;
+                $time = $value["StartTime"];
+            }
+        }
+        $pdo->update("reserve" , array('del_flag' => 1)
+            , "join_flag=? and starttime=?" , array($joinNum,$time));
     }
     public function getReservesByDate( $day ){
         $pdo = new PDODatabase();
-        $arrRes = array($day);
+        $arrRes = array($day,0);
         $res = $pdo->select("reserve" , "" ,
-            "StartDay=?" , $arrRes);
+            "StartDay=? and del_flag=?" , $arrRes);
         return $res;
     }
     public function isAbleUserReserve( Reserve $res ){
@@ -282,9 +306,9 @@ class ReserveModel {
         $day = $res->getStartDay();
         $nowTime = $res->getStarttime()+self::DISTANCETIME;
         $pdo = new PDODatabase();
-        $arrRes = array($day);
+        $arrRes = array($day,0);
         $res = $pdo->select("reserve" , "" ,
-            "StartDay=?" , $arrRes);
+            "StartDay=? and del_flag=?" , $arrRes);
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime > ($nowTime - self::DINNERLENGTH) && $nowTime >= $startTime){

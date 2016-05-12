@@ -61,7 +61,6 @@ else {
     echo "<script>history.go(-1);</script>";
 }
 // 데이터를 체크
-=======
 /*if( count(arr) == 0 ) {
     // data check ok
 
