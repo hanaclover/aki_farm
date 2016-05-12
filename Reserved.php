@@ -75,7 +75,7 @@ echo "Reserved : ".session_id();
                         <option value="40">40</option>
                         <option value="50">50</option>
                     </select>分
-                    <span class="err"><?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?></span>
+                    <span class="err" id="minute"><?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
