@@ -71,14 +71,12 @@ class PDODatabase extends BaseModel{
     {
         $stmt = $this->PDO->prepare($query);
         $stmt->execute($arrVal);
-
     }
 
 
     public function select( $table, $column ='',$where = '', $arrVal = array())
     {
         $sql = $this->getSql( 'select', $table, $where, $column);
-
         $stmt = $this->PDO->prepare($sql);
         $stmt->execute($arrVal);
 
