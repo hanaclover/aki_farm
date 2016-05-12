@@ -17,10 +17,15 @@ require_once "./class/SeatModel.php";
 
 class ReserveModel {
 
-    const DISTANCETIME = 3600 * 7;
+    const DISTANCETIME = 3600*7;
     const DINNERLENGTH = 60 * 60 * 2;
     private $minJoinTableNum = 19; //100
     private $arrJoinTableNum = array(7 , 8 , 9); //array(5,6)
+
+    public function __construct()
+    {
+//        date_default_timezone_set("Asia/Tokyo");
+    }
 
     public function confirmReserve(Reserve $res){
 //        もしかしてSIDってここで計算しなければいけない・・・?

@@ -61,14 +61,13 @@ if($_POST['confirm'] == "確定") {
     $rModel = new ReserveModel();
     $uModel = new UserModel();
     $reserve->setSID((string)($rModel->confirmReserve($reserve)));
-    if (($reserve->getSID()) == 0){
-        $msg = "予約できませんでした!";
-    }else{
-        $msg = "予約できました!";
-        $rModel->setReserve($reserve);
-        $uModel->setUser();
-    }
-    var_dump($reserve);
+//    if (($reserve->getSID()) == 0){
+//        $msg = "予約できませんでした!";
+//    }else{
+    $msg = "予約できました!";
+    $rModel->setReserve($reserve);
+    $uModel->setUser();
+//    }
     echo $msg;
 
     // ----------->
@@ -89,7 +88,7 @@ if($_POST['confirm'] == "確定") {
     $sendAki->sendMail( $to, $contents );
     // ----------->
 
-    if($msg == "")
+    if($msg == ""){}
     // 処理が終わりましたらComplete.phpに移動します。
     // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
    // echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php' </script>";
