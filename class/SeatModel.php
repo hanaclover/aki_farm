@@ -166,11 +166,16 @@ class SeatModel {
         switch( $count ) {
         case "3":
             if($peopleNum <= $maxNum*2+$this->plus) {
-                $result[] = $this->jointTableStartNum+1; $result[] = $this->jointTableStartNum+2; $result[] = $this->plus+3;
+                $result[] = $this->jointTableStartNum; $result[] = $this->jointTableStartNum+1; $result[] = $this->jointTableStartNum+2;
             }elseif($peopleNum <= $maxNum*3+$this->plus) {
-                $result[] = $this->jointTableStartNum+3;
-        
+                $result[] = $this->jointTableStartNum+2;
             }
+        break;
+        case "2":
+            if($peopleNum <= $maxNum*2+$this->plus) {
+                $result[] = $this->jointTableStartNum; 
+            }
+        break;
         }
         return $result;
     }
