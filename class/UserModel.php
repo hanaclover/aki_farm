@@ -23,12 +23,13 @@
  var_dump($test);
  echo "</pre>";
 */
+require_once "./class/PDODatabase.class.php";
 
 class UserModel {
-    public $db  = NULL;
+    private $db = NULL;
     
-    public function __construct( $db ) {
-        $this->db = $db;
+    public function __construct() {
+        $this->db = new PDODatabase();
     }
 
     // 予約一覧用のユーザ情報を取得
@@ -57,11 +58,13 @@ class UserModel {
 
 
     // ユーザ情報をDBに登録
-    public function setUser( $FamilyName, $FirstName, $FamilyName_Kana, $FirstName_Kana, $PhoneNum, $Mail ) {
-    //public function setUser( $arrReserveData ) {
+    public function setUser( $FamilyName = '', $FirstName = '', $FamilyName_Kana = '', $FirstName_Kana = '', $PhoneNum = '', $Mail = '' ) {
        $table = ' user ';
-      // $insData = $arrReserveData; 
-      $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName, 'FamilyName_Kana' => $FamilyName_Kana, 'FirstName_Kana' => $FirstName_Kana, 'PhoneNum' => $PhoneNum, 'Mail' => $Mail );
+      if(!empty($_SESSION['familyName'])) {
+        $insData =  array( 'FamilyName' => $_SESSION['familyName'], 'FirstName' => $_SESSION['firstName'], 'FamilyName_Kana' => $_SESSION['familyName_kana'], 'FirstName_Kana' => $_SESSION['firstName_kana'], 'PhoneNum' => $_SESSION['phoneNumber'], 'Mail' => $_SESSION['mail'] );
+      } else {
+        $insData =  array( 'FamilyName' => $FamilyName, 'FirstName' => $FirstName, 'FamilyName_Kana' => $FamilyName_Kana, 'FirstName_Kana' => $FirstName_Kana, 'PhoneNum' => $PhoneNum, 'Mail' => $Mail );
+       }
        $res = $this->db->insert( $table, $insData );
        return $res; 
     }
