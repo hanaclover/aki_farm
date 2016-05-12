@@ -8,7 +8,8 @@
 ?>
 <?php
 include_once("class/Reserve.php");
-session_start();
+require_once "class/ReserveModel.php";
+
 echo "testProcessing : ".session_id()."<br>";
 
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
@@ -46,13 +47,30 @@ if(count($_SESSION['err']) == 0) {
     // エラーがないとき、確認ページに移動する
 
     // 座席チェック
+    $msg="";
+    $rModel = new ReserveModel();
+    $reserve = new Reserve();
+    $reserve->setPeopleNum($_SESSION['peopleNum']);
+    $reserve->setStartDay($_SESSION['StartDay']);
+    $reserve->setStartTime($_SESSION['startTime']);
+    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
+    var_dump($reserve);
+    if (($reserve->getSID()) == 0){
 
+        $_SESSION['full'] = "予約が埋まっております。大変申し訳ございません。<br>よろしければ".
+        "姉妹店をご利用いただけますと幸いです。";
+        echo "<script>history.go(-1);</script>";
 
-    if($_SESSION['course_flag'] == true) {
-        // AMPのDISH選択ページに行く
-        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
-    } else {
-        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+    }else{
+
+        echo "<br><br>いけてます";
+        if($_SESSION['course_flag'] == true) {
+            // AMPのDISH選択ページに行く
+            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
+        } else {
+            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+        }
+
     }
 }
 else {
@@ -61,7 +79,6 @@ else {
     echo "<script>history.go(-1);</script>";
 }
 // 데이터를 체크
-=======
 /*if( count(arr) == 0 ) {
     // data check ok
 

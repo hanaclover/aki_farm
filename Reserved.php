@@ -34,8 +34,17 @@ echo "Reserved : ".session_id();
 <div id="wrapper">
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
+    <span id="shimaiten">
+        <?php
+        if(isset($_SESSION['full'])){
+            echo "<p>".$_SESSION['full']."</p>";
+            echo "<p><a href='http://meijin-farm.com/welcome/'>Meijin農場</a></p>";
+            unset($_SESSION['full']);
+        }
+        ?>
+    </span>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost/aki_farm/testProcessing.php" method="post">
+    <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
             <!--　SESSIONにErrorメッセージがあるとエラーを表示　-->
@@ -43,7 +52,7 @@ echo "Reserved : ".session_id();
                 <td>日にち</td>
                 <td>
                     <input type="date" name="Date" />
-                    <?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -66,14 +75,14 @@ echo "Reserved : ".session_id();
                         <option value="40">40</option>
                         <option value="50">50</option>
                     </select>分
-                    <?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?>
+                    <span class="err" id="minute"><?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>人数</td>
                 <td>
                     <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
-                    <?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -81,7 +90,7 @@ echo "Reserved : ".session_id();
                 <td>
                     <input type="text" name="familyName" placeholder="FamilyName" value="" />
                     <input type="text" name="firstName" placeholder="FirstName" value="" />
-                    <?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?>
+                    <span class="err"><?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -89,7 +98,7 @@ echo "Reserved : ".session_id();
                 <td>
                     <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
                     <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
-                    <?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -102,14 +111,14 @@ echo "Reserved : ".session_id();
                     </select>-
                     <input type="number" name="phoneNum2" class="unsigned" value="" />-
                     <input type="number" name="phoneNum3" class="unsigned" value="" />
-                    <?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
                     <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
-                    <?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>

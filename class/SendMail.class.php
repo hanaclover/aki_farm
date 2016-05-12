@@ -36,7 +36,7 @@ class SendMail {
         $this->mailContentsPath = './class/sample_mail.txt';
     }
 
-    public function makeContents( $mode ) {
+    public function makeContents( $mode, $reserveNum, $reserveTime ) {
         /*
         $fp = fopen($this->mailContentsPath, 'r');
         if ($fp){
@@ -60,8 +60,8 @@ class SendMail {
         echo "</pre>";
         $reservecontents = <<<EOS
 ---------------------------------------------------
-予約番号：
-予約日時：
+予約番号：{$reserveNum}
+予約日時：{$reserveTime}
 ご来店日時：{$_SESSION['StartDay']} {$_SESSION['startTime']}
 御予約人数：{$_SESSION['peopleNum']}
 お名前：{$_SESSION['familyName']} {$_SESSION['firstName']} ({$_SESSION['familyName_kana']} {$_SESSION['firstName_kana']})
@@ -77,10 +77,9 @@ EOS;
         $this->subject = '【Aki農場】御予約ありがとうございます';
         $this->header = 'From: Aki農場' . "\r\n";
         $contents = <<<EOS
-name変数 様
+{$_SESSION['familyName']} 様
 
-御予約ありがとうございます。
-この度は『楽天トラベル』をご利用いただき、
+この度は『Aki農場』をご利用いただき、
 誠にありがとうございます。
 以下の通りご予約が完了いたしました。
 
@@ -96,15 +95,15 @@ name変数 様
 
 ※ 本メールにご返信いただきましても、対応いたしかねます。
 お問い合わせは下記のメールアドレスよりお願いいたします。
-<adress>
+customer@akifarm.jp
 EOS;
         break;
 
         case 'host':
-        $this->subject = '【Aki農場】御予約がありました。';
+        $this->subject = "【Aki農場】{$_SESSION['familyName']}様より御予約がありました。";
         $this->header = 'From: Aki農場' . "\r\n";
         $contents = <<<EOS
-{name様}より御予約がありました｡
+{$_SESSION['familyName']}様より御予約がありました｡
 {$reservecontents}
 EOS;
        break;

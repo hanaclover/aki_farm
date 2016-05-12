@@ -1,7 +1,7 @@
 git status
 git add .
 
-git commit -m "auto_commit"
+git commit -m "sample"
 
 git pull
 git push
