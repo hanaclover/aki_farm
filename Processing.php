@@ -11,9 +11,9 @@
 
 //IF(確定)の場合、
 //データベースに保存 ->メールを送る -> complete.htmlに移動
-session_start();
 include_once("./class/Reserve.php");
 include_once("./class/SendMail.class.php");
+include_once "./class/UserModel.php";
 include_once "./class/ReserveModel.php";
 
 session_start();
@@ -51,21 +51,24 @@ if($_POST['confirm'] == "確定") {
         $reserve->setCourse_4($dishName);
     }
    // echo "<pre>";
-   // var_dump($reserve);
+   // var_dump($_SESSION);
    // var_dump($_POST);
    // echo "</pre>";
+
     // <----------- ModelClassでDataBaseに入れる
 
     //席を決めてSIDを付与する作業
 
     $msg="";
     $rModel = new ReserveModel();
+    $uModel = new UserModel();
     $reserve->setSID((string)($rModel->confirmReserve($reserve)));
     if (($reserve->getSID()) == 0){
         $msg = "予約できませんでした!";
     }else{
         $msg = "予約できました!";
         $rModel->setReserve($reserve);
+        $uModel->setUser();
     }
     var_dump($reserve);
     echo $msg;
@@ -74,25 +77,24 @@ if($_POST['confirm'] == "確定") {
 
 
     // <----------- メールを送る
-        //クライアント
-    // <----テスト用データ
-    $to = 'tosi_kai_tosi@yahoo.co.jp';
-    // ----->
-
+        //クライアント用のメール送信
     $sendMail = new SendMail(); 
-    $contents = $sendMail->makeContents( 'customer' );
-    $sendMail->sendMail( $to, $contents );
-        //店舗長
+    // 第一引数でcustomerもしくはhostを指定することで送り先ごとに作成するメール内容を変更する。
+    $contents = $sendMail->makeContents( 'customer', $reserve->getRID(), $reserve->getReservedTime() );
+    // 送信先のメールアドレスとメール内容を指定してメール送信
+    $sendMail->sendMail( $_SESSION['mail'], $contents );
 
+        //店舗用のメール送信 詳細はクライアント用のメール送信を参照
+    $to = 'tosi_kai_tosi@yahoo.co.jp';
     $sendAki = new SendMail(); 
-    $contents = $sendAki->makeContents( 'host' );
+    $contents = $sendAki->makeContents( 'host', $reserve->getRID(), $reserve->getReservedTime() );
     $sendAki->sendMail( $to, $contents );
     // ----------->
 
 
     // 処理が終わりましたらComplete.phpに移動します。
     // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
-    echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php' </script>";
+   // echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php' </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

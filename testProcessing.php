@@ -44,13 +44,12 @@ $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SE
 
 
 if(count($_SESSION['err']) == 0) {
-    echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
+    echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
 }
 else {
     echo "<script>history.go(-1);</script>";
 }
 // 데이터를 체크
-=======
 /*if( count(arr) == 0 ) {
     // data check ok
 
