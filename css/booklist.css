@@ -22,7 +22,7 @@
 /*テーブルのヘッダ部分の外観*/
 .book th {
     padding: 8px;
-    font-size: 140%;
+    font-size: 120%;
     text-align: center;
     color: #dddddd;
     /*背景色はテーマカラーの茶色*/
@@ -33,7 +33,7 @@
 .book td {
     /*上下でpaddingを変える*/
     padding: 16px 6px;
-    font-size: 120%;
+    font-size: 100%;
     text-align: center;
     /*ボーダー色をヘッダーと一致させる*/
     border: 1px solid #884422;
