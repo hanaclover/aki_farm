@@ -44,9 +44,9 @@
     <div style="margin: auto 0; width:830px;">
     <div>
         <input type="button" value="座席一覧" name="seat"
-               onclick="location.href='http://localhost/aki_farm/aki_farm/seatTable.php?today=<?php echo date("Y-m-d H:i:s") ?>'">
+               onclick="location.href='http://localhost/aki_farm/aki_farm/seatTable.php?Date=<?php echo date("Y-m-d H:i:s") ?>'">
         <input type="button" value="予約一覧" name="reserve"
-               onclick="location.href='http://localhost/aki_farm/aki_farm/bookList.php?today=<?php echo date("Y-m-d") ?>'">
+               onclick="location.href='http://localhost/aki_farm/aki_farm/bookList.php?Date=<?php echo date("Y-m-d") ?>'">
     </div>
     <div class="left mr10">
 

@@ -69,6 +69,7 @@ class PDODatabase extends BaseModel{
 
     public function setQuery( $query='', $arrVal = array() )
     {
+        var_dump($query);
         $stmt = $this->PDO->prepare($query);
         $stmt->execute($arrVal);
     }
