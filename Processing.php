@@ -16,7 +16,7 @@ include_once("./class/Reserve.php");
 include_once("./class/SendMail.class.php");
 include_once "./class/ReserveModel.php";
 
-session_start();
+
 
 if($_POST['confirm'] == "確定") {
 
