@@ -9,6 +9,7 @@
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
 $reserve = new Reserve();
+session_start();
 echo session_id()."<br>";
 // <----
 $reserve->setUID($_SESSION['UID']);
