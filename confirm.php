@@ -10,6 +10,7 @@
 session_start();
 include_once("class/Reserve.php");
 $reserve = new Reserve();
+session_start();
 echo session_id()."<br>";
 // <----
 $reserve->setUID($_SESSION['UID']);

@@ -41,7 +41,7 @@ echo "Reserved : ".session_id();
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
+    <form action="http://localhost/aki_farm/testProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
             <tr>

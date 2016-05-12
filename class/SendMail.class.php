@@ -36,7 +36,7 @@ class SendMail {
         $this->mailContentsPath = './class/sample_mail.txt';
     }
 
-    public function makeContents( $reserve, $mode ) {
+    public function makeContents( $mode ) {
         /*
         $fp = fopen($this->mailContentsPath, 'r');
         if ($fp){
@@ -53,25 +53,24 @@ class SendMail {
         }
         fclose($fp);
         */ 
-        //echo "<pre>";
+        echo "<pre>";
         //var_dump($reserveContents);
         //var_dump($contents);
-        //echo "</pre>";
+        var_dump($_SESSION);
+        echo "</pre>";
         $reservecontents = <<<EOS
-
 ---------------------------------------------------
 予約番号：
 予約日時：
-ご来店日時：
-御予約人数：
-お名前：
-電話番号：
-御予約コース
-お料理：
+ご来店日時：{$_SESSION['StartDay']} {$_SESSION['startTime']}
+御予約人数：{$_SESSION['peopleNum']}
+お名前：{$_SESSION['familyName']} {$_SESSION['firstName']} ({$_SESSION['familyName_kana']} {$_SESSION['firstName_kana']})
+電話番号：{$_SESSION['phoneNumber']}
+御予約コース:{$_SESSION['course']}
+お料理：{$_SESSION['course_flag']}
  ※ 4品コースを御選択頂いた場合のみ表示しております。
-メールアドレス：
+メールアドレス：{$_SESSION['mail']}
 ---------------------------------------------------
-
 EOS;
         switch( $mode ) {
         case 'customer':
