@@ -17,15 +17,6 @@ $(document).ready(function(){
             return false;
         }
     });
-    $(".aiteru").change(function() {
-        var inputdata = $(this).val();
-        alert("a"+inputdata+"b");
-        if( typeof inputdata === null) {
-            alert("入れてください");
-            $(this).focus();
-            return false;
-        }
-    });
 });
 
 

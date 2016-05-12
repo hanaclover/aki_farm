@@ -36,8 +36,6 @@ if($_POST['confirm'] == "確定") {
     $reserve->setPeopleNum($peopleNum);
     $reserve->setReservedTime(date("Y-m-d H:i:s"));
     $reserve->setStartDay($_SESSION['StartDay']);
-
-    //StartTimeをTime型化
     $reserve->setStartTime($_SESSION['startTime']);
 
     //コース
@@ -91,7 +89,7 @@ if($_POST['confirm'] == "確定") {
     $sendAki->sendMail( $to, $contents );
     // ----------->
 
-
+    if($msg == "")
     // 処理が終わりましたらComplete.phpに移動します。
     // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
    // echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php' </script>";
