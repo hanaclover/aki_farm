@@ -15,6 +15,12 @@
 require_once "./class/PDODatabase.class.php";
 require_once "./class/SeatModel.php";
 
+function echoman($echoStr){
+    echo "<pre>";
+    var_dump($echoStr);
+    echo "</pre>";
+}
+
 class ReserveModel {
 
     const DISTANCETIME = 3600*7;
@@ -46,7 +52,9 @@ class ReserveModel {
                 if (count($this->arrJoinTableNum)==3)
                     switch ($snum){
                         case $this->minJoinTableNum+2:
-                            $rooms[] = $this->arrJoinTableNum;
+                            $rooms[] = $this->arrJoinTableNum[0];
+                            $rooms[] = $this->arrJoinTableNum[1];
+                            $rooms[] = $this->arrJoinTableNum[2];
                             break;
                         case $this->minJoinTableNum+1:
                             $rooms[] = $this->arrJoinTableNum[1];
@@ -66,15 +74,16 @@ class ReserveModel {
                 }
                 $flag = false;
                 $outFlag = false;
-                foreach ($rooms as $val){
+                foreach ($rooms as $arr) {
 //            予約テーブルの中で座席の予約を検索して
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                    $arrRes = array($val,0);
+                    $arrRes = array($arr, "0");
 //            ある座席の予約一覧
                     $seatSel = $selPDO->select("reserve", "",
                         "SID=? and del_flag=?", $arrRes);
+                    echoman($rooms);
                     foreach ($seatSel as $value) {
                         if ($res->getStartDay() == $value["StartDay"]) {
                             if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - self::DINNERLENGTH
@@ -97,7 +106,7 @@ class ReserveModel {
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                $arrRes = array($snum,0);
+                $arrRes = array($snum,"0");
 //            ある座席の予約一覧
                 $seatSel = $selPDO->select("reserve", "",
                     "SID=? and del_flag=?", $arrRes);
@@ -183,7 +192,7 @@ class ReserveModel {
         $arrSeat = array($seatNum);
         $seatID = $pdo->select("seat" , "SID" , "sNum=?" , $arrSeat);
         $sid = $seatID[0]["SID"];
-        $arrRes = array($sid , $today ,0);
+        $arrRes = array($sid , $today ,"0");
         $res = $pdo->select("reserve" , "" ,
             "SID=? and StartDay=? and del_flag=?" , $arrRes);
         foreach ($res as $key => $value){
@@ -264,7 +273,7 @@ class ReserveModel {
 //        ;
         $today = date("y-m-d");
         $pdo = new PDODatabase();
-        $arrRes = array($today,0);
+        $arrRes = array($today,"0");
         $res = $pdo->select("reserve inner join user on reserve.uid=user.uid "
          ."inner join seat on reserve.sid=seat.sid"
             , "rid,snum,startday,starttime,peoplenum,familyname,course,course_4,phonenum" ,
@@ -301,7 +310,7 @@ class ReserveModel {
     }
     public function getReservesByDate( $day ){
         $pdo = new PDODatabase();
-        $arrRes = array($day,0);
+        $arrRes = array($day,"0");
         $res = $pdo->select("reserve" , "" ,
             "StartDay=? and del_flag=?" , $arrRes);
         return $res;
@@ -311,7 +320,7 @@ class ReserveModel {
         $day = $res->getStartDay();
         $nowTime = $res->getStarttime()+self::DISTANCETIME;
         $pdo = new PDODatabase();
-        $arrRes = array($day,0);
+        $arrRes = array($day,"0");
         $res = $pdo->select("reserve" , "" ,
             "StartDay=? and del_flag=?" , $arrRes);
         foreach ($res as $key => $value){
