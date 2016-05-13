@@ -3,7 +3,7 @@
  */
 $(function () {
     $("td select[name='minute']").change(function () {
-        alert($(input[name="peopleNum"]).val());
+        alert($("input[name='peopleNum']").val());
         alert();
         alert();
         $.ajax(
