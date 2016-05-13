@@ -73,6 +73,8 @@ class SeatModel {
         foreach($this->arrTable as $arrTableInfo) {
             if($arrTableInfo['maxPeople'] >= $peopleNum) {
                 $result[] = $arrTableInfo['SID'];
+            } else {
+                $result = array();
             }
         }
         
@@ -174,6 +176,7 @@ class SeatModel {
         break;
         }
         return $result;
+
     }
 //         /*
 //         * フィルターの条件（無名関数）をセット

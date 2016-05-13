@@ -39,8 +39,8 @@ class ReserveModel {
         $seatPDO = new PDODatabase();
         $sm = new SeatModel($seatPDO);
 
-        $this->minJoinTableNum = $sm->getJointTableStartNum();
-        $this->arrJoinTableNum = $sm->getJointTableSID();
+//        $this->minJoinTableNum = $sm->getJointTableStartNum();
+//        $this->arrJoinTableNum = $sm->getJointTableSID();
 
         $selPDO = new PDODatabase();
         $snum = 0;
@@ -83,11 +83,11 @@ class ReserveModel {
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                    $arrRes = array($arr, "0");
+                    $arrRes = array($arr, 0);
 //            ある座席の予約一覧
                     $seatSel = $selPDO->select("reserve", "",
                         "SID=? and del_flag=?", $arrRes);
-                    echoman($rooms);
+//                    echoman($rooms);
                     foreach ($seatSel as $value) {
                         if ($res->getStartDay() == $value["StartDay"]) {
                             if (strtotime($res->getStartTime()) > strtotime($value["StartTime"]) - self::DINNERLENGTH
@@ -110,7 +110,7 @@ class ReserveModel {
 //            その予約があれば、時間が2時間以内かを調べる
 //            もし2時間以内ならアウト。次の座席へ
 //            最後までセーフならインサートしてリターンしてしまう
-                $arrRes = array($snum,"0");
+                $arrRes = array($snum,0);
 //            ある座席の予約一覧
                 $seatSel = $selPDO->select("reserve", "",
                     "SID=? and del_flag=?", $arrRes);
@@ -130,7 +130,7 @@ class ReserveModel {
                 }
             }
         }
-        echo "$snum<br>";
+//        echo "$snum<br>";
         return $flag ? $snum : 0;
     }
     public function setReserve(Reserve $res){

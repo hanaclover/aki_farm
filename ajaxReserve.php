@@ -20,7 +20,9 @@ require_once "class/ReserveModel.php";
     if (($reserve->getSID()) == 0){
 
         echo "予約が埋まっております。大変申し訳ございません。<br>よろしければ".
-            "姉妹店をご利用いただけますと幸いです。";
+            "日時を変更していただくか、姉妹店をご利用いただけますと幸いです。";
 
+    }else{
+        echo "";
     }
 ?>
