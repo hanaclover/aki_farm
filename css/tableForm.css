@@ -67,6 +67,11 @@ h1 {
     /*padding-right: 15%;*/
 }
 .reserve_info {
-    color:#789430;
-
+    position: absolute;
+    width : 100%;
+    bottom: 10%;
+    margin: 0px auto;  
+}
+.relative {
+    position: relative;
 }

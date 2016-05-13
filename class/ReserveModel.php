@@ -204,7 +204,7 @@ class ReserveModel {
         foreach ($res as $key => $value){
             $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
             if ($startTime > ($nowTime - self::DINNERLENGTH ) && $nowTime + self::DINNERLENGTH >= $startTime){
-                echo "<br>$seatNum : ";
+                //echo "<br>$seatNum : ";
                 return false;
             }
         }
