@@ -88,10 +88,10 @@ if($_POST['confirm'] == "確定") {
     $sendAki->sendMail( $to, $contents );
     // ----------->
 
-    if($msg == ""){}
+//    if($msg == ""){}
     // 処理が終わりましたらComplete.phpに移動します。
     // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
-   // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php' </script>";
+   echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/complete.php' </script>";
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

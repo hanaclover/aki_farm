@@ -42,36 +42,32 @@ $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SE
                         $_SESSION['startTime'],$_SESSION['phoneNumber'], $_SESSION['familyName'], $_SESSION['firstName'],
                         $_SESSION['familyName_kana'], $_SESSION['firstName_kana'], $_SESSION['mail']);
 
+// 座席チェック
+$msg="";
+$rModel = new ReserveModel();
+$reserve = new Reserve();
+$reserve->setPeopleNum($_SESSION['peopleNum']);
+$reserve->setStartDay($_SESSION['StartDay']);
+$reserve->setStartTime($_SESSION['startTime']);
+$reserve->setSID((string)($rModel->confirmReserve($reserve)));
+var_dump($reserve);
+if (($reserve->getSID()) == 0) {
 
-if(count($_SESSION['err']) == 0) {
+    $_SESSION['full'] = "予約が埋まっております。大変申し訳ございません。<br>よろしければ" .
+        "姉妹店をご利用いただけますと幸いです。";
+}
+
+if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full'] == '')) {
     // エラーがないとき、確認ページに移動する
 
-    // 座席チェック
-    $msg="";
-    $rModel = new ReserveModel();
-    $reserve = new Reserve();
-    $reserve->setPeopleNum($_SESSION['peopleNum']);
-    $reserve->setStartDay($_SESSION['StartDay']);
-    $reserve->setStartTime($_SESSION['startTime']);
-    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
-    var_dump($reserve);
-    if (($reserve->getSID()) == 0){
-
-        $_SESSION['full'] = "予約が埋まっております。大変申し訳ございません。<br>よろしければ".
-        "姉妹店をご利用いただけますと幸いです。";
-        echo "<script>history.go(-1);</script>";
-
-    }else{
-
-        echo "<br><br>いけてます";
-        if($_SESSION['course_flag'] == true) {
-            // AMPのDISH選択ページに行く
-            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
-        } else {
-            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
-        }
-
+    echo "<br><br>いけてます";
+    if($_SESSION['course_flag'] == true) {
+        // AMPのDISH選択ページに行く
+        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
+    } else {
+        echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
     }
+
 }
 else {
     // 間違ったとき、以前のページに移動

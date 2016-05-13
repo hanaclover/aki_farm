@@ -25,6 +25,8 @@ $(function () {
                 $("#shimaiten").empty();
             }
         });
+    }).keyup(function () {
+        $(this).change();
     });
    $("tr:nth-child(100)").hover(function () {
        // $(".space").load("./try.php");
