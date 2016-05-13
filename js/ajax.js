@@ -3,7 +3,9 @@
  */
 $(function () {
     $("td select[name='minute'],td select[name='hour'],input[name='peopleNum'],input[name='Date']")
-        .change(function () {
+        .keyup(function () {
+            $(this).change();
+        }).change(function () {
         // alert($("input[name='peopleNum']").val());
         // alert($("select[name='hour']").val()+":"+$("select[name='minute']").val()+":"+"00");
         // alert($("input[name='Date']").val());

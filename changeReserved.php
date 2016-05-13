@@ -29,6 +29,19 @@ echo "Reserved : ".session_id();
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
     <link rel="stylesheet" type="text/css" href="css/input.css" />
+    <?php
+
+    require_once "./class/PDODatabase.class.php";
+
+    date_default_timezone_set("Asia/Tokyo");
+
+    $pdo = new PDODatabase();
+
+    $rid = isset($_GET['RID']) ? $_GET['RID'] : '';
+    echo $_GET['RID']."+".$rid;
+    $arr = array($rid);
+    $res = $pdo->select("user u, reserve r", "", "RID = ?", $arr);
+    ?>
 </head>
 <body>
 <div id="wrapper">
@@ -58,77 +71,97 @@ echo "Reserved : ".session_id();
             <tr>
                 <td>時刻</td>
                 <td>
-                    <select name="hour">
-                        <option selected value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                    </select>時
-                    <select name="minute">
-                        <option selected value="00">00</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
-                    </select>分
-                    <span class="err" id="minute"><?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?></span>
+                    <?php
+                    $time = explode(":", $res[0]['StartTime']);
+                    echo "<select name='hour'>";
+                    for($i = 17; $i <= 23; $i++) {
+                        if($i == $time[0])
+                            echo "<option value='$i' selected>$i</option>";
+                        else
+                            echo "<option value='$i'>$i</option>";
+                    }
+                    echo "</select>時";
+                    echo "<select name='minute'>";
+                    for($i = 00; $i <= 50; $i += 10) {
+                        if($i == $time[1])
+                            echo "<option value='$i' selected>$i</option>";
+                        else
+                            echo "<option value='$i'>$i</option>";
+                    }
+                    echo "</select>分";
+                    ?>
                 </td>
             </tr>
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
-                    <span class="err"><?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?></span>
-                </td>
+                    <?php echo "<input type='number' name='peopleNum' value='".$res[0]['PeopleNum']."' />"; ?></td>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" placeholder="FamilyName" value="" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="" />
-                    <span class="err"><?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?></span>
+                    <?php echo "<input type='text' name='familyName' value='".$res[0]['FamilyName']."' />"; ?>
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
-                    <span class="err"><?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?></span>
+                    <?php echo "<input type='text' name='familyName_kana' value='".$res[0]['FamilyName_kana']."' />"; ?>
+                    <?php echo "<input type='text' name='firstName_kana' value='".$res[0]['FirstName_kana']."' />"; ?>
                 </td>
             </tr>
             <tr>
                 <td>電話番号</td>
                 <td>
-                    <select name="phoneNum1">
-                        <option selected value="080">080</option>
-                        <option value="090">090</option>
-                        <option value="070">070</option>
-                    </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" value="" />-
-                    <input type="number" name="phoneNum3" class="unsigned" value="" />
-                    <span class="err"><?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?></span>
+                <?php
+                    echo "<select name='phoneNum1'>";
+                    $firstPN = array("080", "070", "090");
+
+                    $PhoneNum = explode("-", $res[0]['PhoneNum']);
+
+                    //080 070 090
+                        for($i = 0; $i < count($firstPN); $i++) {
+                            if($firstPN[$i] == $PhoneNum[0])
+                                echo "<option value='$firstPN[$i]' selected>$firstPN[$i]</option>";
+                            else
+                                echo "<option value='$firstPN[$i]'>$firstPN[$i]</option>";
+                        }
+                        echo "</select>-";
+
+                    echo "<input type='number' name='phoneNum2' value='".$PhoneNum[1]."' />-";
+                    echo "<input type='number' name='phoneNum3' value='".$PhoneNum[2]."' />";
+                    ?>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
-                    <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
-                    <span class="err"><?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?></span>
+                    <?php echo "<input type='text' name='mail' value='".$res[0]['Mail']."' />"; ?>
                 </td>
             </tr>
             <tr>
                 <td id="no_under_white">コース名</td>
                 <td>
-                    <input type="radio" name="course" value="4" />4
-                    <input type="radio" name="course" value="7" checked="checked" />7
-                    <input type="radio" name="course" value="10" />10
+                <?php
+                    $order = array("4", "7", "10");
+
+                    for($i = 0; $i < count($order); $i++) {
+                        if($order[$i] == $res[0]['Course'])
+                            echo "<input type='radio' name='course' value='$order[$i]' checked />$order[$i]";
+                        else
+                            echo "<input type='radio' name='course' value='$order[$i]' />$order[$i]";
+                    }
+                ?>
                 </td>
             </tr>
+            <?php
+                if($res[0]['Course_flag'] !== false) {
+                    echo "<tr>
+                            <td>備考</td>
+                            <td>".($res[0]['Course_4'] == '' ? '' : $res[0]['Course_4'])."</td>
+                        </tr>";
+                }
+            ?>
         </table>
         <input type="submit" name="send" value="予約" class="common_btn submit"/>
     </form>
