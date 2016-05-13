@@ -44,7 +44,7 @@ echo "Reserved : ".session_id();
         ?>
     </span>
     <h2>予約変更画面</h2>
-    <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
+    <form action="http://localhost/aki_farm/testProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
             <!--　SESSIONにErrorメッセージがあるとエラーを表示　-->

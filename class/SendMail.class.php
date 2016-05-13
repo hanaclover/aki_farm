@@ -53,11 +53,11 @@ class SendMail {
         }
         fclose($fp);
         */ 
-        echo "<pre>";
+        //echo "<pre>";
         //var_dump($reserveContents);
         //var_dump($contents);
-        var_dump($_SESSION);
-        echo "</pre>";
+        //var_dump($_SESSION);
+        //echo "</pre>";
         $reservecontents = <<<EOS
 ---------------------------------------------------
 予約番号：{$reserveNum}

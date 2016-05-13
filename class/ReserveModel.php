@@ -258,13 +258,17 @@ class ReserveModel {
         return 0;
     }
     public function getReserve( $seatNum ){
+        // 空席状況の確認
+            // 空席の場合
         if ($this->isEmpty($seatNum)){ //$this->isEmpty($seatNum)
-            return "$seatNum : 空席";
-        }else{
+            return "予約可能";
+        }else{ // 予約有りの場合
+            // 現在は空席だが２時間以内に予約が有る場合、
+            // 次の予約のスタート時間を返す
             if ($this->nextReserveTime($seatNum) != 0){
-                return "$seatNum : next->".date("H:i:s",$this->nextReserveTime($seatNum));
-            }elseif ($this->endTime($seatNum) != 0){
-                return "$seatNum : end ->".date("H:i:s",$this->endTime($seatNum));
+                return "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum));
+            }elseif ($this->endTime($seatNum) != 0){ // 現在使用中の場合、終了時間を返す。
+                return "終了時間 :".date("H:i:s",$this->endTime($seatNum));
             }else{
                 return "空席";
             }
