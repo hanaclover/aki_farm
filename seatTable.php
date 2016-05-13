@@ -64,9 +64,9 @@
             <div id="7" class="left text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 120px; height: 120px;"
                  >7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7) ?></p></div>
             <div id="8" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=8'">8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8) ?></p></div>
+                 8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8) ?></p></div>
             <div id="9" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=9'">9<p class="reserve_info"><?php echo $reserveInfo->getReserve(9) ?></p></div>
+                 9<p class="reserve_info"><?php echo $reserveInfo->getReserve(9) ?></p></div>
             <div class="both"></div>
         </div>
         <div>
