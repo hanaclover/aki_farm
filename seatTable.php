@@ -36,6 +36,7 @@
     <script src="js/confirm.js"></script>
     <script src="js/ajax.js"></script>
     <script src="js/seatTable.js"></script>
+    <script src="js/ajax_Tobikomi.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
     <link rel="stylesheet" type="text/css" href="css/input.css" />
