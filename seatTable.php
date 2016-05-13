@@ -35,6 +35,7 @@
     <script src="js/management.js"></script>
     <script src="js/confirm.js"></script>
     <script src="js/ajax.js"></script>
+    <script src="js/seatTable.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
     <link rel="stylesheet" type="text/css" href="css/input.css" />
@@ -62,29 +63,29 @@
          -->
         <div>
             <div id="7" class="left text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=7'">7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7) ?></p></div>
+                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=7'">7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7)["msg"]; if($reserveInfo->getReserve(7)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(7);</script>";} ?></p></div>
             <div id="8" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=8'">8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8) ?></p></div>
+                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=8'">8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8)["msg"]; if($reserveInfo->getReserve(8)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(8);</script>"; } ?></p></div>
             <div id="9" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=9'">9<p class="reserve_info"><?php echo $reserveInfo->getReserve(9) ?></p></div>
+                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=9'">9<p class="reserve_info"><?php echo $reserveInfo->getReserve(9)["msg"]; if($reserveInfo->getReserve(9)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(9);</script>"; } ?></p></div>
             <div class="both"></div>
         </div>
         <div>
             <div class="left">
                 <div id="3" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=3'">3<p class="reserve_info"><?php echo $reserveInfo->getReserve(3) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=3'">3<p class="reserve_info"><?php echo $reserveInfo->getReserve(3)["msg"]; if($reserveInfo->getReserve(3)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(3);</script>"; } ?></p></div>
                 <div id="2" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=2'">2<p class="reserve_info"><?php echo $reserveInfo->getReserve(2) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=2'">2<p class="reserve_info"><?php echo $reserveInfo->getReserve(2)["msg"]; if($reserveInfo->getReserve(2)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(2);</script>"; } ?></p></div>
                 <div id="1" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=1'">1<p class="reserve_info"><?php echo $reserveInfo->getReserve(1) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=1'">1<p class="reserve_info"><?php echo $reserveInfo->getReserve(1)["msg"]; if($reserveInfo->getReserve(1)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(1);</script>"; } ?></p></div>
             </div>
             <div class="left">
                 <div id="6" class="text-center m5 mouseEvent relative" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=6'">6<p class="reserve_info"><?php echo $reserveInfo->getReserve(6) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=6'">6<p class="reserve_info"><?php echo $reserveInfo->getReserve(6)["msg"]; if($reserveInfo->getReserve(6)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(6);</script>"; } ?></p></div>
                 <div id="5" class="text-center m5 mouseEvent relative" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=5'">5<p class="reserve_info"><?php echo $reserveInfo->getReserve(5) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=5'">5<p class="reserve_info"><?php echo $reserveInfo->getReserve(5)["msg"]; if($reserveInfo->getReserve(5)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(5);</script>"; } ?></p></div>
                 <div id="4" class="text-center m5 mouseEvent relative" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=4'">4<p class="reserve_info"><?php echo $reserveInfo->getReserve(4) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=4'">4<p class="reserve_info"><?php echo $reserveInfo->getReserve(4)["msg"]; if($reserveInfo->getReserve(4)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(4);</script>"; } ?></p></div>
             </div>
             <div class="both"></div>
         </div>
@@ -93,25 +94,25 @@
         <div>
             <div class="left">
                 <div id="10" class="text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=11'">11<p class="reserve_info"><?php echo $reserveInfo->getReserve(11) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=11'">11<p class="reserve_info"><?php echo $reserveInfo->getReserve(11)["msg"]; if($reserveInfo->getReserve(11)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(10);</script>"; } ?></p></div>
                 <div id="11"class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=12'">12<p class="reserve_info"><?php echo $reserveInfo->getReserve(12) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=12'">12<p class="reserve_info"><?php echo $reserveInfo->getReserve(12)["msg"]; if($reserveInfo->getReserve(12)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(11);</script>"; } ?></p></div>
                 <div id="12" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=13'">13<p class="reserve_info"><?php echo $reserveInfo->getReserve(13) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=13'">13<p class="reserve_info"><?php echo $reserveInfo->getReserve(13)["msg"];  if($reserveInfo->getReserve(13)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(12);</script>"; } ?></p></div>
                 <div id="13" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=14'">14<p class="reserve_info"><?php echo $reserveInfo->getReserve(14) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=14'">14<p class="reserve_info"><?php echo $reserveInfo->getReserve(14)["msg"]; if($reserveInfo->getReserve(14)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(13);</script>"; } ?></p></div>
             </div>
             <div class="left">
                 <div id="14" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=21'">21<p class="reserve_info"><?php echo $reserveInfo->getReserve(21) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=21'">21<p class="reserve_info"><?php echo $reserveInfo->getReserve(21)["msg"]; if($reserveInfo->getReserve(21)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(14);</script>";  }?></p></div>
                 <div id="15" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=22'">23<p class="reserve_info"><?php echo $reserveInfo->getReserve(23) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=22'">23<p class="reserve_info"><?php echo $reserveInfo->getReserve(23)["msg"]; if($reserveInfo->getReserve(23)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(15);</script>"; } ?></p></div>
                 <div id="16" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=23'">25<p class="reserve_info"><?php echo $reserveInfo->getReserve(25) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=23'">25<p class="reserve_info"><?php echo $reserveInfo->getReserve(25)["msg"]; if($reserveInfo->getReserve(25)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(16);</script>"; } ?></p></div>
                 <div id="17" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=24'">27<p class="reserve_info"><?php echo $reserveInfo->getReserve(27) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=24'">27<p class="reserve_info"><?php echo $reserveInfo->getReserve(27)["msg"]; if($reserveInfo->getReserve(27)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(17);</script>"; } ?></p></div>
                 <div id="18" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=25'">30<p class="reserve_info"><?php echo $reserveInfo->getReserve(30) ?></p></div>
+                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=25'">30<p class="reserve_info"><?php echo $reserveInfo->getReserve(30)["msg"]; if($reserveInfo->getReserve(30)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(18);</script>"; } ?></p></div>
             </div>
             <div class="both"></div>
         </div>
