@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./css/reserve.css">
+<script> var array = <?php echo json_safe_encode($data); ?></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.cookie.js"></script>
+<script src="./js/reserve.js"></script>
+<meta charset="utf-8">
+<title>AKI農場</title>
+</head>
+
+<body>
+    <div id="box"></div>
+    <p id="con">こちらでよろしいですか？</p>
+    <p id="btn">
+        <a href="MHJ/confir.php">
+            <button type="button" id="confirm">この4品で決定！</button>
+        </a>
+        <a href="list.php">
+            <button type="button" id="list">リストに戻る</button>
+        </a>
+    </p>
+    <div>
+        <p id="gennka"></p>
+        <p id="yajirusi"> ↓ </p>
+        <p id="settowari">[[[ !!2500円!! ]]]</p>
+    </div>
+    <div id="footer">2016 Project AKINO cAMP CORPORATION 2016</div>
+
+</body>
+
+</html>

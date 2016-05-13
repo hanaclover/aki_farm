@@ -9,8 +9,6 @@
 <?php
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
-session_start();
-echo "testProcessing : ".session_id()."<br>";
 
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
@@ -57,18 +55,8 @@ if (($reserve->getSID()) == 0) {
         "姉妹店をご利用いただけますと幸いです。";
 }
 
-//<<<<<<< HEAD
-//        echo "<br><br>いけてます";
-//        if($_SESSION['course_flag'] == true) {
-//            // AMPのDISH選択ページに行く
-//            echo "<script>window.location.href = 'http://localhost/aki_farm/AMP.php';</script>";
-//        } else {
-//            echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
-//        }
-//=======
 if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full'] == '')) {
     // エラーがないとき、確認ページに移動する
-//>>>>>>> 7e6b8a101ff0cb09c11a218a5cdad0594ae151bc
 
     echo "<br><br>いけてます";
     if($_SESSION['course_flag'] == true) {
@@ -84,33 +72,7 @@ else {
     // SESSION変数にERRメッセージを持っている
     echo "<script>history.go(-1);</script>";
 }
-// 데이터를 체크
-/*if( count(arr) == 0 ) {
-    // data check ok
 
-    if( sid != 0 ) {
-        // seat check function
-
-
-        if($_SESSION['course_flag'] == true) {
-            // AMPのDISH選択ページに行く
-            //echo "<script>window.location.href = 'http://localhost/aki_farm/...'</script>";
-        } else {
-            echo "<script>window.location.href = 'http://localhost/aki_farm:63342/aki_farm/aki_farm/confirm.php';</script>";
-        }
-
-        // seikai
-        // echo "<script>window.location.href = 'http://localhost/aki_farm:63342/aki_farm/aki_farm/confirm.php';</script>";
-
-    } else {
-        // not seat
-        //alert(座席がありません。時間を変えて下さい。);
-
-        // history.go("Reserved.php?err=notseat");
-    }
-} else {
-    // history.go(-1)
-}*/
 function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum, $_familyName, $_firstName, $_familyName_kana, $_firstName_kana, $_mail) {
 
     $inputDate = array();
@@ -145,84 +107,4 @@ function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum,
     }
     return $inputDate;
 }
-
-/*if($_SESSION['course_flag'] == true) {
-    // AMPのDISH選択ページに行く
-    //echo "<script>window.location.href = 'http://localhost/aki_farm/...'</script>";
-} else {
-    echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
-}
-}*/
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////
-/*if(count(dataCheck_overlode($_SESSION['course_flag'],$_SESSION['UID'],$_SESSION['peopleNum'],$_SESSION['ReservedTime'],
-    $_SESSION['StartDay'],$_SESSION['startTime'],$_SESSION['course'],$_SESSION['course_4'])) == 0 ) {
-
-    $_SESSION['UID'] = 0;
-    $_SESSION['peopleNum'] = $_POST['peopleNum'];
-    $_SESSION['ReservedTime'] = 0;
-    $_SESSION['StartDay'] = $_POST['Date'];
-    $_SESSION['startTime'] = $_POST['hour'].":".$_POST['minute'];
-    $_SESSION['course'] = $_POST['course'];
-    if($_POST['course'] == "4") {
-        $_SESSION['course_flag'] = true;
-    } else $_SESSION['course_flag'] = false;
-}*/
-// return Array(Error)
-/*function dataCheck_overlode($course_flag, $_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
-
-    // $course_flag == false 7, 10
-    // $course_flag == true  4
-    switch($course_flag) {
-        case "false": // 7, 10
-            return inputDataCheck($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course);
-            break;
-        case "true": // 4
-            return inputDataCheck_4($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4);
-            break;
-    }
-}*/
-
-/*function inputDataCheck_4 ($_uid, $_peopleNum, $_reservedTime, $_startDay, $_startTime, $_course, $_course_4) {
-
-    $inputDate = array();
-
-    if(preg_match( '/[0-9]+/', $_uid ));
-    else $inputDate['err'] = "UIDがおかしいです。";
-
-    $parseDate = explode("-", $_startDay);
-
-    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
-        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ));
-    else $inputDate['err'] = "StartDayのタイプが間違いました。";
-
-    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime ));
-    else $inputDate['err'] = "startTimeのタイプが間違いました。";
-
-
-    $parseTimeStamp = explode(" ", $_reservedTime);      //2016-05-09と14:00:00をわけ
-    $parseDate      = explode("-", $parseTimeStamp[0]); //2016-05-09を-ことにわけ
-
-    if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
-        checkdate( $parseDate[1], $parseDate[2], $parseDate[0] ) ) {
-
-        if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $parseTimeStamp[1] ));
-
-    } else $inputDate['err'] = "ReservedTimeが間違いました。";
-
-    if( $_peopleNum > 0 && $_peopleNum <= 30 );
-    else $inputDate['err'] = "peopleNumが間違いました。1~30までです。";
-
-    if($_course == 4 || $_course == 7 || $_course == 10);
-    else $inputDate['err'] = "4，7，10だけです。";
-
-    if( count($_course_4) == 4 );
-    else $inputDate['err'] = "4個までです。";
-
-    return $inputDate;
-}*/
 ?>

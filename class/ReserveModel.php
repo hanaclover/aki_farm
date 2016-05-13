@@ -41,8 +41,8 @@ class ReserveModel {
         $seatPDO = new PDODatabase();
         $sm = new SeatModel($seatPDO);
 
-//        $this->minJoinTableNum = $sm->getJointTableStartNum();
-//        $this->arrJoinTableNum = $sm->getJointTableSID();
+        $this->minJoinTableNum = $sm->getJointTableStartNum();
+        $this->arrJoinTableNum = $sm->getJointTableSID();
 
         $selPDO = new PDODatabase();
         $snum = 0;

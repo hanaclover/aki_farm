@@ -1,0 +1,56 @@
+button
+{
+    color: red;
+    border:bold;
+    clear:both;
+}
+
+img#list
+{
+	 float:left;
+     width: 400px;
+     height: 400px;
+}
+
+p.name 
+{
+    margin-left: 50px;
+    font-size: 45px;
+}
+
+p.price 
+{
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+
+p.detail
+{
+    padding-left: 50px;
+    font-size: 35px;
+}
+
+
+div#rec
+{
+    height: 30px;
+}
+
+div#footer 
+{
+    text-align:center;
+    z-index:99997;
+    position:fixed;
+    background:#000;
+    border-top: solid 1px #fff;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-image: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+
