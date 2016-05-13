@@ -90,7 +90,6 @@ if($_POST['confirm'] == "確定") {
     // 処理が終わりましたらComplete.phpに移動します。
     // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
    echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/aki_farm/complete.php' </script>";
->>>>>>> 7e6b8a101ff0cb09c11a218a5cdad0594ae151bc
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";
