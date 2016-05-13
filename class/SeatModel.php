@@ -24,7 +24,11 @@ class SeatModel {
     public $db = NULL;
     private $arrTable = array();
     private $jointTableStartNum = 100;
+<<<<<<< HEAD
     private $arrJointTableSID = array(7,8,9); 
+=======
+    private $arrJointTableSID = array(7,8,9);
+>>>>>>> 6c32b51122b96b8e7ba06d42c91e1dcc2edbaf89
     private $plus = 2;
     
     public function __construct( PDODatabase $db ) {
