@@ -66,7 +66,7 @@ if(count($_SESSION['err']) == 0) {
         echo "<br><br>いけてます";
         if($_SESSION['course_flag'] == true) {
             // AMPのDISH選択ページに行く
-            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/AMP.php';</script>";
+            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/list.php';</script>";
         } else {
             echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
         }

@@ -1,0 +1,76 @@
+p#con
+{
+    color: #05a903;
+    background-color: #f48c09;
+    font-size: 40px;
+    width: 50%;
+    border: blue 4px dotted;   
+    text-align: center;
+    margin: 0 auto;
+}
+
+p#img
+{
+    text-align: center;
+    margin: 10px auto;
+}
+
+button
+{
+    text-align: center;
+    margin: 5px auto;
+}
+
+p#btn
+{
+    margin: 6 auto;
+    text-align: center;
+}
+
+div#box
+{
+    text-align:center;
+    margin: 0 auto;
+}
+
+p#gennka
+{
+    color: #a8b98d;
+    font-size: 40px;
+    text-align:center;
+    margin: 0 auto;
+}
+
+p#settowari
+{
+    color: skyblue;
+    font-size: 70px;
+    text-align:center;
+    margin: 0 auto;
+}
+
+p#yajirusi
+{
+    color: #8b2a0d;
+    font-size: 30px;
+    text-align:center;
+    margin: 0 auto;
+}
+
+div#footer 
+{
+    text-align:center;
+    z-index:99997;
+    position:fixed;
+    background:#000;
+    border-top: solid 1px #fff;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-image: no-repeat;
+    background-size: auto;
+    background-position: center center;
+}
+
+
