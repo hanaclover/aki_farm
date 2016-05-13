@@ -14,7 +14,6 @@
  * 2. 4品以外の場合　→　ContentsCheck(yyy
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
- session_start();
 echo "Reserved : ".session_id();
 ?>
 
@@ -45,7 +44,7 @@ echo "Reserved : ".session_id();
         ?>
     </span>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost/aki_farm/testProcessing.php" method="post">
+    <form action="http://localhost/aki_farm/aki_farm/testProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
             <!--　SESSIONにErrorメッセージがあるとエラーを表示　-->

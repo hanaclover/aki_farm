@@ -10,9 +10,10 @@ $(document).ready(function(){
     });
 
     $(".unsigned").change(function() {
-        var num = $(this).val() - 1;
-        if(typeof num !== "number" || num < 0) {
-            alert("正数だけお願いいたします。");
+        var num = $(this).val();
+        if(typeof num !== "number" || num <= 0) {
+            // alert("正数だけお願いいたします。");
+            
             $(this).focus();
             return false;
         }

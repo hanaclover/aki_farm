@@ -16,8 +16,6 @@ include_once("./class/SendMail.class.php");
 include_once "./class/UserModel.php";
 include_once "./class/ReserveModel.php";
 
-session_start();
-
 if($_POST['confirm'] == "確定") {
 
     //RIDを付与する作業
@@ -68,7 +66,7 @@ if($_POST['confirm'] == "確定") {
     $rModel->setReserve($reserve);
     $uModel->setUser();
 //    }
-    echo $msg;
+//    echo $msg;
 
     // ----------->
 
@@ -88,10 +86,11 @@ if($_POST['confirm'] == "確定") {
     $sendAki->sendMail( $to, $contents );
     // ----------->
 
-    if($msg == ""){}
+//    if($msg == ""){}
     // 処理が終わりましたらComplete.phpに移動します。
-    // echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php?msg='+\"$msg\"; </script>";
-   // echo "<script> window.location.href = 'http://localhost/aki_farm/complete.php' </script>";
+    // echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/aki_farm/complete.php?msg='+\"$msg\"; </script>";
+   echo "<script> window.location.href = 'http://localhost/aki_farm/aki_farm/aki_farm/complete.php' </script>";
+>>>>>>> 7e6b8a101ff0cb09c11a218a5cdad0594ae151bc
 
 } else if($_POST['confirm'] == "修正") {
     echo "<script>history.go(-2);</script>";

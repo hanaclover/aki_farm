@@ -9,8 +9,7 @@
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
 $reserve = new Reserve();
-session_start();
-echo session_id()."<br>";
+//echo session_id()."<br>";
 // <----
 $reserve->setUID($_SESSION['UID']);
 // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
@@ -38,7 +37,7 @@ if($reserve->getCourse() == 4) {
     if(count($reserve->errCheck()) !== 0) {
         $arr = $reserve->errCheck();
         /*echo  "<script>
-                    window.location.href = 'http://localhost/aki_farm/Reserved.php?err=$arr[0]';
+                    window.location.href = 'http://localhost/aki_farm/aki_farm/Reserved.php?err=$arr[0]';
                </script>";*/
     }
 

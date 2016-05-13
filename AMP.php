@@ -7,6 +7,6 @@
  */
 
 $_SESSION['dishName'] = array("a","b","c","d");
-echo "<script>window.location.href = 'http://localhost/aki_farm/Processing.php';</script>";
+echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/Processing.php';</script>";
 
 ?>

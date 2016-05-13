@@ -27,7 +27,7 @@ class ReserveModel {
     const DISTANCETIME = 25200;
     //const DINNERLENGTH = 60 * 60 * 2;
     const DINNERLENGTH = 7200;
-    private $minJoinTableNum = 19; //100
+    private $minJoinTableNum = 100; //100
     private $arrJoinTableNum = array(7 , 8 , 9); //array(5,6)
 
     public function __construct()

@@ -48,9 +48,9 @@
     <div style="margin: auto 0; width:830px;">
     <div>
         <input type="button" value="座席一覧" name="seat"
-               onclick="location.href='http://localhost/aki_farm/seatTable.php?Date=<?php echo date("Y-m-d H:i:s") ?>'">
+               onclick="location.href='http://localhost/aki_farm/aki_farm/seatTable.php?Date=<?php echo date("Y-m-d H:i:s") ?>'">
         <input type="button" value="予約一覧" name="reserve"
-               onclick="location.href='http://localhost/aki_farm/bookList.php?Date=<?php echo date("Y-m-d") ?>'">
+               onclick="location.href='http://localhost/aki_farm/aki_farm/bookList.php?Date=<?php echo date("Y-m-d") ?>'">
     </div>
     <div class="left mr10">
 
@@ -62,29 +62,29 @@
          -->
         <div>
             <div class="left text-center m5 mouseEvent" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=7'">7<?php echo $reserveInfo->getReserve(7) ?></div>
+                 onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=7'">7<?php echo $reserveInfo->getReserve(7) ?></div>
             <div class="left text-center m5 mouseEvent" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=8'">8<?php echo $reserveInfo->getReserve(8) ?></div>
+                 onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=8'">8<?php echo $reserveInfo->getReserve(8) ?></div>
             <div class="left text-center m5 mouseEvent" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=9'">9<?php echo $reserveInfo->getReserve(9) ?></div>
+                 onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=9'">9<?php echo $reserveInfo->getReserve(9) ?></div>
             <div class="both"></div>
         </div>
         <div>
             <div class="left">
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=3'">3<?php echo $reserveInfo->getReserve(3) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=3'">3<?php echo $reserveInfo->getReserve(3) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=2'">2<?php echo $reserveInfo->getReserve(2) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=2'">2<?php echo $reserveInfo->getReserve(2) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=1'">1<?php echo $reserveInfo->getReserve(1) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=1'">1<?php echo $reserveInfo->getReserve(1) ?></div>
             </div>
             <div class="left">
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=6'">6<?php echo $reserveInfo->getReserve(6) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=6'">6<?php echo $reserveInfo->getReserve(6) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=5'">5<?php echo $reserveInfo->getReserve(5) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=5'">5<?php echo $reserveInfo->getReserve(5) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow;  width: 185px; height: 105px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=4'">4<?php echo $reserveInfo->getReserve(4) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=4'">4<?php echo $reserveInfo->getReserve(4) ?></div>
             </div>
             <div class="both"></div>
         </div>
@@ -93,25 +93,25 @@
         <div>
             <div class="left">
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=11'">11<span class="reserve_info"><?php echo $reserveInfo->getReserve(11) ?></span></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=11'">11<span class="reserve_info"><?php echo $reserveInfo->getReserve(11) ?></span></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=12'">12<?php echo $reserveInfo->getReserve(12) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=12'">12<?php echo $reserveInfo->getReserve(12) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=13'">13<?php echo $reserveInfo->getReserve(13) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=13'">13<?php echo $reserveInfo->getReserve(13) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=14'">14<?php echo $reserveInfo->getReserve(14) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=14'">14<?php echo $reserveInfo->getReserve(14) ?></div>
             </div>
             <div class="left">
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=21'">21<?php echo $reserveInfo->getReserve(21) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=21'">21<?php echo $reserveInfo->getReserve(21) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=22'">23<?php echo $reserveInfo->getReserve(23) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=22'">23<?php echo $reserveInfo->getReserve(23) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=23'">25<?php echo $reserveInfo->getReserve(25) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=23'">25<?php echo $reserveInfo->getReserve(25) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 82px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=24'">27<?php echo $reserveInfo->getReserve(27) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=24'">27<?php echo $reserveInfo->getReserve(27) ?></div>
                 <div class="text-center m5 mouseEvent" style="background-color: greenyellow; width: 150px; height: 110px;"
-                     onclick="location.href='http://localhost/aki_farm/Reserved.php?num=25'">30<?php echo $reserveInfo->getReserve(30) ?></div>
+                     onclick="location.href='http://localhost/aki_farm/aki_farm/Reserved.php?num=25'">30<?php echo $reserveInfo->getReserve(30) ?></div>
             </div>
             <div class="both"></div>
         </div>
