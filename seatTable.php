@@ -34,7 +34,7 @@
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
     <script src="js/confirm.js"></script>
-    <script src="js/ajax.js"></script>
+    <script src="js/ajax_Tobikomi.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
     <link rel="stylesheet" type="text/css" href="css/input.css" />
@@ -62,7 +62,7 @@
          -->
         <div>
             <div id="7" class="left text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 onclick="location.href='http://localhost/aki_farm/Reserved.php?num=7'">7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7) ?></p></div>
+                 >7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7) ?></p></div>
             <div id="8" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
                  onclick="location.href='http://localhost/aki_farm/Reserved.php?num=8'">8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8) ?></p></div>
             <div id="9" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
