@@ -1,0 +1,120 @@
+
+<html>
+<head>
+<meta charset='UTF8'>
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<link rel="stylesheet" type="text/css" href="test.css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="./test.js"></script> 
+<!--
+<script type="text/javascript">
+
+$(function(){
+	$('#loop').each(function(){
+		var loopsliderWidth = $(this).width();
+		var loopsliderHeight = $(this).height();
+		$(this).children('ul').wrapAll('<div id="loop_wrap"></div>');
+		
+		var listWidth = $('#loop_wrap').children('ul').children('li').width();
+		var listCount = $('#loop_wrap').children('ul').children('li').length;
+		
+		var loopWidth = (listWidth)*(listCount);
+		$('#loop_wrap').css({
+			top: '0',
+			left: '0',
+			width: ((loopWidth) * 2),
+			height: (loopsliderHeight),
+			overflow: 'hidden',
+			position: 'absolute',
+			display:	'inline',
+			margin:	'0',
+			padding:	'0'
+		});
+		
+		$('#loop_wrap ul').css({
+			width: (loopWidth),
+			display:	'inline'
+		});
+		
+		loopsliderPosition();
+		
+		function loopsliderPosition(){
+			$('#loop_wrap').css({left:'0'});
+			$('#loop_wrap').stop().animate({left:'-' + (loopWidth) + 'px'},10000,'linear');
+			setTimeout(function(){
+				loopsliderPosition();
+			},10000);
+		};
+		
+		$('#loop_wrap ul').clone().appendTo('#loop_wrap');
+	});
+});
+</script>
+-->
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+<div id="container"><!--外-->
+
+
+<div id="header">
+<div id="logo"><h1>お店の名前</h1></div>
+<div id="loginBt">ログイン</div>
+</div>
+
+<div id="topPic">
+<div id="loop">
+<ul>
+<!--?php
+echo "a";
+	foreach(glob('img/*.jpg') as $file){
+	var_dump($file);
+		echo '<li><a href="#"><src=' . $file . ' width="100" height="100" alt=""></a></li>';
+	}
+?><!-->
+<li><a href="#"><img src="img/icon10.jpg" width="100" height="100" alt=""></a></li>
+<li><a href="#"><img src="img/icon15.jpg" width="100" height="100" alt=""></a></li>
+<li><a href="#"><img src="img/icon08.jpg" width="100" height="100" alt=""></a></li>
+<li><a href="#"><img src="img/icon05.jpg" width="100" height="100" alt=""></a></li>
+<li><a href="#"><img src="img/icon12.jpg" width="100" height="100" alt=""></a></li>
+<li><a href="#"><img src="img/icon13.jpg" width="100" height="100" alt=""></a></li>
+</ul>
+</div>
+
+</div>
+
+<div id="mainColumn">
+<div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2535.602214537006!2d139.44800216427416!3d35.627776349208524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xf993ae9d993f0a45!2z44GK44Gj44GR44GEIOawuOWxseW6lw!5e0!3m2!1sja!2sjp!4v1462498534360" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+</div>
+
+
+<!--<form>
+<input type="checkbox" id="cb"/><label for="cb" class="checkbox"></label>
+</form-->
+
+<div id="sideColumn">
+	<div id="reserveBt">予約はこちら</div>
+</div>
+<div id="under"></div>
+
+</div><!--外-->
+</body>
+</html>
+
+<!--
+<script type="text/javascript" src="./jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="./test.js"></script>
+-->
+

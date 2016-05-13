@@ -1,0 +1,108 @@
+﻿
+
+########DB作成####################################
+
+
+mysql -u root -p
+CREATE DATABASE Akifarm_db default character set utf8;
+GRANT ALL privileges on Akifarm_db. * to user@'localhost' identified by 'password' with grant option;
+
+use Akifarm_db;
+
+#######もっちーが作ったテーブル#####################################
+
+CREATE TABLE regist(
+id int primary key not null auto_increment,
+FamilyName varchar(255) not null,
+FirstName varchar(255) not null,
+FamilyName_kana varchar(255) not null,
+FirstName_kana varchar(255) not null,
+Sex int(11) not null,
+Birthday int(20) not null,
+PhoneNum varchar(40) not null,
+Mail varchar(255) not null,
+User_ID varchar(255) not null,
+Password varchar(255) not null,
+Type varchar(255) not null
+);
+	
+CREATE TABLE workers(
+id int primary key auto_increment,
+FamilyName varchar(255) not null,
+FirstName varchar(255) not null,
+FamilyName_kana varchar(255) not null,
+FirstName_kana varchar(255) not null,
+Sex int(11) not null,
+StartTime int(20) not null,
+Store varchar(255) not null,
+User_ID varchar(255) not null,
+Password varchar(255) not null
+); 
+
+
+
+
+##########################################
+
+
+
+########しいばしが作ったテーブル（シフト管理）#################################
+CREATE TABLE shift_submit (
+		shift_id int unsigned not null auto_increment,
+		name varchar(20) not null,
+		user_id varchar(20) not null,
+		shift_year int(4) not null,
+		shift_month int(2) not null,
+		shift_data text not null,
+		submit_time datetime not null,
+		delete_flg int(1) not null,
+		primary key(shift_id)
+	);
+	
+CREATE TABLE shift_fix(
+		id int unsigned not null auto_increment,
+		name varchar(20) not null,
+		user_id varchar(20) not null,
+		shift_year int(4) not null,
+		shift_month int(2) not null,
+		shift_data text not null,
+		fix_time datetime not null,
+		delete_flg int(1) not null,
+		primary key(id)
+); 
+
+########################################
+<<<<<<< HEAD
+
+
+##########test#################################
+
+CREATE TABLE shift_submit_proto (
+		shift_id int unsigned not null auto_increment,
+		name varchar(20) not null,
+		user_id varchar(20) not null,
+		shift_year int(4) not null,
+		shift_month int(2) not null,
+		shift_data text not null,
+		submit_time datetime not null,
+		delete_flg int(1) not null,
+		primary key(shift_id)
+	);
+	
+CREATE TABLE shift_fix_proto(
+		id int unsigned not null auto_increment,
+		name varchar(20) not null,
+		user_id varchar(20) not null,
+		shift_year int(4) not null,
+		shift_month int(2) not null,
+		shift_data text not null,
+		fix_time datetime not null,
+		delete_flg int(1) not null,
+		primary key(id)
+); 
+
+
+
+
+=======
+>>>>>>> 6b323e3328202b13124e0d9f2254704f04a13ec8

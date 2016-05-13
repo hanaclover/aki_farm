@@ -1,0 +1,25 @@
+@charset 'utf8';
+/*
+.squareBt{
+	-webkit-appearance: none;
+	display:	block;
+	width:	70px;
+	height:	40px;
+	border:	0;
+
+}
+*/
+input[type="button"] {
+	-webkit-appearance: none;
+	display:	block;
+	width:	50px;
+	height:	50px;
+	border:	0;
+
+}
+/*
+table {
+	width:	300px;
+	height:	300px;
+}
+*/
