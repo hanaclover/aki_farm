@@ -55,7 +55,7 @@ body {
     padding: 8px 12px;
 }
 /*エラーメッセージ*/
-.err {
+.err,#shimaiten {
     color: #ff0000;
 }
 /*実験用*/

@@ -9,7 +9,7 @@
 <?php
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
-
+session_start();
 echo "testProcessing : ".session_id()."<br>";
 
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
@@ -88,13 +88,13 @@ else {
 
         if($_SESSION['course_flag'] == true) {
             // AMPのDISH選択ページに行く
-            //echo "<script>window.location.href = 'http://localhost/...'</script>";
+            //echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/...'</script>";
         } else {
-            echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+            echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm:63342/aki_farm/aki_farm/confirm.php';</script>";
         }
 
         // seikai
-        // echo "<script>window.location.href = 'http://localhost:63342/aki_farm/aki_farm/confirm.php';</script>";
+        // echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm:63342/aki_farm/aki_farm/confirm.php';</script>";
 
     } else {
         // not seat
@@ -142,9 +142,9 @@ function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum,
 
 /*if($_SESSION['course_flag'] == true) {
     // AMPのDISH選択ページに行く
-    //echo "<script>window.location.href = 'http://localhost/...'</script>";
+    //echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/...'</script>";
 } else {
-    echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
+    echo "<script>window.location.href = 'http://localhost/aki_farm/aki_farm/confirm.php';</script>";
 }
 }*/
 

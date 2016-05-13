@@ -92,6 +92,9 @@
         //$res = $pdo->select("user u, reserve r", "", " r.uid = u.uid and StartDay = ? order by case when r.StartTime >= ? then 1 else 2 end, r.StartTime + 0 asc", $now);
         $res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime >= ? order by StartTime asc", $now);
         //select * from reserve r, user u where StartDay = CURRENT_DATE order by case when StartTime >= CURRENT_TIME then 1 else 2 end, StartTime + 0 asc
+        echo "<pre>";
+        var_dump($res);
+        echo "</pre>";
         foreach($res as $data) {
             echo "<tr>
                     <td>".$data['StartDay']." ".$data['StartTime']."</td>

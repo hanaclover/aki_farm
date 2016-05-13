@@ -16,7 +16,6 @@ $reserve->setUID($_SESSION['UID']);
 // $reserve->setRID($_POST['RID']);     일단 없는 상태로 진행
 // $reserve->setSID($_POST['SID']);     일단 없는 상태로 진행
 // ---->
-
 $peopleNum = (int)$_SESSION['peopleNum'];
 $reserve->setPeopleNum($peopleNum);
 $reserve->setReservedTime(date("Y-m-d H:i:s"));

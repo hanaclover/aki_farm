@@ -17,7 +17,7 @@ include_once("./class/init.php");
 include_once("./class/SeatModel.php");
 $db = new PDODatabase();
 $seat = new SeatModel($db);
-$test = $seat->getSeat(34);
+$test = $seat->getSeat(28);
 echo "<pre>";
 var_dump($test);
 echo "</pre>";

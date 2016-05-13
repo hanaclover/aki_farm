@@ -14,6 +14,7 @@
  * 2. 4品以外の場合　→　ContentsCheck(yyy
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
+ session_start();
 echo "Reserved : ".session_id();
 ?>
 
