@@ -139,7 +139,7 @@ class SeatModel {
             return 'テーブル数より連結させたいテーブルが多いよ！';
         }elseif( $useTableNum == 1 ) { // 連結したいテーブル数が'1'の>    とき配列を成形するだけ
             for($i=0;$i<$countJointTableNum;$i++){
-                $arrRes[$i] = array($arrJointTableSID[$i]);
+                arrRes[$i] = array($arrJointTableSID[$i]);
             }
         }elseif( $useTableNum > 1 ) {
         // 連結する組み合わせを求める
@@ -175,7 +175,7 @@ class SeatModel {
             }
         break;
         }
-        return $result;
+        return ( !empty($result) !== false ) ? $result : $result = array();
 
     }
 //         /*
