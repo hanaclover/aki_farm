@@ -32,7 +32,7 @@ class Reserve {
         return $this->SID;
     }
     public function setSID($SID) {
-        if( $SID > 0 && $SID <= 21 )  // データベースにデータを入力する前はないです
+        if( $SID > 0 )  // データベースにデータを入力する前はないです
             $this->SID = $SID;
     }
     public function getStartDay() {
