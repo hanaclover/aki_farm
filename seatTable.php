@@ -75,9 +75,9 @@
             <div class="left">
                 <div id="3" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
                      onclick="location.href='http://localhost/aki_farm/Reserved.php?num=3'">3<p class="reserve_info"><?php echo $reserveInfo->getReserve(3)["msg"]; if($reserveInfo->getReserve(3)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(3);</script>"; } ?></p></div>
-                <div id="2" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
+                <div id="2" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" name="no-reserve"
                      onclick="location.href='http://localhost/aki_farm/Reserved.php?num=2'">2<p class="reserve_info"><?php echo $reserveInfo->getReserve(2)["msg"]; if($reserveInfo->getReserve(2)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(2);</script>"; } ?></p></div>
-                <div id="1" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
+                <div id="1" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" name="no-reserve"
                      onclick="location.href='http://localhost/aki_farm/Reserved.php?num=1'">1<p class="reserve_info"><?php echo $reserveInfo->getReserve(1)["msg"]; if($reserveInfo->getReserve(1)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(1);</script>"; } ?></p></div>
             </div>
             <div class="left">
