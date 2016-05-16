@@ -9,6 +9,7 @@ $(function () {
         // alert($("input[name='peopleNum']").val());
         // alert($("select[name='hour']").val()+":"+$("select[name='minute']").val()+":"+"00");
         // alert($("input[name='Date']").val());
+        var userDate=$("input[name='Date']").val();
         $.ajax(
             {
                 type: "GET",
@@ -16,7 +17,7 @@ $(function () {
                 dataType: "html",
                 data: {
                     peopleNum: $("input[name='peopleNum']").val(),
-                    StartDay: $("input[name='Date']").val(),
+                    StartDay: userDate,
                     startTime: $("select[name='hour']").val()+":"+$("select[name='minute']").val()+":"+"00"
                 }
             }
@@ -27,6 +28,20 @@ $(function () {
                 $("#shimaiten").empty();
             }
         });
+        //文字列からミリ秒を取得
+        var time = Date.parse(userDate);
+        var selDate = new Date();
+        selDate.setTime(time);
+        var today = new Date();
+        if ((today.getTime()-1000*60*60*24) > selDate.getTime()){
+            $(".datemsg").text("日付は今日以降のものを入力してください");
+            var text = today.getFullYear()  + "-" +
+                (("0" + (today.getMonth() + 1)).slice(-2)) + "-" + (("0" + today.getDate()).slice(-2));
+            alert(text);
+            $("input[name='Date']").val(text);
+        }else{
+            $(".datemsg").text("");
+        }
     }).keyup(function () {
         $(this).change();
     });
