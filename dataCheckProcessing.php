@@ -9,7 +9,7 @@
 <?php
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
-
+session_start();
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
 $startTime = $_POST['hour'].":".$_POST['minute'].":00";     //  15:00:00 형식으로 맞춰줌

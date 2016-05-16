@@ -6,7 +6,12 @@ $(document).ready(function(){
         $(this).css("backgroundColor","#ccc");
     });
     $('.mouseEvent').mouseout(function(){
-        $(this).css("backgroundColor","greenyellow");
+        if($('.reserve').length) {
+            console.log($(this));
+            $(this).css("backgroundColor","yellow");
+        } else {
+            $(this).css("backgroundColor","greenyellow");
+        }
     });
 
     $(".unsigned").change(function() {
