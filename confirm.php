@@ -116,6 +116,18 @@ if($reserve->getCourse() == 4) {
                 <?php echo $_SESSION['mail']; ?>
             </td>
         </tr>
+        <?php
+        // 4品の場合、コラム追加
+        if($_SESSION['course_flag'] == true) {
+            echo "<tr><td id='no_under_white'>料理選択</td><td>";
+
+            for($i = 0; $i < count($_SESSION['dishName']); $i++ ) {
+                echo "".$_SESSION['dishName'][$i]."";
+            }
+
+            echo "</td></tr>";
+        }
+        ?>
     </table>
     <div class="btns">
         <form action="./finishProcessing.php" method="POST">

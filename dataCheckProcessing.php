@@ -19,21 +19,26 @@ $phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3
 // 4, true의 경우 AMP페이지로
 // 7,10의 경우 confirm 페이지로
 
-$_SESSION['UID']                = 0;
-$_SESSION['StartDay']           = $_POST['Date'];
-$_SESSION['startTime']          = $startTime;
-$_SESSION['peopleNum']          = $_POST['peopleNum'];
-$_SESSION['familyName']         = $_POST['familyName'];
-$_SESSION['firstName']          = $_POST['firstName'];
-$_SESSION['familyName_kana']    = $_POST['familyName_kana'];
-$_SESSION['firstName_kana']     = $_POST['firstName_kana'];
-$_SESSION['phoneNumber']        = $phoneNumber;
-$_SESSION['mail']               = $_POST['mail'];
-$_SESSION['course']             = $_POST['course'];
+// loginの場合には、データがありますのでセッションに入れる作業は必要ない
+if($_SESSION['stat'] !== 'login') {
+    $_SESSION['UID']                = 0;                        // guest
+    $_SESSION['StartDay']           = $_POST['Date'];
+    $_SESSION['startTime']          = $startTime;
+    $_SESSION['peopleNum']          = $_POST['peopleNum'];
+    $_SESSION['familyName']         = $_POST['familyName'];
+    $_SESSION['firstName']          = $_POST['firstName'];
+    $_SESSION['familyName_kana']    = $_POST['familyName_kana'];
+    $_SESSION['firstName_kana']     = $_POST['firstName_kana'];
+    $_SESSION['phoneNumber']        = $phoneNumber;
+    $_SESSION['mail']               = $_POST['mail'];
+    $_SESSION['course']             = $_POST['course'];
+}
 
 if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
+
+echo $_POST['course_flag']."course_flag";
 
 // Input Data Check
 $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SESSION['StartDay'],

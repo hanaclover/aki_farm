@@ -50,20 +50,25 @@ if($_POST['confirm'] == "確定") {
     $rModel = new ReserveModel();
     $uModel = new UserModel();
     $reserve->setSID((string)($rModel->confirmReserve($reserve)));
-    echo "sagsa3";
     $msg = "予約できました!";
 
     $uModel->setUser();
-    // uid가 0 인 경우
+    // session - uid가 0 인 경우
 
     // 먼저 user 등록 후 등록된  uid가져오기 ... 어떻게?
     // 세션에서 가지고 있는 정보를 다 비교해서 가져오기 -> 나중에 겹치면 ㅈ댐ㅎ
     // 세션 id를 넣어서 작업  젤 정확한데...
     // 젤 마지막 uid를 가져와서 하면되긴한데, 동시에 예약이 진행되었을 경우 부딪힘, 잘못될 가능성이 많음
-    // 전화번호랑 
+    // 세션이 가지고있는 데이터 다 비교(성, 이름, 성-카타, 이름-카타, 전화, 메일)
+
+    // 등록시간을 넣어서 체크하면 될텐데.. ㅎ 귀찮으니까 ㅎ
+
+    $pdo = new PDODatabase();
+    $arr = array($_SESSION['familyName'],$_SESSION['firstName'],$_SESSION['familyName_kana'],$_SESSION['firstName_kana'],$_SESSION['phoneNumber'],$_SESSION['mail']);
+    $res = $pdo->select("user", "", "FamilyName = ? and FirstName = ? and FamilyName_kana = ? and FirstName_kana =? and PhoneNum = ? and Mail = ?", $arr);
 
     // uid가 부여되어있는 경우 -> login의 경우임
-
+    $reserve->setUID($res[0]['UID']);
     $rModel->setReserve($reserve);
 
 
@@ -81,7 +86,6 @@ if($_POST['confirm'] == "確定") {
     $contents = $sendAki->makeContents( 'host', $reserve->getRID(), $reserve->getReservedTime() );
     $sendAki->sendMail( $to, $contents );
 
-    echo "sagsa4";
     echo "<script> window.location.href = './complete.php' </script>";
 
 } else if($_POST['confirm'] == "修正") {

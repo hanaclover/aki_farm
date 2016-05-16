@@ -21,7 +21,7 @@ echo "Reserved : ".session_id();
 <html>
 <head>
 <meta charset="utf-8" />
-    <title>予約ページ</title>
+    <title>予約Modify</title>
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/management.js"></script>
     <script src="js/confirm.js"></script>
@@ -64,7 +64,7 @@ echo "Reserved : ".session_id();
             <tr>
                 <td>日にち</td>
                 <td>
-                    <input type="date" name="Date" />
+                    <?php echo "<input type='date' name='Date' value='".$res[0]['StartDay']."'>"; ?>
                     <span class="err"><?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?></span>
                 </td>
             </tr>
