@@ -14,5 +14,6 @@ $res = new Reserve();
 //confirmReserveを追加してください
 $res->setSID($sid);
 $res->setStartDay(date("Y-m-d"));
-$res->setStartTime(date("H:i:s",strtotime(date("H:i:s"))+3600*7));
+//$res->setStartTime(date("H:i:s",strtotime(date("H:i:s"))+3600*7));
+$res->setStartTime(date("H:i:s",strtotime(date("H:i:s"))));
 $rm->setReserve($res);
