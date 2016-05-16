@@ -9,7 +9,7 @@
 <?php
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
-session_start();
+
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
 $startTime = $_POST['hour'].":".$_POST['minute'].":00";     //  15:00:00 형식으로 맞춰줌
@@ -19,20 +19,19 @@ $phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3
 // 4, true의 경우 AMP페이지로
 // 7,10의 경우 confirm 페이지로
 
-// loginの場合には、データがありますのでセッションに入れる作業は必要ない
-if($_SESSION['stat'] !== 'login') {
-    $_SESSION['UID']                = 0;                        // guest
-    $_SESSION['StartDay']           = $_POST['Date'];
-    $_SESSION['startTime']          = $startTime;
-    $_SESSION['peopleNum']          = $_POST['peopleNum'];
-    $_SESSION['familyName']         = $_POST['familyName'];
-    $_SESSION['firstName']          = $_POST['firstName'];
-    $_SESSION['familyName_kana']    = $_POST['familyName_kana'];
-    $_SESSION['firstName_kana']     = $_POST['firstName_kana'];
-    $_SESSION['phoneNumber']        = $phoneNumber;
-    $_SESSION['mail']               = $_POST['mail'];
-    $_SESSION['course']             = $_POST['course'];
-}
+//　LOGINの場合、UIDある、GUESTの場合0を入れます。→　ユーザーを登録した後、GUESTのUIDをDBからとってきて予約登録します。
+// 変更があるかもしれないので、FORMの内容をSESSIONに入れる
+$_SESSION['UID']                = (isset($_SESSION['UID']) ? $_SESSION['UID'] : 0);
+$_SESSION['StartDay']           = $_POST['Date'];
+$_SESSION['startTime']          = $startTime;
+$_SESSION['peopleNum']          = $_POST['peopleNum'];
+$_SESSION['familyName']         = $_POST['familyName'];
+$_SESSION['firstName']          = $_POST['firstName'];
+$_SESSION['familyName_kana']    = $_POST['familyName_kana'];
+$_SESSION['firstName_kana']     = $_POST['firstName_kana'];
+$_SESSION['phoneNumber']        = $phoneNumber;
+$_SESSION['mail']               = $_POST['mail'];
+$_SESSION['course']             = $_POST['course'];
 
 if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
@@ -46,7 +45,6 @@ $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SE
                         $_SESSION['familyName_kana'], $_SESSION['firstName_kana'], $_SESSION['mail']);
 
 // 座席チェック
-$msg="";
 $rModel = new ReserveModel();
 $reserve = new Reserve();
 $reserve->setPeopleNum($_SESSION['peopleNum']);

@@ -15,7 +15,6 @@ include_once("./class/Reserve.php");
 include_once("./class/SendMail.class.php");
 include_once "./class/UserModel.php";
 include_once "./class/ReserveModel.php";
-session_start();
 
 if($_POST['confirm'] == "確定") {
 
@@ -39,7 +38,7 @@ if($_POST['confirm'] == "確定") {
         $reserve->setCourse_flag(true);
 
         // Array処理が必要です。AMPとの調整が必要
-        $dishName = array($_POST['dishName'][0],$_POST['dishName'][1],$_POST['dishName'][2],$_POST['dishName'][3]);
+        $dishName = array($_SESSION['dish'][0],$_SESSION['dish'][1],$_SESSION['dish'][2],$_SESSION['dish'][3]);
         $reserve->setCourse_4($dishName);
     }
 
@@ -73,7 +72,7 @@ if($_POST['confirm'] == "確定") {
 
 
 
-        //クライアント用のメール送信
+    //クライアント用のメール送信
     $sendMail = new SendMail(); 
     // 第一引数でcustomerもしくはhostを指定することで送り先ごとに作成するメール内容を変更する。
     $contents = $sendMail->makeContents( 'customer', $reserve->getRID(), $reserve->getReservedTime() );

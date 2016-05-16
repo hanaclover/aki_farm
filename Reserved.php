@@ -5,18 +5,7 @@
  * Date: 2016-04-28
  * Time: 오후 4:45
  */
-
-//予約ページ
-/*
- *  ログイン処理
- *
- * 1. 4品の場合 AMPのページに渡す
- * 2. 4品以外の場合　→　ContentsCheck(yyy
- * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
- * */
-echo "Reserved : ".session_id();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,36 +76,55 @@ echo "Reserved : ".session_id();
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" placeholder="FamilyName" value="" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="" />
+                    <input type="text" name="familyName" placeholder="FamilyName" value="<?php echo isset($_SESSION['familyName']) ? $_SESSION['familyName'] : "" ?>" />
+                    <input type="text" name="firstName" placeholder="FirstName" value="<?php echo isset($_SESSION['firstName']) ? $_SESSION['firstName'] : "" ?>" />
                     <span class="err"><?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="<?php echo isset($_SESSION['familyName_kana']) ? $_SESSION['familyName_kana'] : "" ?>" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="<?php echo isset($_SESSION['firstName_kana']) ? $_SESSION['firstName_kana'] : "" ?>" />
                     <span class="err"><?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>電話番号</td>
                 <td>
-                    <select name="phoneNum1">
-                        <option selected value="080">080</option>
-                        <option value="090">090</option>
-                        <option value="070">070</option>
-                    </select>-
-                    <input type="number" name="phoneNum2" class="unsigned" value="" />-
-                    <input type="number" name="phoneNum3" class="unsigned" value="" />
+                    <?php
+                    $PhoneNum = isset($_SESSION['phoneNumber']) ? $_SESSION['phoneNumber'] : "";
+                    if($PhoneNum !== '') {
+                        echo "<select name='phoneNum1'>";
+                        $firstPN = array("080", "070", "090");
+                        $PhoneNum = explode("-", $PhoneNum);
+                        //080 070 090
+                        for($i = 0; $i < count($firstPN); $i++) {
+                            if($firstPN[$i] == $PhoneNum[0])
+                                echo "<option value='$firstPN[$i]' selected>$firstPN[$i]</option>";
+                            else
+                                echo "<option value='$firstPN[$i]'>$firstPN[$i]</option>";
+                        }
+                        echo "</select>-";
+                        echo "<input type='number' name='phoneNum2' value='".$PhoneNum[1]."' />-";
+                        echo "<input type='number' name='phoneNum3' value='".$PhoneNum[2]."' />";
+                    } else {
+                        echo "<select name='phoneNum1'>
+                                <option value='080' selected>080</option>
+                                <option value='070' >070</option>
+                                <option value='090' >090</option>
+                              </select>-";
+                        echo "<input type='number' name='phoneNum2' value='' />-";
+                        echo "<input type='number' name='phoneNum3' value='' />";
+                    }
+                    ?>
                     <span class="err"><?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
-                    <input type="text" name="mail" placeholder="abc@gmail.com" value=""  />
+                    <input type="text" name="mail" placeholder="abc@gmail.com" value="<?php echo isset($_SESSION['mail']) ? $_SESSION['mail'] : '' ?>"  />
                     <span class="err"><?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?></span>
                 </td>
             </tr>
