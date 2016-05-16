@@ -63,8 +63,7 @@
                     - 飛び込みで、今の時間から+2時間 して席を決める
          -->
         <div>
-            <div id="7" class="left text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 120px; height: 120px;"
-                 >7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7)["msg"]; if($reserveInfo->getReserve(7)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(7);</script>";} ?></p></div>
+            <div id="7" class="left text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 120px; height: 120px;" >7<p class="reserve_info"><?php echo $reserveInfo->getReserve(7)["msg"]; if($reserveInfo->getReserve(7)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(7);</script>";} ?></p></div>
             <div id="8" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
                  >8<p class="reserve_info"><?php echo $reserveInfo->getReserve(8)["msg"]; if($reserveInfo->getReserve(8)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(8);</script>"; } ?></p></div>
             <div id="9" class="left text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 120px; height: 120px;"
@@ -73,12 +72,9 @@
         </div>
         <div>
             <div class="left">
-                <div id="3" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;"
-                     >3<p class="reserve_info"><?php echo $reserveInfo->getReserve(3)["msg"]; if($reserveInfo->getReserve(3)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(3);</script>"; } ?></p></div>
-                <div id="2" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" name="no-reserve"
-                     >2<p class="reserve_info"><?php echo $reserveInfo->getReserve(2)["msg"]; if($reserveInfo->getReserve(2)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(2);</script>"; } ?></p></div>
-                <div id="1" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" name="no-reserve"
-                     >1<p class="reserve_info"><?php echo $reserveInfo->getReserve(1)["msg"]; if($reserveInfo->getReserve(1)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(1);</script>"; } ?></p></div>
+                <div id="3" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" >3<p class="reserve_info"><?php echo $reserveInfo->getReserve(3)["msg"]; if($reserveInfo->getReserve(3)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(3);</script>"; } ?></p></div>
+                <div id="2" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" >2<p class="reserve_info"><?php echo $reserveInfo->getReserve(2)["msg"]; if($reserveInfo->getReserve(2)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(2);</script>"; } ?></p></div>
+                <div id="1" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 185px; height: 105px;" >1<p class="reserve_info"><?php echo $reserveInfo->getReserve(1)["msg"]; if($reserveInfo->getReserve(1)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(1);</script>"; } ?></p></div>
             </div>
             <div class="left">
                 <div id="6" class="text-center m5 mouseEvent relative" style="background-color: greenyellow;  width: 185px; height: 105px;"
