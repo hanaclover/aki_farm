@@ -54,6 +54,7 @@ if(count($reserve->errCheck()) !== 0) {
         } else if($_SESSION['stat'] == "Change") {
             echo "<h1>以上の内容で変更よろしいですか？</h1>";
         }
+    echo $_SESSION['UID']."UID";
     ?>
     <table class="design_table">
         <tr>
