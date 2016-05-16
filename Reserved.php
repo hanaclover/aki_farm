@@ -41,7 +41,7 @@
                 <td>日にち</td>
                 <td>
                     <input type="date" name="Date" />
-                    <span class="err"><?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?></span>
+                    <span class="datemsg err"><?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
