@@ -27,15 +27,20 @@
 
     $date       = isset($_GET['Date']) ? $_GET['Date'] : '';
     $SeatNum    = isset($_GET['SeatNum']) ? $_GET['SeatNum'] : '';
+
+
+    ////////////////////////////
+    //var_dump($_SESSION);
+    ///////////////////////////////
     ?>
 </head>
 <body>
 <div id="bl_wrapper">
     <div>
         <input type="button" value="座席一覧" name="seat"
-               onclick="location.href='http://localhost/aki_farm/seatTable.php?Date=<?php echo date("Y-m-d H:i:s") ?>'">
+               onclick="location.href='./seatTable.php?Date=<?php echo date("Y-m-d H:i:s") ?>'">
         <input type="button" value="予約一覧" name="reserve"
-               onclick="location.href='http://localhost/aki_farm/bookList.php?Date=<?php echo date("Y-m-d") ?>'">
+               onclick="location.href='./bookList.php?Date=<?php echo date("Y-m-d") ?>'">
     </div>
     <h1>
         本日の予約リスト
@@ -73,9 +78,10 @@
             // $now = array(date("Y-m-d"), date("H:i:s"));
             // StartDay = ? and StartTime >= ? order by StartTime asc
             $now = array(date("Y-m-d"), date("H:i:s"));
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime >= ? order by StartTime asc", $now);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? and StartTime >= ? order by StartTime asc", $now);
+            var_dump($res);
             foreach($res as $data) {
-                echo "<form action='http://localhost/aki_farm/aki_farm/changeReserved.php' method='GET'>";
+                echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
                     <td>".$data['RID']."</td>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
@@ -103,7 +109,7 @@
                 <td></td>
                 <td></td>
             </tr>";
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime <= ? ", $now);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? and StartTime <= ? ", $now);
             foreach($res as $data) {
                 echo "<tr>
                     <td>".$data['RID']."</td>
@@ -122,10 +128,10 @@
             // $now = array(date("Y-m-d"), date("H:i:s"));
             // StartDay = ? and StartTime >= ? order by StartTime asc
             $select = array(date("Y-m-d"), date("H:i:s"), $SeatNum);
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime >= ? and SID = ? order by StartTime asc", $select);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? and StartTime >= ? and SID = ? order by StartTime asc", $select);
             //select * from reserve r, user u where StartDay = CURRENT_DATE order by case when StartTime >= CURRENT_TIME then 1 else 2 end, StartTime + 0 asc
             foreach($res as $data) {
-                echo "<form action='http://localhost/aki_farm/aki_farm/changeReserved.php' method='GET'>";
+                echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
                     <td class='chairNum'><a href='bookList.php?chairNum=".$data['SID']."'>".$data['SID']."</a></td>
@@ -152,7 +158,7 @@
                 <td></td>
             </tr>";
             //$res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime >= ? and SID = ? order by StartTime asc", $select);
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? and StartTime <= ? and SID = ? order by StartTime asc", $select);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? and StartTime <= ? and SID = ? order by StartTime asc", $select);
             foreach($res as $data) {
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
@@ -169,10 +175,10 @@
         case "SelectDay" :
             // Selected Date
             $select = array($date);
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? order by StartTime asc", $select);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? order by StartTime asc", $select);
             //select * from reserve r, user u where StartDay = CURRENT_DATE order by case when StartTime >= CURRENT_TIME then 1 else 2 end, StartTime + 0 asc
             foreach($res as $data) {
-                echo "<form action='http://localhost/aki_farm/aki_farm/changeReserved.php' method='GET'>";
+                echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
                     <td class='chairNum'><a href='bookList.php?chairNum=".$data['SID']."'>".$data['SID']."</a></td>
@@ -192,10 +198,10 @@
         case "SelectDay_Seat" :
             $select = array($date, $SeatNum);
             //date("Y-m-d"), date("H:i:s")
-            $res = $pdo->select("user u, reserve r", "", " StartDay = ? and SID = ? order by StartTime asc", $select);
+            $res = $pdo->select("user u, reserve r", "", " u.uid = r.UID and StartDay = ? and SID = ? order by StartTime asc", $select);
             //select * from reserve r, user u where StartDay = CURRENT_DATE order by case when StartTime >= CURRENT_TIME then 1 else 2 end, StartTime + 0 asc
             foreach($res as $data) {
-                echo "<form action='http://localhost/aki_farm/aki_farm/changeReserved.php' method='GET'>";
+                echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
                     <td class='chairNum'><a href='bookList.php?chairNum=".$data['SID']."'>".$data['SID']."</a></td>

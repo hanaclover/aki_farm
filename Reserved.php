@@ -44,7 +44,7 @@ echo "Reserved : ".session_id();
         ?>
     </span>
     <h2>予約情報を入力してください。</h2>
-    <form action="http://localhost/aki_farm/aki_farm/dataCheckProcessing.php" method="post">
+    <form action="./dataCheckProcessing.php" method="post">
         <span class="err"><?php echo (isset($_GET['err']) ? $_GET['err'] : ""); ?></span>
         <table border="1" class="design_table">
             <!--　SESSIONにErrorメッセージがあるとエラーを表示　-->
@@ -65,7 +65,6 @@ echo "Reserved : ".session_id();
                         <option value="20">20</option>
                         <option value="21">21</option>
                         <option value="22">22</option>
-                        <option value="23">23</option>
                     </select>時
                     <select name="minute">
                         <option selected value="00">00</option>

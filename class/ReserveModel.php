@@ -269,12 +269,12 @@ class ReserveModel {
                 
                 $res = array(
                     "flag"   => 0,
-                    "msg"    =>  "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum));
+                    "msg"    =>  "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum)));
                 return $res;
             }elseif ($this->endTime($seatNum) != 0){ // 現在使用中の場合、終了時間を返す。
                 $res = array(
                     "flag"  => 1,
-                    "msg"   => "終了時間 :".date("H:i:s",$this->endTime($seatNum));
+                    "msg"   => "終了時間 :".date("H:i:s",$this->endTime($seatNum)));
             }else{
                 return "空席";
             }
