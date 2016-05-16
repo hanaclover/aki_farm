@@ -1,7 +1,7 @@
 git status
 git add .
 
-git commit -m "sample"
+git commit -m "飛び込み予約完成"
 
 git pull
 git push
@@ -14,3 +14,8 @@ git push
 git checkout edit_model
 git merge master
 git status
+
+git merge AMP
+git merge ajail
+git checkout AMP
+git merge master

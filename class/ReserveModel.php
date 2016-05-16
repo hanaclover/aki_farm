@@ -260,26 +260,31 @@ class ReserveModel {
     public function getReserve( $seatNum ){
         // 空席状況の確認
             // 空席の場合
-        if ($this->isEmpty($seatNum)){ //$this->isEmpty($seatNum)
-            return "予約可能";
+        if ($this->isEmpty($seatNum)){ 
+            return $res = array(
+                "flag"  => 0,
+                "msg"   => "予約可能");
         }else{ // 予約有りの場合
             // 現在は空席だが２時間以内に予約が有る場合、
             // 次の予約のスタート時間を返す
             if ($this->nextReserveTime($seatNum) != 0){
-                
                 $res = array(
                     "flag"   => 0,
                     "msg"    =>  "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum)));
                 return $res;
             }elseif ($this->endTime($seatNum) != 0){ // 現在使用中の場合、終了時間を返す。
-                $res = array(
+                return $res = array(
                     "flag"  => 1,
                     "msg"   => "終了時間 :".date("H:i:s",$this->endTime($seatNum)));
             }else{
-                return "空席";
+                return $res = array(
+                "flag"  => 0,
+                "msg"   => "予約可能");
             }
         }
-        return "予約なし";
+        return $res = array(
+            "flag"  => 0,
+            "msg"   => "予約可能");
     }
     public function getTodayReserves(){
         //今日の予約情報一覧をユーザー情報と関連付けて返す関数
