@@ -65,7 +65,6 @@ echo "Reserved : ".session_id();
                         <option value="20">20</option>
                         <option value="21">21</option>
                         <option value="22">22</option>
-                        <option value="23">23</option>
                     </select>時
                     <select name="minute">
                         <option selected value="00">00</option>
