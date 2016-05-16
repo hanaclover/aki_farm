@@ -73,13 +73,12 @@
             // StartDay = ? and StartTime >= ? order by StartTime asc
             $now = array(date("Y-m-d"), date("H:i:s"));
             $res = $pdo->select("user u, reserve r, seat s", "", " u.uid = r.UID and r.SID = s.SID and StartDay = ? and StartTime >= ? order by StartTime asc", $now);
-
             foreach($res as $data) {
                 echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
                     <td class='chairNum'><a href='bookList.php?chairNum=".$data['SNum']."'>".$data['SNum']."</a></td>
-                    <td>".$data['FamilyName']." ".$data['FirstName']."</td>
+                    <td>".$data['FamilyName']." ".$data['FirstName'].$data['UID']."</td>
                     <td>".$data['PeopleNum']."</td>
                     <td>".$data['PhoneNum']."</td>
                     <td>".$data['Course']."</td>
@@ -87,6 +86,7 @@
                     <td class='edit'>
                         <input type='submit' name='change' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
+                        <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
                 </tr>";
                 echo "</form>";
@@ -106,7 +106,7 @@
                 echo "<tr>
                     <td>".$data['StartDay']."<br>".$data['StartTime']."</td>
                     <td class='chairNum'><a href='bookList.php?chairNum=".$data['SNum']."'>".$data['SNum']."</a></td>
-                    <td>".$data['FamilyName']." ".$data['FirstName']."</td>
+                    <td>".$data['FamilyName']." ".$data['FirstName'].$data['UID']."</td>
                     <td>".$data['PeopleNum']."</td>
                     <td>".$data['PhoneNum']."</td>
                     <td>".$data['Course']."</td>
@@ -134,6 +134,7 @@
                     <td class='edit'>
                         <input type='submit' name='change' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
+                        <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
                 </tr>";
                 echo "</form>";
@@ -181,6 +182,7 @@
                     <td class='edit'>
                         <input type='submit' name='change' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
+                        <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
                 </tr>";
                 echo "</form>";
@@ -204,6 +206,7 @@
                     <td class='edit'>
                         <input type='submit' name='change' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
+                        <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
                 </tr>";
                 echo "</form>";
