@@ -23,8 +23,8 @@ function echoman($echoStr){
 
 class ReserveModel {
 
-    const DISTANCETIME = 0;
-    //const DISTANCETIME = 25200;
+//    const DISTANCETIME = 0;
+    const DISTANCETIME = 25200;
     //const DINNERLENGTH = 60 * 60 * 2;
     const DINNERLENGTH = 7200;
     private $minJoinTableNum = 100; //100
@@ -271,12 +271,12 @@ class ReserveModel {
 
                 return $res = array(
                     "flag"   => 1,
-                    "msg"    =>  "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum))
+                    "msg"    =>  "次の予約時間<br>".date("H:i:s",$this->nextReserveTime($seatNum))
                 );
             }elseif ($this->endTime($seatNum) != 0){ // 現在使用中の場合、終了時間を返す。
                 return $res = array(
                     "flag"  => 1,
-                    "msg"   => "終了時間 :".date("H:i:s",$this->endTime($seatNum))
+                    "msg"   => "終了時間<br>".date("H:i:s",$this->endTime($seatNum))
                 );
             }else{
                 return $res = array(

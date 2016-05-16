@@ -17,7 +17,7 @@ $res = new Reserve();
 //confirmReserveを追加してください
 $res->setSID($sid);
 $res->setStartDay(date("Y-m-d"));
-$res->setStartTime(date("H:i:s",strtotime(date("H:i:s"))));
+$res->setStartTime(date("H:i:s",strtotime(date("H:i:s"))+ReserveModel::DISTANCETIME));
 if ($rm->getReserve($sm->getSeatNumfromSID($sid))["flag"] == 0) {
     $rm->setReserve($res);
     echo "入店を受け付けました";
