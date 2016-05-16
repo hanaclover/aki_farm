@@ -16,7 +16,6 @@
  * */
 echo "Reserved : ".session_id();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,13 +119,13 @@ echo "Reserved : ".session_id();
                     $PhoneNum = explode("-", $res[0]['PhoneNum']);
 
                     //080 070 090
-                        for($i = 0; $i < count($firstPN); $i++) {
-                            if($firstPN[$i] == $PhoneNum[0])
-                                echo "<option value='$firstPN[$i]' selected>$firstPN[$i]</option>";
-                            else
-                                echo "<option value='$firstPN[$i]'>$firstPN[$i]</option>";
-                        }
-                        echo "</select>-";
+                    for($i = 0; $i < count($firstPN); $i++) {
+                        if($firstPN[$i] == $PhoneNum[0])
+                            echo "<option value='$firstPN[$i]' selected>$firstPN[$i]</option>";
+                        else
+                            echo "<option value='$firstPN[$i]'>$firstPN[$i]</option>";
+                    }
+                    echo "</select>-";
 
                     echo "<input type='number' name='phoneNum2' value='".$PhoneNum[1]."' />-";
                     echo "<input type='number' name='phoneNum3' value='".$PhoneNum[2]."' />";
