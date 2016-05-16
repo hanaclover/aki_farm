@@ -19,21 +19,26 @@ $phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3
 // 4, true의 경우 AMP페이지로
 // 7,10의 경우 confirm 페이지로
 
-$_SESSION['UID']                = 0;
-$_SESSION['StartDay']           = $_POST['Date'];
-$_SESSION['startTime']          = $startTime;
-$_SESSION['peopleNum']          = $_POST['peopleNum'];
-$_SESSION['familyName']         = $_POST['familyName'];
-$_SESSION['firstName']          = $_POST['firstName'];
-$_SESSION['familyName_kana']    = $_POST['familyName_kana'];
-$_SESSION['firstName_kana']     = $_POST['firstName_kana'];
-$_SESSION['phoneNumber']        = $phoneNumber;
-$_SESSION['mail']               = $_POST['mail'];
-$_SESSION['course']             = $_POST['course'];
+// loginの場合には、データがありますのでセッションに入れる作業は必要ない
+if($_SESSION['stat'] !== 'login') {
+    $_SESSION['UID']                = 0;                        // guest
+    $_SESSION['StartDay']           = $_POST['Date'];
+    $_SESSION['startTime']          = $startTime;
+    $_SESSION['peopleNum']          = $_POST['peopleNum'];
+    $_SESSION['familyName']         = $_POST['familyName'];
+    $_SESSION['firstName']          = $_POST['firstName'];
+    $_SESSION['familyName_kana']    = $_POST['familyName_kana'];
+    $_SESSION['firstName_kana']     = $_POST['firstName_kana'];
+    $_SESSION['phoneNumber']        = $phoneNumber;
+    $_SESSION['mail']               = $_POST['mail'];
+    $_SESSION['course']             = $_POST['course'];
+}
 
 if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
+
+echo $_POST['course_flag']."course_flag";
 
 // Input Data Check
 $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SESSION['StartDay'],
@@ -61,9 +66,9 @@ if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full
     echo "<br><br>いけてます";
     if($_SESSION['course_flag'] == true) {
         // AMPのDISH選択ページに行く
-        echo "<script>window.location.href = 'http://localhost/aki_farm/AMP.php';</script>";
+        echo "<script>window.location.href = './AMP.php';</script>";
     } else {
-        echo "<script>window.location.href = 'http://localhost/aki_farm/confirm.php';</script>";
+        echo "<script>window.location.href = './confirm.php';</script>";
     }
 
 }
@@ -78,28 +83,28 @@ function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum,
     $inputDate = array();
 
     if(preg_match( '/[0-9]+/', $_uid ));
-    else $inputDate['UID'] = "UIDがおかしいです。";
+    else $inputDate['UID'] = "登録されたユーザーデータがありません";
 
     $parseDate = explode("-", $_startDay);
 
     if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
         checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
-    } else $inputDate['StartDay'] = "StartDayのタイプが間違いました。";
+    } else $inputDate['StartDay'] = "日付は正しく入力してください";
 
     if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
-    } else $inputDate['StartTime'] = "startTimeのタイプが間違いました。";
+    } else $inputDate['StartTime'] = "時刻は正しく入力してください";
 
     if( $_peopleNum > 0 && $_peopleNum <= 30 );
-    else $inputDate['peopleNum'] = "1~30人までです。";
+    else $inputDate['peopleNum'] = "お客様の人数は1～30人でお願いします";
 
     if ( preg_match( '/([0-9]{3})-([0-9]{4})-([0-9]{4})/', $_phoneNum ));
     else $inputDate['phoneNum'] = "電話番号は、半角数字で11桁以内で入力してください";
 
     if( $_familyName == '' || $_firstName == '')  {
-        $inputDate['Name'] ="確認お願いいたします。";
+        $inputDate['Name'] ="名前を入力してください";
     }
     if( $_familyName_kana == '' || $_firstName_kana == '')  {
-        $inputDate['Name_kana'] ="確認お願いいたします。";
+        $inputDate['Name_kana'] ="ふりがなを入力してください";
     }
     if ( preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+[a-zA-Z0-9\._-]+$/', $_mail ) === 0 )
     {

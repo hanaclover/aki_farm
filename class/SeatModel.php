@@ -178,6 +178,13 @@ class SeatModel {
         return ( !empty($result) !== false ) ? $result : $result = array();
 
     }
+
+    public function getSeatNumfromSID($sid){
+        $arrSeat = array($sid);
+        $seatID = $this->db->select("seat" , "sNum" , "SID=?" , $arrSeat);
+        $seatNum = $seatID[0]["sNum"];
+        return $seatNum;
+    }
 //         /*
 //         * フィルターの条件（無名関数）をセット
 //         * 関数のリターン値が true 場合、フィルタリング後の結果セットに格納される
