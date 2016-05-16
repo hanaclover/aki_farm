@@ -10,9 +10,17 @@
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
 
+$_SESSION['stat'] = $_POST['send']; // 予約 or 変更
+
+if($_POST['send'] == '予約') {
+    $_SESSION['stat'] = 'Reserve';
+} else if ($_POST['send'] == '変更') {
+    $_SESSION['stat'] = 'Change';
+}
+
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
-$startTime = $_POST['hour'].":".$_POST['minute'].":00";     //  15:00:00 형식으로 맞춰줌
+$startTime = $_POST['hour'].":".$_POST['minute'].":00";                             //  15:00:00 형식으로 맞춰줌
 $phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3']; // 000-0000-0000으로 맞춰줌
 
 // post 데이터가 넘어오면 세션에 저장
@@ -21,7 +29,7 @@ $phoneNumber = $_POST['phoneNum1']."-".$_POST['phoneNum2']."-".$_POST['phoneNum3
 
 //　LOGINの場合、UIDある、GUESTの場合0を入れます。→　ユーザーを登録した後、GUESTのUIDをDBからとってきて予約登録します。
 // 変更があるかもしれないので、FORMの内容をSESSIONに入れる
-$_SESSION['UID']                = (isset($_SESSION['UID']) ? $_SESSION['UID'] : 0);
+$_SESSION['UID']                = ($_SESSION['stat'] == 'Login' ? $_SESSION['UID'] : 0);
 $_SESSION['StartDay']           = $_POST['Date'];
 $_SESSION['startTime']          = $startTime;
 $_SESSION['peopleNum']          = $_POST['peopleNum'];
@@ -37,8 +45,6 @@ if($_POST['course'] == "4") {
     $_SESSION['course_flag'] = true;
 } else $_SESSION['course_flag'] = false;
 
-echo $_POST['course_flag']."course_flag";
-
 // Input Data Check
 $_SESSION['err'] = inputDataCheck($_SESSION['UID'], $_SESSION['peopleNum'], $_SESSION['StartDay'],
                         $_SESSION['startTime'],$_SESSION['phoneNumber'], $_SESSION['familyName'], $_SESSION['firstName'],
@@ -51,7 +57,7 @@ $reserve->setPeopleNum($_SESSION['peopleNum']);
 $reserve->setStartDay($_SESSION['StartDay']);
 $reserve->setStartTime($_SESSION['startTime']);
 $reserve->setSID((string)($rModel->confirmReserve($reserve)));
-var_dump($reserve);
+
 if (($reserve->getSID()) == 0) {
 
     $_SESSION['full'] = "予約が埋まっております。大変申し訳ございません。<br>よろしければ" .
@@ -60,17 +66,14 @@ if (($reserve->getSID()) == 0) {
 
 if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full'] == '')) {
     // エラーがないとき、確認ページに移動する
-
-    echo "<br><br>いけてます";
     if($_SESSION['course_flag'] == true) {
-        // AMPのDISH選択ページに行く
+        // AMPのDISH選択ページに行く - AMP PATH
         echo "<script>window.location.href = './AMP.php';</script>";
     } else {
         echo "<script>window.location.href = './confirm.php';</script>";
     }
 
-}
-else {
+} else {
     // 間違ったとき、以前のページに移動
     // SESSION変数にERRメッセージを持っている
     echo "<script>history.go(-1);</script>";

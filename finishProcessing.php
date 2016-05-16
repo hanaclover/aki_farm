@@ -16,10 +16,13 @@ include_once("./class/SendMail.class.php");
 include_once "./class/UserModel.php";
 include_once "./class/ReserveModel.php";
 
-if($_POST['confirm'] == "確定") {
+if($_POST['confirm'] == "修正") {
+    echo "<script>history.go(-2);</script>";
+}
+
+if($_POST['confirm'] == "確定" && $_SESSION['stat'] == 'Reserve') {
 
     //RIDを付与する作業
-
     $_SESSION['startTime'];
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
@@ -45,7 +48,6 @@ if($_POST['confirm'] == "確定") {
     // <----------- ModelClassでDataBaseに入れる
 
     //席を決めてSIDを付与する作業
-    $msg="";
     $rModel = new ReserveModel();
     $uModel = new UserModel();
     $reserve->setSID((string)($rModel->confirmReserve($reserve)));
@@ -87,7 +89,7 @@ if($_POST['confirm'] == "確定") {
 
     echo "<script> window.location.href = './complete.php' </script>";
 
-} else if($_POST['confirm'] == "修正") {
-    echo "<script>history.go(-2);</script>";
+} else if($_POST['confirm'] == "変更" && $_SESSION['stat'] == 'Reserve') {
+
 }
 ?>

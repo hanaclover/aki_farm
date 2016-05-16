@@ -83,23 +83,27 @@ echo "Reserved : ".session_id();
                     echo "<select name='minute'>";
                     for($i = 00; $i <= 50; $i += 10) {
                         if($i == $time[1])
-                            echo "<option value='$i' selected>$i</option>";
+                            echo "<option value='$i' selected>".sprintf("%02d", $i)."</option>";
                         else
                             echo "<option value='$i'>$i</option>";
                     }
                     echo "</select>分";
                     ?>
+                    <span class="err" id="minute"><?php echo isset($_SESSION['err']['StartTime']) ? $_SESSION['err']['StartTime'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>人数</td>
                 <td>
                     <?php echo "<input type='number' name='peopleNum' value='".$res[0]['PeopleNum']."' />"; ?></td>
+                <span class="err"><?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?></span>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
                     <?php echo "<input type='text' name='familyName' value='".$res[0]['FamilyName']."' />"; ?>
+                    <?php echo "<input type='text' name='firstName' value='".$res[0]['FirstName']."' />"; ?>
+                    <span class="err"><?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -107,6 +111,7 @@ echo "Reserved : ".session_id();
                 <td>
                     <?php echo "<input type='text' name='familyName_kana' value='".$res[0]['FamilyName_kana']."' />"; ?>
                     <?php echo "<input type='text' name='firstName_kana' value='".$res[0]['FirstName_kana']."' />"; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -130,12 +135,14 @@ echo "Reserved : ".session_id();
                     echo "<input type='number' name='phoneNum2' value='".$PhoneNum[1]."' />-";
                     echo "<input type='number' name='phoneNum3' value='".$PhoneNum[2]."' />";
                     ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['phoneNum']) ? $_SESSION['err']['phoneNum'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>メール</td>
                 <td>
                     <?php echo "<input type='text' name='mail' value='".$res[0]['Mail']."' />"; ?>
+                    <span class="err"><?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
@@ -162,7 +169,7 @@ echo "Reserved : ".session_id();
                 }
             ?>
         </table>
-        <input type="submit" name="send" value="予約" class="common_btn submit"/>
+        <input type="submit" name="send" value="変更" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

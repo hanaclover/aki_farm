@@ -6,7 +6,7 @@
  * Time: 오후 2:39
  */
 
-$_SESSION['dishName'] = array("a","b","c","d");
+$_SESSION['dish'] = array("a","b","c","d");
 echo "<script>window.location.href = './confirm.php';</script>";
 
 ?>
