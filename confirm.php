@@ -8,7 +8,7 @@
 
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
-
+session_start();
 $reserve = new Reserve();
 
 $peopleNum = (int)$_SESSION['peopleNum'];

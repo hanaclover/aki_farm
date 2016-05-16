@@ -90,7 +90,7 @@
     <div class="left">
         <div>
             <div class="left">
-                <div id="10" class="text-center m5 mouseEvent relative relative" style="background-color: greenyellow; width: 150px; height: 110px;"
+                <div id="10" class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
                      >11<p class="reserve_info"><?php echo $reserveInfo->getReserve(11)["msg"]; if($reserveInfo->getReserve(11)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(10);</script>"; } ?></p></div>
                 <div id="11"class="text-center m5 mouseEvent relative" style="background-color: greenyellow; width: 150px; height: 110px;"
                      >12<p class="reserve_info"><?php echo $reserveInfo->getReserve(12)["msg"]; if($reserveInfo->getReserve(12)["flag"] == 1){ echo "<script language=\"javascript\">changeBackgroundColor(11);</script>"; } ?></p></div>
