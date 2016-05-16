@@ -12,8 +12,8 @@
 
 //コンストラクタを創ってReseerveを渡すようにするのもアリ!
 
-require_once "./class/PDODatabase.class.php";
-require_once "./class/SeatModel.php";
+require_once "PDODatabase.class.php";
+require_once "SeatModel.php";
 
 function echoman($echoStr){
     echo "<pre>";
@@ -260,7 +260,7 @@ class ReserveModel {
     public function getReserve( $seatNum ){
         // 空席状況の確認
             // 空席の場合
-        if ($this->isEmpty($seatNum)){ 
+        if ($this->isEmpty($seatNum)){
             return $res = array(
                 "flag"  => 0,
                 "msg"   => "予約可能");
@@ -268,13 +268,16 @@ class ReserveModel {
             // 現在は空席だが２時間以内に予約が有る場合、
             // 次の予約のスタート時間を返す
             if ($this->nextReserveTime($seatNum) != 0){
+
                 return $res = array(
                     "flag"   => 1,
-                    "msg"    =>  "次の予約時刻<br>".date("H:i:s",$this->nextReserveTime($seatNum)));
+                    "msg"    =>  "次の予約時間：".date("H:i:s",$this->nextReserveTime($seatNum))
+                );
             }elseif ($this->endTime($seatNum) != 0){ // 現在使用中の場合、終了時間を返す。
                 return $res = array(
                     "flag"  => 1,
-                    "msg"   => "終了時刻<br>".date("H:i:s",$this->endTime($seatNum)));
+                    "msg"   => "終了時間 :".date("H:i:s",$this->endTime($seatNum))
+                );
             }else{
                 return $res = array(
                 "flag"  => 0,
