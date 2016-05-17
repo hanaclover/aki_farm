@@ -322,14 +322,15 @@ class ReserveModel {
         $joinNum = 0;
         $sel = $pdo->select("reserve" , "" , "rid=?" , array($id));
         $time = "";
-        foreach ($sel as $value){
-            if ($value["join_flag"]=="1"){
-                $joinNum = 1;
-                $time = $value["StartTime"];
-            }
+        if ($sel["join_flag"]=="1") {
+            $joinNum = 1;
+            $time = $sel["StartTime"];
+            $pdo->update("reserve" , array('del_flag' => 1)
+                , "join_flag=? and starttime=?" , array($joinNum,$time));
+        }else{
+            $pdo->update("reserve" , array('del_flag' => 1)
+                , "rid=?" , array($id));
         }
-        $pdo->update("reserve" , array('del_flag' => 1)
-            , "join_flag=? and starttime=?" , array($joinNum,$time));
     }
     public function getReservesByDate( $day ){
         $pdo = new PDODatabase();
