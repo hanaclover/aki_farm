@@ -8,7 +8,6 @@
 
 //予約が確定され、SIDとRIDが付与されてるとき
 include_once("class/Reserve.php");
-session_start();
 $reserve = new Reserve();
 
 $peopleNum = (int)$_SESSION['peopleNum'];
@@ -40,7 +39,7 @@ if(count($reserve->errCheck()) !== 0) {
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/confirm.js"></script>
     <link rel="stylesheet" type="text/css" href="css/tableForm.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>ご予約内容のご確認</title>
 </head>
 <body>

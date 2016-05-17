@@ -37,7 +37,6 @@ $(function () {
             $(".datemsg").text("日付は今日以降のものを入力してください");
             var text = today.getFullYear()  + "-" +
                 (("0" + (today.getMonth() + 1)).slice(-2)) + "-" + (("0" + today.getDate()).slice(-2));
-            alert(text);
             $("input[name='Date']").val(text);
         }else{
             $(".datemsg").text("");
