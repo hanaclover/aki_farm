@@ -10,7 +10,15 @@
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
 
-$_SESSION['stat'] = $_POST['send']; // 予約 or 変更
+
+
+if($_POST['send'] == "取消") {
+    $rModel = new ReserveModel();
+    $rModel->deleteReserve($_SESSION['RID']);
+    echo "<script>window.location.href = './deleteComplete.php';</script>";
+}
+
+$_SESSION['stat'] = $_POST['send']; // 予約 or 変更　or 取消
 
 if($_POST['send'] == '予約') {
     $_SESSION['stat'] = 'Reserve';

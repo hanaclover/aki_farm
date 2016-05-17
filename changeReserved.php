@@ -164,6 +164,7 @@ echo "Reserved : ".session_id();
             ?>
         </table>
         <input type="submit" name="send" value="変更" class="common_btn submit"/>
+        <input type="submit" name="send" value="取消" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>
