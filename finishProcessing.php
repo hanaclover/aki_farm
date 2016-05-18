@@ -21,7 +21,6 @@ if($_POST['confirm'] == "修正") {
 }
 
     //RIDを付与する作業
-    $_SESSION['startTime'];
     //予約が確定され、SIDとRIDが付与されてるとき
     $reserve = new Reserve();
     $reserve->setUID($_SESSION['UID']);
@@ -48,19 +47,19 @@ if($_POST['confirm'] == "修正") {
     //席を決めてSIDを付与する作業
     $rModel = new ReserveModel();
     $uModel = new UserModel();
-    $reserve->setSID((string)($rModel->confirmReserve($reserve)));
-    $msg = "予約できました!";
+    $reserve->setSID((string)($rModel->confirmReserve($reserve))); // 予約ができるか確認だけ?
+
+
     //changeReserve( $id , $res )
     if($_SESSION['stat'] == 'Change') {
-        $pdo = new PDODatabase();
-        $arr = array($_SESSION['familyName'],$_SESSION['firstName'],$_SESSION['familyName_kana'],$_SESSION['firstName_kana'],$_SESSION['phoneNumber'],$_SESSION['mail']);
-        $res = $pdo->select("user", "", "FamilyName = ? and FirstName = ? and FamilyName_kana = ? and FirstName_kana =? and PhoneNum = ? and Mail = ?", $arr);
+//        $pdo = new PDODatabase();
+//        $arr = array($_SESSION['familyName'],$_SESSION['firstName'],$_SESSION['familyName_kana'],$_SESSION['firstName_kana'],$_SESSION['phoneNumber'],$_SESSION['mail']);
+//        $res = $pdo->select("user", "", "FamilyName = ? and FirstName = ? and FamilyName_kana = ? and FirstName_kana =? and PhoneNum = ? and Mail = ?", $arr);
         $reserve->setUID($_SESSION['UID']);
         $rModel->changeReserve( $_SESSION['RID'] , $reserve );
 
         // uid가 부여되어있는 경우 -> login의 경우임
-
-        $rModel->setReserve($reserve);
+        //$rModel->setReserve($reserve); 이걸 안하면 uid 가 0으로 들어감 ...!
 
     } else if($_SESSION['stat'] == 'Reserve') {
         // session - uid가 0 인 경우
@@ -101,5 +100,10 @@ if($_POST['confirm'] == "修正") {
     $contents = $sendAki->makeContents( 'host', $reserve->getRID(), $reserve->getReservedTime() );
     $sendAki->sendMail( $to, $contents );
 
-    echo "<script> window.location.href = './complete.php' </script>";
+    if($_SESSION['stat'] == 'Reserve') {
+        echo "<script> window.location.href = './complete.php' </script>";
+    } else if($_SESSION['stat'] == 'Change') {
+        echo "<script> window.location.href = './deleteComplete.php' </script>";
+    }
+
 ?>

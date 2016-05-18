@@ -17,10 +17,24 @@
 <div id="wrapper">
     <?php include_once('./common/header.html'); ?>
     <?php include_once('./common/nav.html'); ?>
+    <?php
+
+    if($_SESSION['stat'] == "Change") {
+
+    } else if($_SESSION['stat'] == "Change") {
+        echo "<h1>
+        予約内容を変更しました。
+    </h1>";
+        echo  "<form action='./bookList.php' method='post'>
+        <input type='submit' name='Home' value='ホームへ' class='common_btn'/>
+    </form>";
+    }
+    ?>
     <h1>
-        取り消ししました。
+        削除が成功しました。
     </h1>
-    <form action="Reserved.php" method="post">
+
+    <form action="./bookList.php" method="post">
         <input type="submit" name="Home" class="common_btn"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
