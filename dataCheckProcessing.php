@@ -5,6 +5,15 @@
  * Date: 2016-05-10
  * Time: 오후 12:06
  */
+/*
+ *
+    if($_SESSION['course_flag'] == true) {
+        // AMPのDISH選択ページに行く
+        echo "<script>window.location.href = '../../html/course/list.php'</script>";
+    } else {
+        echo "<script>window.location.href = './confirm.php'</script>";
+    }
+ * */
 ?>
 <?php
 include_once("class/Reserve.php");
@@ -24,10 +33,7 @@ if($_POST['send'] == "戻る") {
 }
 
 if($_POST['send'] == "削除") {
-    // 삭제할때 model클래스에서 join_flag가 없다고 나댐
-    $rModel = new ReserveModel();
-    $rModel->deleteReserve($_SESSION['RID']);
-    echo "<script>window.location.href = './deleteComplete.php';</script>";
+    echo "<script>window.location.href = './finishProcessing.php?confirm=削除';</script>";
 }
 
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
@@ -107,7 +113,14 @@ if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full
     // 間違ったとき、以前のページに移動
     // SESSION変数にERRメッセージを持っている
     //echo "<script>history.go(-1);</script>";
-    echo "<script>window.location.href = './Reserved.php'</script>";
+    if ($_SESSION['stat'] == 'Reserve') {
+        echo "<script>window.location.href = './Reserved.php'</script>";
+    } else if ($_SESSION['stat'] == 'Change') {
+        if($_POST['send'] == "削除") {
+            echo "<script>window.location.href = './changeReserved.php?confirm=削除'</script>";
+        }
+        echo "<script>window.location.href = './changeReserved.php'</script>";
+    }
 }
 
 

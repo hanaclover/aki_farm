@@ -322,9 +322,9 @@ class ReserveModel {
         $joinNum = 0;
         $sel = $pdo->select("reserve" , "" , "rid=?" , array($id));
         $time = "";
-        if ($sel["join_flag"]=="1") {
+        if ($sel[0]["join_flag"]=="1") {
             $joinNum = 1;
-            $time = $sel["StartTime"];
+            $time = $sel[0]["StartTime"];
             $pdo->update("reserve" , array('del_flag' => 1)
                 , "join_flag=? and starttime=?" , array($joinNum,$time));
         }else{
