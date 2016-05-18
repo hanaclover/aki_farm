@@ -91,7 +91,7 @@
                         if($i == $time[1])
                             echo "<option value='".sprintf("%02d", $i)."' selected>".sprintf("%02d", $i)."</option>";
                         else
-                            echo "<option value='$i'>$i</option>";
+                            echo "<option value='".sprintf("%02d", $i)."'>".sprintf("%02d", $i)."</option>";
                     }
                     echo "</select>分";
                     ?>
