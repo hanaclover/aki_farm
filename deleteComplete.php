@@ -26,7 +26,7 @@
     }
     ?>
     <form action="./bookList.php" method="post">
-        <input type="submit" name="Home" class="common_btn"/>
+        <input type="submit" name="Home" value="予約一覧へ" class="common_btn"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

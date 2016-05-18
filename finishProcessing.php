@@ -50,9 +50,7 @@ if($_POST['confirm'] == "修正") {
 
 
     //changeReserve( $id , $res )
-    if($_GET['']) {
-
-    } else if($_SESSION['stat'] == 'Change') {
+    if($_SESSION['stat'] == 'Change') {
 //        $pdo = new PDODatabase();
 //        $arr = array($_SESSION['familyName'],$_SESSION['firstName'],$_SESSION['familyName_kana'],$_SESSION['firstName_kana'],$_SESSION['phoneNumber'],$_SESSION['mail']);
 //        $res = $pdo->select("user", "", "FamilyName = ? and FirstName = ? and FamilyName_kana = ? and FirstName_kana =? and PhoneNum = ? and Mail = ?", $arr);
