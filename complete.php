@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/confirm.js"></script>
+    <title>予約完了</title>
 </head>
 <body>
 <div id="wrapper">

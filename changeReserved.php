@@ -14,7 +14,6 @@
  * 2. 4品以外の場合　→　ContentsCheck(yyy
  * 3. ContentsCheck() RETURN False　→　RESERVEDに戻る
  * */
-echo "Reserved : ".session_id();
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,15 +28,22 @@ echo "Reserved : ".session_id();
     <link rel="stylesheet" type="text/css" href="css/tableForm.css" />
     <link rel="stylesheet" type="text/css" href="css/input.css" />
     <?php
-
     require_once "./class/PDODatabase.class.php";
-
+    require_once "class/ReserveModel.php";
     date_default_timezone_set("Asia/Tokyo");
 
-    $pdo = new PDODatabase();
+    /*if($_GET['send'] == "削除") {
+        $rModel = new ReserveModel();
+        $rModel->deleteReserve($_SESSION['RID']);
+        echo "<script>window.location.href = './deleteComplete.php';</script>";
+    }*/
+
+
+
     $_SESSION['UID'] = isset($_GET['UID']) ? $_GET['UID'] : '';
-    echo $_SESSION['UID'];
     $_SESSION['RID'] = isset($_GET['RID']) ? $_GET['RID'] : '';
+
+    $pdo = new PDODatabase();
     $arr = array($_SESSION['RID']);
     $res = $pdo->select("user u, reserve r", "", "RID = ?", $arr);
     ?>
@@ -106,7 +112,7 @@ echo "Reserved : ".session_id();
                 <td>
                     <?php
                         $_SESSION['familyName'] = $res[0]['FamilyName'];
-                        $_SESSION['firstName'] = $res[0]['FirstName'];
+                        $_SESSION['firstName']  = $res[0]['FirstName'];
                         echo $res[0]['FamilyName']." ".$res[0]['FirstName'];
                     ?>
                 </td>
@@ -115,8 +121,8 @@ echo "Reserved : ".session_id();
                 <td>ふりがな</td>
                 <td>
                     <?php
-                        $_SESSION['familyName_kana'] = $res[0]['FamilyName_kana'];
-                        $_SESSION['firstName_kana'] = $res[0]['FirstName_kana'];
+                        $_SESSION['familyName_kana']    = $res[0]['FamilyName_kana'];
+                        $_SESSION['firstName_kana']     = $res[0]['FirstName_kana'];
                         echo $res[0]['FamilyName_kana']." ".$res[0]['FirstName_kana'];
                     ?>
                 </td>
@@ -164,6 +170,8 @@ echo "Reserved : ".session_id();
             ?>
         </table>
         <input type="submit" name="send" value="変更" class="common_btn submit"/>
+        <input type="submit" name="send" value="削除" class="common_btn submit"/>
+        <input type="submit" name="send" value="戻る" class="common_btn submit"/>
     </form>
     <?php include_once('./common/footer.html'); ?>
 </div>

@@ -23,10 +23,11 @@
 
     date_default_timezone_set("Asia/Tokyo");
 
-    $pdo = new PDODatabase();
+    $_SESSION['stat'] = "Change";
 
-    $date       = isset($_GET['Date']) ? $_GET['Date'] : '';
-    $SeatNum    = isset($_GET['SeatNum']) ? $_GET['SeatNum'] : '';
+    $pdo        = new PDODatabase();
+    $date       = isset($_GET['Date']) ? $_GET['Date'] : date("Y-m-d");
+    $SeatNum    = isset($_GET['SeatNum']) ? $_GET['SeatNum'] : 'All';
     ?>
 </head>
 <body>
@@ -82,12 +83,20 @@
                         <td>".$data['PeopleNum']."</td>
                         <td>".$data['PhoneNum']."</td>
                         <td>".$data['Course']."</td>";
-//                for() {
-//
-//                }
-                echo "<td>".$data['Course_4']."</td>";
+                echo "<td>";
+                    if($data['Course_4'] !== '') {
+                        $select4 = explode(",", $data['Course_4']);
+                        for($i = 0; $i <= count($select4); $i++) {
+                            if($i < 3)
+                                echo $select4[$i].", ";
+                            else
+                                echo $select4[$i];
+                        }
+                    }
+                echo "</td>";
                 echo "<td class='edit'>
-                        <input type='submit' name='change' value='変更/削除' />
+                        <input type='submit' name='send' value='変更' />
+                        <input type='submit' name='send' value='削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                       </td>
@@ -135,7 +144,8 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='change' value='変更/削除' />
+                        <input type='submit' name='send' value='変更' />
+                        <input type='submit' name='send' value='削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
@@ -183,7 +193,8 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='change' value='変更/削除' />
+                        <input type='submit' name='send' value='変更' />
+                        <input type='submit' name='send' value='削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
@@ -207,7 +218,8 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='change' value='変更/削除' />
+                        <input type='submit' name='send' value='変更' />
+                        <input type='submit' name='send' value='削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
