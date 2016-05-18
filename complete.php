@@ -10,17 +10,13 @@
 <div id="wrapper">
 <?php include_once('./common/header.html'); ?>
 <?php include_once('./common/nav.html'); ?>
-    <?php
-    session_unset(); // 危ない 全部設定しなきゃならない!
-    ?>
-    <h1>
-        御予約ありがとうございました。<br>
-        ご来店をお待ちしております。<br>
-    </h1>
-    <form action='./Reserved.php' method='post'>
-        インデックス修正!!!
-        <input type='submit' name='Home' value='ホームへ' class='common_btn'/>
-    </form>
+<h1>
+御予約ありがとうございました。<br>
+ご来店をお待ちしております。<br>
+</h1>
+<form action="Reserved.php" method="post">
+    <input type="submit" name="Home" value="ホームへ" class="common_btn"/>
+</form>
 <?php include_once('./common/footer.html'); ?>
 </div>
 </body>
