@@ -14,7 +14,7 @@
 ご来店をお待ちしております。<br>
 </h1>
 <form action="Reserved.php" method="post">
-    <input type="submit" name="Home" class="common_btn"/>
+    <input type="submit" name="Home" value="ホームへ" class="common_btn"/>
 </form>
 <?php include_once('./common/footer.html'); ?>
 </div>

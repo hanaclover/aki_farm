@@ -82,9 +82,9 @@
                         <td>".$data['PeopleNum']."</td>
                         <td>".$data['PhoneNum']."</td>
                         <td>".$data['Course']."</td>";
-                for() {
-                    
-                }
+//                for() {
+//
+//                }
                 echo "<td>".$data['Course_4']."</td>";
                 echo "<td class='edit'>
                         <input type='submit' name='change' value='変更/削除' />
