@@ -95,8 +95,7 @@
                     }
                 echo "</td>";
                 echo "<td class='edit'>
-                        <input type='submit' name='send' value='変更' />
-                        <input type='submit' name='send' value='削除' />
+                        <input type='submit' name='send' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                       </td>
@@ -144,8 +143,7 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='send' value='変更' />
-                        <input type='submit' name='send' value='削除' />
+                        <input type='submit' name='send' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
@@ -193,8 +191,7 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='send' value='変更' />
-                        <input type='submit' name='send' value='削除' />
+                        <input type='submit' name='send' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>
@@ -218,8 +215,7 @@
                     <td>".$data['Course']."</td>
                     <td>".$data['Course_4']."</td>
                     <td class='edit'>
-                        <input type='submit' name='send' value='変更' />
-                        <input type='submit' name='send' value='削除' />
+                        <input type='submit' name='send' value='変更/削除' />
                         <input type='hidden' name='RID' value='".$data['RID']."' />
                         <input type='hidden' name='UID' value='".$data['UID']."' />
                     </td>

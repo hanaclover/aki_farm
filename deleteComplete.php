@@ -19,21 +19,12 @@
     <?php include_once('./common/nav.html'); ?>
     <?php
 
-    if($_SESSION['stat'] == "Change") {
-
+    if($_GET['confirm'] == "変更") {
+        echo "<h1>予約内容を変更しました。</h1>";
     } else if($_SESSION['stat'] == "Change") {
-        echo "<h1>
-        予約内容を変更しました。
-    </h1>";
-        echo  "<form action='./bookList.php' method='post'>
-        <input type='submit' name='Home' value='ホームへ' class='common_btn'/>
-    </form>";
+        echo "<h1>削除が成功しました。</h1>";
     }
     ?>
-    <h1>
-        削除が成功しました。
-    </h1>
-
     <form action="./bookList.php" method="post">
         <input type="submit" name="Home" class="common_btn"/>
     </form>
