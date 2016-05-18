@@ -5,32 +5,42 @@
  * Date: 2016-05-10
  * Time: 오후 12:06
  */
+/*
+ *
+    if($_SESSION['course_flag'] == true) {
+        // AMPのDISH選択ページに行く
+        echo "<script>window.location.href = '../../html/course/list.php'</script>";
+    } else {
+        echo "<script>window.location.href = './confirm.php'</script>";
+    }
+ * */
 ?>
 <?php
 include_once("class/Reserve.php");
 require_once "class/ReserveModel.php";
 
 
+if($_POST['send'] == "戻る") {
+    if($_SESSION['stat'] == "Reserve") {
+        echo "Indexに行く/PATH modify";
+        //echo "<script>window.location.href = './bookList.php';</script>";
 
-if($_POST['send'] == "取消") {
-    $rModel = new ReserveModel();
-    $rModel->deleteReserve($_SESSION['RID']);
-    echo "<script>window.location.href = './deleteComplete.php';</script>";
+    } else if($_SESSION['stat'] == "Change") {
+        //echo "<script>history.go(-2);</script>";
+        echo "<script>window.location.href = './bookList.php';</script>";
+    }
+
 }
 
-$_SESSION['stat'] = $_POST['send']; // 予約 or 変更　or 取消
-
-if($_POST['send'] == '予約') {
-    $_SESSION['stat'] = 'Reserve';
-} else if ($_POST['send'] == '変更') {
-    $_SESSION['stat'] = 'Change';
+if($_POST['send'] == "削除") {
+    echo "<script>window.location.href = './finishProcessing.php?confirm=削除';</script>";
 }
 
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
 $startTime = $_POST['hour'].":".$_POST['minute'].":00";                             //  15:00:00 형식으로 맞춰줌
 
-$_SESSION['UID'] = isset($_SESSION['UID']) ? $_SESSION['UID'] : 0;
+$_SESSION['UID'] = $_SESSION['Login_stat'] !== "Guest" ? $_SESSION['UID'] : 0;
 
 // post 데이터가 넘어오면 세션에 저장
 // 4, true의 경우 AMP페이지로
@@ -102,59 +112,70 @@ if(count($_SESSION['err']) == 0 && (!isset($_SESSION['full']) || $_SESSION['full
 } else {
     // 間違ったとき、以前のページに移動
     // SESSION変数にERRメッセージを持っている
-    echo "<script>history.go(-1);</script>";
+    //echo "<script>history.go(-1);</script>";
+    if ($_SESSION['stat'] == 'Reserve') {
+        echo "<script>window.location.href = './Reserved.php'</script>";
+    } else if ($_SESSION['stat'] == 'Change') {
+        if($_POST['send'] == "削除") {
+            echo "<script>window.location.href = './changeReserved.php?confirm=削除'</script>";
+        }
+        echo "<script>window.location.href = './changeReserved.php'</script>";
+    }
 }
+
+
 function inputDataCheck_c($_uid, $_peopleNum, $_startDay, $_startTime) {
-    $inputDate = array();
+    $inputData = array();
     if(preg_match( '/[0-9]+/', $_uid ));
-    else $inputDate['UID'] = "登録されたユーザーデータがありません";
+    else $inputData['UID'] = "登録されたユーザーデータがありません";
 
     $parseDate = explode("-", $_startDay);
 
     if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
         checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
-    } else $inputDate['StartDay'] = "日付は正しく入力してください";
+    } else $inputData['StartDay'] = "日付は正しく入力してください";
 
     if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
-    } else $inputDate['StartTime'] = "時刻は正しく入力してください";
+    } else $inputData['StartTime'] = "時刻は正しく入力してください";
 
     if( $_peopleNum > 0 && $_peopleNum <= 30 );
-    else $inputDate['peopleNum'] = "お客様の人数は1～30人でお願いします";
+    else $inputData['peopleNum'] = "お客様の人数は1～30人でお願いします";
 
-    return $inputDate;
+    return $inputData;
 }
+
 function inputDataCheck($_uid, $_peopleNum, $_startDay, $_startTime, $_phoneNum, $_familyName, $_firstName, $_familyName_kana, $_firstName_kana, $_mail) {
 
-    $inputDate = array();
+    $inputData = array();
 
     if(preg_match( '/[0-9]+/', $_uid ));
-    else $inputDate['UID'] = "登録されたユーザーデータがありません";
+    else $inputData['UID'] = "登録されたユーザーデータがありません";
 
     $parseDate = explode("-", $_startDay);
 
     if(preg_match( '/([2-9]{1}[0-9]{3})/', $parseDate[0] ) &&
         checkdate( $parseDate[1], $parseDate[2], $parseDate[0] )) {
-    } else $inputDate['StartDay'] = "日付は正しく入力してください";
+    } else $inputData['StartDay'] = "日付は正しく入力してください";
 
-    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime )) {
-    } else $inputDate['StartTime'] = "時刻は正しく入力してください";
+    if(preg_match( '/([0-9]{2}):([0-9]{2}):([0-9]{2})/', $_startTime ) || $_startTime == '') {
+    } else $inputData['StartTime'] = "時刻は正しく入力してください";
 
     if( $_peopleNum > 0 && $_peopleNum <= 30 );
-    else $inputDate['peopleNum'] = "お客様の人数は1～30人でお願いします";
+    else $inputData['peopleNum'] = "お客様の人数は1～30人でお願いします";
 
     if ( preg_match( '/([0-9]{3})-([0-9]{4})-([0-9]{4})/', $_phoneNum ));
-    else $inputDate['phoneNum'] = "電話番号は、半角数字で11桁以内で入力してください";
+    else $inputData['phoneNum'] = "電話番号は、半角数字で11桁以内で入力してください";
 
     if( $_familyName == '' || $_firstName == '')  {
-        $inputDate['Name'] ="名前を入力してください";
+        $inputData['Name'] ="名前を入力してください";
     }
     if( $_familyName_kana == '' || $_firstName_kana == '')  {
-        $inputDate['Name_kana'] ="ふりがなを入力してください";
+        $inputData['Name_kana'] ="ふりがなを入力してください";
     }
     if ( preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+[a-zA-Z0-9\._-]+$/', $_mail ) === 0 )
     {
-        $inputDate['mail'] = 'メールアドレスを正しい形式で入力してください';
+        $inputData['mail'] = 'メールアドレスを正しい形式で入力してください';
     }
-    return $inputDate;
+    return $inputData;
 }
 ?>

@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="lib/jquery-2.2.3.min.js"></script>
     <script src="js/confirm.js"></script>
+    <title>予約完了</title>
 </head>
 <body>
 <div id="wrapper">
@@ -14,7 +15,7 @@
 ご来店をお待ちしております。<br>
 </h1>
 <form action="Reserved.php" method="post">
-    <input type="submit" name="Home" class="common_btn"/>
+    <input type="submit" name="Home" value="ホームへ" class="common_btn"/>
 </form>
 <?php include_once('./common/footer.html'); ?>
 </div>

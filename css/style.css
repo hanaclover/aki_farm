@@ -4,7 +4,7 @@ body {
 /*bodyタグ直下に配置し、全体の枠組みを決定する*/
 #wrapper {
     /*全体の外観*/
-    width: 830px;
+    width: 960px;
     font-family: "メイリオ";
     margin: 0 auto;
     /*中の要素とボーダーを離す*/

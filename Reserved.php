@@ -25,6 +25,10 @@
     <?php include_once('./common/nav.html'); ?>
     <span id="shimaiten">
         <?php
+        /////////////
+        $_SESSION['Login_stat'] = "Guest";
+        $_SESSION['stat'] = "Reserve";
+        ////////////
         if(isset($_SESSION['full'])){
             echo "<p>".$_SESSION['full']."</p>";
             echo "<p><a href='http://meijin-farm.com/welcome/'>Meijin農場</a></p>";
@@ -40,7 +44,7 @@
             <tr>
                 <td>日にち</td>
                 <td>
-                    <input type="date" name="Date" />
+                    <input type="date" name="Date" value="<?php echo isset($_SESSION['StartDay']) ? $_SESSION['StartDay'] : "2016-05-19" ?>"/>
                     <span class="datemsg err"><?php echo isset($_SESSION['err']['StartDay']) ? $_SESSION['err']['StartDay'] : "" ; ?></span>
                 </td>
             </tr>
@@ -69,23 +73,23 @@
             <tr>
                 <td>人数</td>
                 <td>
-                    <input type="number" name="peopleNum" class="unsigned" value="" placeholder="1以上の数字を入れてください" />
+                    <input type="number" name="peopleNum" class="unsigned" value="<?php echo isset($_SESSION['peopleNum']) ? $_SESSION['peopleNum'] : "8" ?>" placeholder="1以上の数字を入れてください" />
                     <span class="err"><?php echo isset($_SESSION['err']['peopleNum']) ? $_SESSION['err']['peopleNum'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>漢字名前</td>
                 <td>
-                    <input type="text" name="familyName" placeholder="FamilyName" value="<?php echo isset($_SESSION['familyName']) ? $_SESSION['familyName'] : "" ?>" />
-                    <input type="text" name="firstName" placeholder="FirstName" value="<?php echo isset($_SESSION['firstName']) ? $_SESSION['firstName'] : "" ?>" />
+                    <input type="text" name="familyName" placeholder="FamilyName" value="<?php echo isset($_SESSION['familyName']) ? $_SESSION['familyName'] : "張" ?>" />
+                    <input type="text" name="firstName" placeholder="FirstName" value="<?php echo isset($_SESSION['firstName']) ? $_SESSION['firstName'] : "秀朱" ?>" />
                     <span class="err"><?php echo isset( $_SESSION['err']['Name'] ) ? $_SESSION['err']['Name'] : "" ; ?></span>
                 </td>
             </tr>
             <tr>
                 <td>ふりがな</td>
                 <td>
-                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="<?php echo isset($_SESSION['familyName_kana']) ? $_SESSION['familyName_kana'] : "" ?>" />
-                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="<?php echo isset($_SESSION['firstName_kana']) ? $_SESSION['firstName_kana'] : "" ?>" />
+                    <input type="text" name="familyName_kana" placeholder="FamilyName"  value="<?php echo isset($_SESSION['familyName_kana']) ? $_SESSION['familyName_kana'] : "じゃん" ?>" />
+                    <input type="text" name="firstName_kana" placeholder="FirstName"  value="<?php echo isset($_SESSION['firstName_kana']) ? $_SESSION['firstName_kana'] : "すじゅ" ?>" />
                     <span class="err"><?php echo isset($_SESSION['err']['Name_kana']) ? $_SESSION['err']['Name_kana'] : "" ; ?></span>
                 </td>
             </tr>
@@ -93,7 +97,7 @@
                 <td>電話番号</td>
                 <td>
                     <?php
-                    $PhoneNum = isset($_SESSION['phoneNumber']) ? $_SESSION['phoneNumber'] : "";
+                    $PhoneNum = isset($_SESSION['phoneNumber']) ? $_SESSION['phoneNumber'] : "080-7788-5522";
                     if($PhoneNum !== '') {
                         echo "<select name='phoneNum1'>";
                         $firstPN = array("080", "070", "090");
@@ -124,7 +128,7 @@
             <tr>
                 <td>メール</td>
                 <td>
-                    <input type="text" name="mail" placeholder="abc@gmail.com" value="<?php echo isset($_SESSION['mail']) ? $_SESSION['mail'] : '' ?>"  />
+                    <input type="text" name="mail" placeholder="abc@gmail.com" value="<?php echo isset($_SESSION['mail']) ? $_SESSION['mail'] : 'aiukk778@gmail.com' ?>"  />
                     <span class="err"><?php echo isset($_SESSION['err']['mail']) ? $_SESSION['err']['mail'] : "" ; ?></span>
                 </td>
             </tr>

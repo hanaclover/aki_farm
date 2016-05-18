@@ -61,7 +61,7 @@ if(count($reserve->errCheck()) !== 0) {
             </td>
             <td>
                 <?php
-                    echo $_SESSION['startTime'];
+                    echo $_SESSION['StartDay']." ".$_SESSION['startTime'];
                 ?>
             </td>
         </tr>
@@ -123,8 +123,15 @@ if(count($reserve->errCheck()) !== 0) {
     </table>
     <div class="btns">
         <form action="./finishProcessing.php" method="Post">
-            <span class='btn'><input type='submit' name='confirm' value='確定' class='common_btn submit'></span>
-            <span class='btn'><input type='submit' name='confirm' value='修正' class='common_btn modify'></span>
+            <?php
+                if($_SESSION['stat'] == "Reserve") {
+                    echo "<span class='btn'><input type='submit' name='confirm' value='確定' class='common_btn submit'></span>
+                            <span class='btn'><input type='submit' name='confirm' value='修正' class='common_btn modify'></span>";
+                } else if($_SESSION['stat'] == "Change") {
+                    echo "<span class='btn'><input type='submit' name='confirm' value='変更確定' class='common_btn submit'></span>
+                            <span class='btn'><input type='submit' name='confirm' value='修正' class='common_btn modify'></span>";
+                }
+            ?>
         </form>
     </div>
 <?php include_once('./common/footer.html'); ?>
