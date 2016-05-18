@@ -257,6 +257,23 @@ class ReserveModel {
         }
         return 0;
     }
+        // 現在来店中のお客様のRIDを得る
+    public function returnRIDNow( $sid ){
+        $today = date("y-m-d");
+        $nowTime = time()+self::DISTANCETIME;
+        $pdo = new PDODatabase();
+        $arrRes = array($sid , $today , 0);
+        $res = $pdo->select("reserve" , "" ,
+            "SID=? and StartDay=? and del_flag=?" , $arrRes);
+        foreach ($res as $key => $value){
+            $startTime = strtotime($value["StartDay"]." ".$value["StartTime"]);
+            if ($startTime <= $nowTime && $nowTime <= ($startTime + self::DINNERLENGTH)){
+                return $res[0]["RID"];
+            }
+        }
+        return 0;
+    }
+
     public function getReserve( $seatNum ){
         // 空席状況の確認
             // 空席の場合
@@ -322,9 +339,9 @@ class ReserveModel {
         $joinNum = 0;
         $sel = $pdo->select("reserve" , "" , "rid=?" , array($id));
         $time = "";
-        if ($sel["join_flag"]=="1") {
+        if ($sel[0]["join_flag"]=="1") {
             $joinNum = 1;
-            $time = $sel["StartTime"];
+            $time = $sel[0]["StartTime"];
             $pdo->update("reserve" , array('del_flag' => 1)
                 , "join_flag=? and starttime=?" , array($joinNum,$time));
         }else{
