@@ -39,7 +39,6 @@ if($_POST['send'] == "削除") {
 // uid는 유저가 로그인 하면 들어오는 값임, 세션아이디와는 별개
 // 데이터는 일단 유효한 값인지, 형식은 올바른지 체크
 $startTime = $_POST['hour'].":".$_POST['minute'].":00";                             //  15:00:00 형식으로 맞춰줌
-
 $_SESSION['UID'] = $_SESSION['Login_stat'] !== "Guest" ? $_SESSION['UID'] : 0;
 
 // post 데이터가 넘어오면 세션에 저장
