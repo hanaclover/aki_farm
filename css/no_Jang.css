@@ -1,0 +1,36 @@
+.two_by_two {
+    width: 100px;
+    height: 250px;
+    margin: 10px;
+    display: inline-table;
+    background-color: #444444;
+}
+#left_4 {
+    float: left;
+}
+#center {
+    float: left;
+}
+#tate_4 {
+    float: left;
+}
+.mitsugo {
+    width: 125px;
+    height: 180px;
+    margin: 10px;
+    display: inline-table;
+    background-color: #444444;
+}
+.mini_two_by_two {
+    width: 200px;
+    height: 146px;
+    margin: 10px;
+    display: inline-table;
+    background-color: #444444;
+}
+.tate {
+    width: 120px;
+    height: 125px;
+    margin: 10px;
+    background-color: #444444;
+}
