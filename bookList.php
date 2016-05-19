@@ -73,7 +73,11 @@
             // $now = array(date("Y-m-d"), date("H:i:s"));
             // StartDay = ? and StartTime >= ? order by StartTime asc
             $now = array(date("Y-m-d"), date("H:i:s"));
-            $res = $pdo->select("user u, reserve r, seat s", "", " u.uid = r.UID and r.Del_flag = 0 and r.SID = s.SID and StartDay = ? and StartTime >= ? order by StartTime asc", $now);
+            $res = $pdo->select("user u, reserve r, seat s", "",
+                                    " u.uid = r.UID and r.Del_flag = 0 and r.SID = s.SID
+                                    and StartDay = ? and StartTime >= ?
+                                    order by StartTime asc", $now);
+
             foreach($res as $data) {
                 echo "<form action='./changeReserved.php' method='GET'>";
                 echo "<tr>
@@ -228,45 +232,34 @@
 
 
     function CasebyInput($_date, $_SeatNum) {
-        // 오늘 날짜인 경우 + 모든 좌석
+        // 今日の日付、現在の時間、すべての座席
         if($_date == date("Y-m-d") && $_SeatNum == '') {
-            // 첨 들어왔을때 날짜가 오늘 날짜, 좌석없음 -> 모든좌석 & 오늘날짜 + 현재시간
-            // $now = array(date("Y-m-d"), date("H:i:s"));
-            // StartDay = ? and StartTime >= ? order by StartTime asc
+            //初めて座席一覧のページに入ったとき　→　今日の日付、現在の時間、すべての座席
             return "Today";
         }  else if( $_date == date("Y-m-d") && $_SeatNum == 'All' ) {
-            // 오늘 날짜만 선택 후 검색 -> 모든 좌석 & 오늘날짜 + 현재시간
+            //今日の日付だけ選択　→　今日の日付、現在の時間、すべての座席
             return "Today";
         } else if( $_date == '' && $_SeatNum == 'All' ) {
-            // 오늘 날짜, 좌석 선택 -> 모든 좌석 & 오늘날짜 + 현재시간
-            // StartDay = ? and StartTime >= ? order by StartTime asc
+            // 日付と座席番号を選択しない　→　今日の日付、現在の時間、すべての座席
             return "Today";
         }
 
-        // 오늘 날짜 + 해당 좌석
+        // 今日の日付、現在の時間、座席番号
         else if( $_date == date("Y-m-d") && $_SeatNum !== 'All' ) {
-            // 오늘 날짜 선택, 좌석 선태 -> 해당 좌석 & 오늘날짜 + 현재시간
-            // $select = array("$date", "date("H:i:s")", "$SeatNum");
-            // StartDay = ? and StartTime >= ? SID = ? order by StartTime asc
+            // 今日の日付を選択、座席番号を選択　→　今日の日付、現在の時間、座席番号
             return "Now_Seat";
         } else if( $_date == '' && $_SeatNum !== 'All' ) {
-            // 오늘 날짜, 좌석 선택 -> 해당 좌석 & 오늘날짜 + 현재시간
-            // StartDay = ? and StartTime >= ? SID = ? order by StartTime asc
+            // 日付を選択しない、座席番号を選択　→　今日の日付、現在の時間、座席番号
             return "Now_Seat";
         }
 
-        // 날짜 선택
+        // 今日ではない特定の日を選択&座席番号を選択
         else if(($_date !== '' && $_date !== date("Y-m-d")) && $_SeatNum !== 'All' ) {
-            // 다른 날짜, 좌석을 선택 -> 해당 좌석 & 해당 날짜
-            // $select = array("$date", "$SeatNum");
-            // StartDay = ? and SID = ? order by StartTime asc
             return "SelectDay_Seat";
         }
 
+        // 今日ではない特定の日を選択
         else if(($_date !== '' && $_date !== date("Y-m-d")) && $_SeatNum == 'All' ) {
-            // 다른 날짜 -> 전체 좌석 & 해당 날짜
-            // $select = array("$date");
-            // StartDay = ? order by StartTime asc
             return "SelectDay";
         }
     }
