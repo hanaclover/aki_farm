@@ -30,7 +30,7 @@
 </head>
 <body>
     <div style="width: 1500px;" >
-        <div class="m5" style="float: left;">
+        <div class="" style="float: left;">
             <div>
                 <div id="3" class="color m5" style="float: left; width: 200px; height: 220px;" >3</div>
                 <div id="4"  class="color m5" style="float: left; width: 200px; height: 220px;" >4</div>
@@ -42,7 +42,7 @@
             </div>
             <div style="clear: both"></div>
         </div>
-        <div class="m5" style="float: left;">
+        <div class="" style="float: left;">
             <div>
                 <div id="7" class="color m5" style="float: left;width: 200px; height: 180px;">7</div>
                 <div id="8" class="color m5" style="float: left;width: 200px; height: 180px;">8</div>
@@ -56,7 +56,7 @@
                 <div id="14" class="color m5"  style="float: left;width: 300px; height: 130px;">14</div>
             </div>
         </div>
-        <div class="m5" style="float: left;">
+        <div class="" style="float: left;">
             <div>
                 <div id="10" class="color m5"  style="width: 200px; height: 110px;">10</div>
                 <div id="11" class="color m5"  style="width: 200px; height: 110px;">11</div>
