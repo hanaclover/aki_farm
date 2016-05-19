@@ -12,7 +12,7 @@ $(document).ready(function(){
         if($(this).hasClass('reserve')) {
             $(this).css("backgroundColor","#ff3000");
         } else {
-            $(this).css("backgroundColor","greenyellow");
+            $(this).css("backgroundColor","#ff9999");
         }
     });
 
