@@ -1,0 +1,13 @@
+.two_by_two {
+    width: 200px;
+    height: 250px;
+    margin: 10px;
+    display: inline-table;
+    background-color: #444444;
+}
+#left_4 {
+    display: inline-table;
+}
+.mitsugo {
+    
+}
